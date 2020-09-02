@@ -1,24 +1,6 @@
-# econowapo
+# EconoWapo
 
-## Project setup
-```
-npm install
-```
+## Finance Manager
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Developed in Vue.js, Typescript, Vuex, Router, Bootstrap, SCSS and Axios
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
