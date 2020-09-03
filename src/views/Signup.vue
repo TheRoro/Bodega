@@ -1,8 +1,8 @@
 <template>
-  <div class="login">
+  <div class="signup">
     <div class="row justify-content-center">
       <div class="col-12 col-sm-6">
-        <h1>Log In</h1>
+        <h1>Sign Up</h1>
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
           <b-form-group id="input-group-1" label="Email address:" label-for="input-1">
             <b-form-input
@@ -24,7 +24,7 @@
             ></b-form-input>
           </b-form-group>
 
-          <b-button type="submit" variant="primary">LOG IN</b-button>
+          <b-button type="submit" variant="primary">SIGN UP</b-button>
         </b-form>
         <b-card class="mt-3" header="Form Data Result">
           <pre class="m-0">{{ form }}</pre>
