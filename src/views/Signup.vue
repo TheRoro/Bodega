@@ -1,5 +1,5 @@
 <template>
-  <div class="signup">
+  <div class="signup container">
     <div class="row justify-content-center">
       <div class="col-12 col-sm-6">
         <h1>Sign Up</h1>

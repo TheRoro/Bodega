@@ -1,14 +1,21 @@
 $breakpoint-sm: 575px;
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+body {
+    background-image: url('C:\\Programming\\Vue\\econowapo\\public\\assets\\background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
 }
 
-.login, .signup {
+.login, .signup, .home, .about  {
     margin-top: 20px;
 }
 
@@ -23,6 +30,21 @@ $breakpoint-sm: 575px;
     width: 40px;
 }
 
+.logo {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    text-align: left;
+    margin-left: 20px;
+    filter:
+    opacity(80%)
+}
+
 .home {
-    background-image:  url("/public/assets/background.jpg");;
+    height: 100%;
+    h1 {
+        font-size: 60px;
+        font-weight: 700;
+        color: $secondary;
+    }
 }
