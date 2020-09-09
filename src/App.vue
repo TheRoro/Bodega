@@ -18,10 +18,10 @@
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <b-nav-item href="#">
-              <b-button variant="outline-primary" @click="$router.push('login')">Log In</b-button>
+              <b-button variant="primary" @click="$router.push('login')">Log In</b-button>
             </b-nav-item>
             <b-nav-item href="#">
-              <b-button variant="outline-success" @click="$router.push('signup')">Sign Up</b-button>
+              <b-button variant="primary" @click="$router.push('signup')">Sign Up</b-button>
             </b-nav-item>
           </b-navbar-nav>
         </b-collapse>

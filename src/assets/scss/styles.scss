@@ -1,6 +1,5 @@
 $breakpoint-sm: 575px;
 
-
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -19,8 +18,11 @@ $breakpoint-sm: 575px;
     }
 }
 
-
 .nav-logo {
     height: 40px;
     width: 40px;
-}  
+}
+
+.home {
+    background-image:  url("/public/assets/background.jpg");;
+}
