@@ -1,4 +1,4 @@
-# EconoWapo
+# FinanciApp
 
 ## Finance Manager
 
