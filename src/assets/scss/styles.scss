@@ -2,7 +2,7 @@ $breakpoint-sm: 575px;
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
 body {
-    background-image: url('C:\\Programming\\Vue\\econowapo\\public\\assets\\background.jpg');
+    background-image: url(assets/bg.png);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -26,8 +26,11 @@ body {
 }
 
 .nav-logo {
-    height: 40px;
-    width: 40px;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    filter:
+    opacity(70%);
 }
 
 .logo {
@@ -37,7 +40,7 @@ body {
     text-align: left;
     margin-left: 20px;
     filter:
-    opacity(80%)
+    opacity(80%);
 }
 
 .home {
@@ -47,4 +50,9 @@ body {
         font-weight: 700;
         color: $secondary;
     }
+}
+
+.btn {
+    border-radius: 20px;
+    width: 140px;
 }
