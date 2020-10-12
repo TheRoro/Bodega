@@ -37,12 +37,16 @@ Vue.use(VueRouter)
     path: '/profile',
     name: 'Profile',
     component: () => import('../views/Profile.vue')
-  }
-  ,
+  },
   {
     path: '/editProfile',
     name: 'EditProfile',
     component: () => import('../views/EditProfile.vue')
+  },
+  {
+    path: '/imageUpload',
+    name: 'ImageUpload',
+    component: () => import('../views/ImageUpload.vue')
   }
 ]
 

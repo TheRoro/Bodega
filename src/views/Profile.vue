@@ -6,7 +6,10 @@
                 <div class="profile-col col-auto col-sm-3 mt-2">
                     <div class="col-auto">
                         <h3 class="title">Foto de Perfil</h3>
-                        <img src="../../public/assets/logo.jpeg" class="d-inline-block profile-picture" alt="Wapo logo">
+                        <div v-if="this.$store.getters.profilePicture == ''">
+                            <img src="../../public/assets/logo.jpeg" class="d-inline-block profile-picture" alt="Wapo logo">
+                        </div>
+                        <img v-if="this.$store.getters.profilePicture" :src="this.$store.getters.profilePicture" class="profile-picture"/>
                     </div>
                 </div>
                 <div class="profile-col col-auto col-sm-5 mt-2">
