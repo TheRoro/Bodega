@@ -1,6 +1,6 @@
 <template>
   <div class="signup container">
-    <div class="row justify-content-center">
+    <!--<div class="row justify-content-center">
       <div class="col-12 col-sm-6">
         <h1>Sign Up</h1>
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
@@ -30,7 +30,7 @@
           <pre class="m-0">{{ form }}</pre>
         </b-card>
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 

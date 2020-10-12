@@ -1,12 +1,10 @@
 <template>
-  <div class="home container justify-content-center col-auto row">
-    <!--<div class="d-flex justify-content-start">
+  <div class="edit-profile">
+    <div class="d-flex justify-content-start">
       <img class="logo" alt="FinanciApp logo" src="../assets/logo.jpeg">
-    </div>-->
-    <div class="col-12 home-box">
-      <h1 class="col-12">Realiza tus cuentas,</h1>
-      <h1 class="col-12">desde tu bodega</h1>
     </div>
+    <h1>Editar los datos personales,</h1>
+    <h1>Cambia tu foto de perfil</h1>
   </div>
 </template>
 
@@ -15,7 +13,7 @@ import Vue from 'vue';
 //import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 
 export default Vue.extend({
-  name: 'Home',
+  name: 'EditProfile',
   components: {
   },
 });
