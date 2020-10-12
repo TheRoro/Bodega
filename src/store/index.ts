@@ -8,6 +8,8 @@ export default new Vuex.Store({
     loggedIn: false,
     firstname: "Alberto",
     username: "Albertito69",
+    password: "albertitotupapa",
+    profilePicture: '',
     address: "Calle Kosaraju 420",
     accountNumber: "191-0001-00005",
     interestRate: "5%",
@@ -20,7 +22,22 @@ export default new Vuex.Store({
     },
     logOut (state) {
       state.loggedIn = false
-    }
+    },
+    firstname (state, firstname) {
+      state.firstname = firstname
+    },
+    username (state, username) {
+      state.username = username
+    },
+    password (state, password) {
+      state.password = password
+    },
+    address (state, address) {
+      state.address = address
+    },
+    profilePicture (state, profilePicture) {
+      state.profilePicture = profilePicture
+    },
   },
   getters: {
     loggedStatus: state => {
@@ -31,6 +48,12 @@ export default new Vuex.Store({
     },
     username: state => {
       return state.username
+    },
+    password: state => {
+      return state.password
+    },
+    profilePicture: state => {
+      return state.profilePicture
     },
     address: state => {
       return state.address
