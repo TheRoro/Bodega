@@ -1,20 +1,62 @@
 <template>
-  <div class="edit-profile">
-    <div class="d-flex justify-content-start">
-      <img class="logo" alt="FinanciApp logo" src="../assets/logo.jpeg">
-    </div>
-    <h1>Editar los datos personales,</h1>
-    <h1>Cambia tu foto de perfil</h1>
+  <div class="container">
+      <div class="profile row align-items-center">
+          <div class="col-12">
+              <div class="row col-12 col-sm-12 profile-box">
+                  <div class="profile-col col-auto col-sm-6 mt-2">
+                    <div class="col-auto">
+                        <div class="row">
+                            <h3 class="title mr-3">Editar los datos personales</h3>
+                        </div>
+                        <div class="data mt-4">
+                            <p>Nombre: {{this.$store.getters.firstname}}</p>
+                            <p>Usuario: {{this.$store.getters.username}}</p>
+                            <p>Dirección: {{this.$store.getters.address}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-col col-auto col-sm-6 mt-2">
+                    <div class="col-auto">
+                        <h3 class="title">Cambiar foto de perfil</h3>
+                        <img src="../../public/assets/logo.jpeg" class="d-inline-block profile-picture" alt="Wapo logo">
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
-//import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-
-export default Vue.extend({
-  name: 'EditProfile',
-  components: {
-  },
-});
+<script>
+  export default {
+    data() {
+      return {
+        form: {
+          email: '',
+          password: '',
+        },
+        show: true
+      }
+    },
+    methods: {
+      onSubmit(evt) {
+        evt.preventDefault()
+        alert(JSON.stringify(this.form))
+        this.$store.commit('logIn')
+        console.log(this.$store.getters.LoggedStatus)
+        this.$router.push('/homeLogged')  
+      },
+      onReset(evt) {
+        evt.preventDefault()
+        // Reset our form values
+        this.form.email = ''
+        this.form.password = ''
+        // Trick to reset/clear native browser form validation state
+        this.show = false
+        this.$nextTick(() => {
+          this.show = true
+        })
+      }
+    }
+  }
 </script>
