@@ -38,6 +38,12 @@ Vue.use(VueRouter)
     name: 'Profile',
     component: () => import('../views/Profile.vue')
   }
+  ,
+  {
+    path: '/editProfile',
+    name: 'EditProfile',
+    component: () => import('../views/EditProfile.vue')
+  }
 ]
 
 const router = new VueRouter({
