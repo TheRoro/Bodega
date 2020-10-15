@@ -32,9 +32,6 @@
 
   export default {
     name: 'Products',
-    props: {
-        
-    },
     data() {
       return {
         products: [
@@ -130,7 +127,13 @@
       }
     },
     methods: {
-
+        addProductToCart(product) {
+          console.log("Añadido producto", product, "al carrito.");
+          this.itemDetail= [product.name, 1];
+          this.$store.commit('addToCart', this.itemDetail)
+          this.item = this.$store.getters.cart
+          console.log(this.item[0].itemDetail)
+        }
     }
   }
 </script>

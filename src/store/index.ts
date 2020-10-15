@@ -15,6 +15,8 @@ export default new Vuex.Store({
     interestRate: "5%",
     itemsPurchased: 10,
     orders: 11,
+    cart: [],
+    itemDetail: [],
   },
   mutations: {
     logIn (state) {
@@ -38,6 +40,9 @@ export default new Vuex.Store({
     profilePicture (state, profilePicture) {
       state.profilePicture = profilePicture
     },
+    addToCart (state, itemDetail) {
+      state.cart = [...state.cart, {itemDetail}]
+    }
   },
   getters: {
     loggedStatus: state => {
@@ -69,6 +74,9 @@ export default new Vuex.Store({
     },
     orders: state => {
       return state.orders
+    },
+    cart: state => {
+      return state.cart
     }
   },
   actions: {
