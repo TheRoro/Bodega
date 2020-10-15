@@ -22,11 +22,11 @@
         <b-nav-item to="/login">
             <b-button size="lg" variant="primary text-success" class="nav-btn">Pedidos</b-button>
         </b-nav-item>
-        <b-nav-item to="/login">
+        <b-nav-item to="/products">
             <b-button size="lg" variant="primary text-success" class="nav-btn">Productos</b-button>
         </b-nav-item>
         <b-navbar-brand to="/profile">
-            <img v-if="this.$store.getters.profilePicture == ''" src="../../public/assets/logo.jpeg" class="d-inline-block align-top nav-logo" alt="Wapo logo" >
+            <img v-if="this.$store.getters.profilePicture == ''" src="../../public/assets/user.png" class="d-inline-block align-top nav-logo" alt="Wapo logo" >
             <img v-if="this.$store.getters.profilePicture" :src="this.$store.getters.profilePicture"  class="d-inline-block align-top nav-logo"/>
                         
         </b-navbar-brand>

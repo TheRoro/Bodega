@@ -7,7 +7,7 @@
                     <div class="col-auto">
                         <h3 class="title">Foto de Perfil</h3>
                         <div v-if="this.$store.getters.profilePicture == ''">
-                            <img src="../../public/assets/logo.jpeg" class="d-inline-block profile-picture" alt="Wapo logo">
+                            <img src="../../public/assets/user.png" class="d-inline-block profile-picture" alt="Wapo logo">
                         </div>
                         <img v-if="this.$store.getters.profilePicture" :src="this.$store.getters.profilePicture" class="profile-picture"/>
                     </div>
