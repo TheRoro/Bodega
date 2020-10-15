@@ -47,6 +47,11 @@ Vue.use(VueRouter)
     path: '/imageUpload',
     name: 'ImageUpload',
     component: () => import('../views/ImageUpload.vue')
+  },
+  {
+    path: '/products',
+    name: 'Products',
+    component: () => import('../views/Products.vue')
   }
 ]
 
