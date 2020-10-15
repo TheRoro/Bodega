@@ -13,6 +13,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
+    height: 100vh;
 }
 
 .login, .signup, .home, .about  {
@@ -25,6 +26,18 @@ body {
     p {
         margin-top: 30px;
     }
+}
+
+.products {
+    background-color: $secondary;
+    color: $success;
+    height: 85vh;
+}
+
+.product {
+    height: 100px;
+    width: 100px;
+    background-color: $primary;
 }
 
 .login-box {

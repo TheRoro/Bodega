@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-      <div class="profile row align-items-center">
+      <div class="profile row align-items-center mt-4">
           <div class="col-12">
               <div class="row col-12 col-sm-12 profile-box">
                 <div class="profile-col col-auto col-sm-3 mt-2">
