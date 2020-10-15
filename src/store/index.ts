@@ -40,9 +40,9 @@ export default new Vuex.Store({
     profilePicture (state, profilePicture) {
       state.profilePicture = profilePicture
     },
-    addToCart (state, itemDetail) {
+    /*addToCart (state, itemDetail) {
       state.cart = [...state.cart, {itemDetail}]
-    }
+    }*/
   },
   getters: {
     loggedStatus: state => {
