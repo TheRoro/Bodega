@@ -1,0 +1,52 @@
+{
+    "products": [
+        { 
+            "name": "Queso Edam",
+            "desciption": "Bonle de 90 gr",
+            "state": "Available",
+            "price": "4.50",
+            "unity": "UN",
+            "image": ""
+        },
+        { 
+            "name": "Queso Crema",
+            "desciption": "Bonle de 170 gr",
+            "state": "Available",
+            "price": "8.50",
+            "unity": "UN",
+            "image": ""
+        },
+        { 
+            "name": "Queso Cheddar",
+            "desciption": "Laive de 170 gr",
+            "state": "Available",
+            "price": "6.30",
+            "unity": "UN",
+            "image": ""
+        },
+        { 
+            "name": "Fanta",
+            "desciption": "Botella 2.25 LT",
+            "state": "Available",
+            "price": "5.20",
+            "unity": "UN",
+            "image": ""
+        },
+        { 
+            "name": "Lays",
+            "desciption": "Papas Lays 160 gr",
+            "state": "Available",
+            "price": "4.20",
+            "unity": "UN",
+            "image": ""
+        },
+        { 
+            "name": "Coca Cola",
+            "desciption": "Coca cola 200 ml",
+            "state": "Available",
+            "price": "4.20",
+            "unity": "UN",
+            "image": ""
+        }
+    ]
+}

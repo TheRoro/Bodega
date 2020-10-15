@@ -1,7 +1,6 @@
 <template>
   <div class="product mt-4">
     <p>
-        {{product.title}}
         Hola
     </p>
   </div>
@@ -16,12 +15,6 @@
     },
     data() {
       return {
-        data: {
-            products: [
-            { title: 'Foo' },
-            { title: 'Bar' }
-            ]
-        }
       }
     },
     methods: {

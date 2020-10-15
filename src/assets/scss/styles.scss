@@ -31,13 +31,22 @@ body {
 .products {
     background-color: $secondary;
     color: $success;
-    height: 85vh;
+    height: auto;
+}
+
+.product-title-box {
+    background-color: $primary;
+    height: 100px;
+}
+
+.product-list li {
+    list-style: none;
 }
 
 .product {
-    height: 100px;
-    width: 100px;
-    background-color: $primary;
+    height: 200px;
+    width: 200px;
+    background-color: #ffffff;
 }
 
 .login-box {
