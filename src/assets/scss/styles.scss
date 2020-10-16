@@ -32,11 +32,18 @@ body {
     background-color: $secondary;
     color: $success;
     height: auto;
+    width: auto;
 }
 
 .product-title-box {
     background-color: $primary;
     height: 100px;
+    width: auto;
+}
+
+.product-box {
+    background-color: $secondary;
+    width: auto;
 }
 
 .product-list li {
@@ -196,6 +203,10 @@ body {
 
 .title {
     font-weight: 700;
+}
+
+.title2 {
+    font-weight: 600;
 }
 
 .subtitle {

@@ -1,25 +1,28 @@
 <template>
-  <div class="products">
-    <div class="row align-items-center product-title-box">
-      <div class="col-12">
-        <h2 class="text-success">Productos</h2>
+  <div class="products mt-4">
+    <div class="align-items-center product-title-box pt-1">
+      <div class="col-12 pt-4">
+        <h2 class="text-success title2">Productos</h2>
       </div>
     </div>
-    <div>
+    <div class="product-box mt-3">
       <ul class="listOfProducts">
         <li v-for="(product, index) in products" :key="index" class="product">
         <div>
            <a href="https://imgbb.com/"><img  class="prod-img" :src="product.image" :alt="product.name" border="0" /></a>
         </div>
         <router-link to="/product-details">
-            <h2 class="product-name"
+            <h2 class="product-name mt-2"
                 @click="addCurrentProduct(product)">
               {{ product.name }}
             </h2>
           </router-link>
-          <div class="product-price">
-            <span>S/. {{ product.price }}, 00</span>
-            <span>10 x {{ Math.round(product.price / 10) }}, 00 </span>
+          <div>
+            <span class="text-link">{{ product.desciption }}</span>
+          </div>
+          <div class="mt-2 title2">
+            <span>S/. {{ product.price }}</span>
+            <span>{{ " " + product.unity }}</span>
           </div>
           <b-button class="mt-4 btn" type="submit" variant="secondary" v-on:click="addProductToCart(product)">Añadir al carrito</b-button>
         </li>
