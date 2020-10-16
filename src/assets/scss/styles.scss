@@ -49,6 +49,24 @@ body {
     background-color: #ffffff;
 }
 
+.order-box {
+    background-color: $secondary;
+    color: $info;
+    padding: 2%;
+    height: auto;
+}
+
+ li {
+    list-style: none;
+}
+
+.orders-item-box {
+    background-color: #ffffff;
+    height: 70px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
 .login-box {
     background-color: $primary;
     color: $success;
@@ -86,6 +104,10 @@ body {
 }
 
 .profile-col {
+    text-align: left;
+}
+
+.orders-title {
     text-align: left;
 }
 
@@ -176,6 +198,11 @@ body {
     font-weight: 700;
 }
 
+.subtitle {
+    font-weight: 700;
+    font-size: 15px;
+}
+
 .login-link {
     margin-top: 30px;
     color: $success;
@@ -191,4 +218,9 @@ body {
 
 .edit-icon:hover {
     color: $primary;
+}
+
+.order-img {
+    height: 50px;
+    width: 50px;
 }
