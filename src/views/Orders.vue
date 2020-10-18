@@ -9,13 +9,13 @@
                         </div>
                     </div>
                     <div class="row orders-title">
-                        <div class="col-5">
+                        <div class="col-4">
                             <h3 class="subtitle">Producto</h3>
                         </div>
                         <div class="col-3">
                             <h3 class="subtitle">Precio Unitario</h3>
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
                             <h3 class="subtitle">Cantidad</h3>
                         </div>
                         <div class="col-2">
@@ -24,22 +24,34 @@
                     </div>
                     <div class="row orders-title">
                         <div class="col-12">
-                            <li v-for="(order, index) in orders" :key="index" class="">
+                            <li v-for="(product, index) in order" :key="index" class="">
                                 <div class="row orders-item-box ml-1 align-items-center">
                                     <div class="col-1">
-                                        <a href="https://imgbb.com/"><img  class="order-img" :src="order.image" :alt="order.name" border="0" /></a>
-                                    </div>
-                                    <div class="col-4">
-                                        <h3 class="subtitle">{{order.name}}</h3>
+                                        <a href="https://imgbb.com/"><img  class="order-img" :src="product.image" :alt="product.name" border="0" /></a>
                                     </div>
                                     <div class="col-3">
-                                        <h3 class="subtitle">S/.{{order.price}}</h3>
+                                        <h3 class="subtitle">{{product.name}}</h3>
+                                    </div>
+                                    <div class="col-3">
+                                        <h3 class="subtitle">S/.{{product.price}}</h3>
+                                    </div>
+                                    <div class="col-3 quantity-row">
+                                        <div class="row align-items-center quantity-row">
+                                            <div class="">
+                                                <button class="order-quantity-btn" v-on:click="decrease(product)">-</button>
+                                            </div>
+                                            <div class="mt-2 order-quantity row justify-content-center">
+                                                <h3 class="subtitle">{{product.quantity}}</h3>                                                
+                                            </div>
+                                            <div class="">
+                                                <button class="order-quantity-btn" v-on:click="increase(product)">+</button>
+                                            </div>
+                                            <div class="col-7">
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-2">
-                                        <h3 class="subtitle">{{order.quantity}}</h3>
-                                    </div>
-                                    <div class="col-2">
-                                        <h3 class="subtitle">S/.{{(parseFloat(order.price)*parseFloat(order.quantity)).toFixed(2)}}</h3>
+                                        <h3 class="subtitle">S/.{{(parseFloat(product.price)*parseFloat(product.quantity)).toFixed(2)}}</h3>
                                     </div>
                                 </div>
                             </li>
@@ -73,38 +85,40 @@
     data() {
       return {
         checked: null,
-        orders: [
-          { 
+        aux: null,
+        quantity: null,
+        order: [
+          { "id": "1",
             "name": "Queso Edam",
             "price": "4.60",
             "quantity": "2",
             "image": "https://i.ibb.co/gmn70wj/edam.jpg"
           },
-          { 
+          { "id": "2",
             "name": "Queso Crema",
             "price": "1.00",
             "quantity": "5",
             "image": "https://i.ibb.co/bRPVRcx/crema.jpg"
           },
-          { 
+          {  "id": "3",
             "name": "Queso Cheddar",
             "price": "4.20",
             "quantity": "1",
             "image": "https://i.ibb.co/XJcxV6Q/cheddar.jpg"
           },
-          { 
+          { "id": "4",
             "name": "Fanta",
             "price": "4.00",
             "quantity": "1",
             "image": "https://i.ibb.co/3fThG44/fanta.jpg"
           },
-          { 
+          { "id": "5",
             "name": "Lays",
             "price": "2.50",
             "quantity": "3",
             "image": "https://i.ibb.co/nn3txMz/lays.jpg"
           },
-          { 
+          { "id": "6",
             "name": "Coca Cola",
             "price": "4.30",
             "quantity": "3",
@@ -114,6 +128,20 @@
       }
     },
     methods: {
+        decrease(product) {
+            this.quantity = parseInt(product.quantity);
+            if(this.quantity - 1 >= 1) {
+                this.aux = this.quantity-1;
+                product.quantity = this.aux.toString();
+            }
+        },
+        increase(product) {
+            this.quantity = parseInt(product.quantity);
+            if(this.quantity + 1 <= 1000) {
+                this.aux = this.quantity+1;
+                product.quantity = this.aux.toString();
+            }
+        },
     }
   }
 </script>

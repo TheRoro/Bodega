@@ -118,6 +118,31 @@ body {
     text-align: left;
 }
 
+.order-quantity-btn {
+    font-weight: 700;
+    height: 30px;
+    width: 30px;
+    border-radius: 10px;
+    background-color: $secondary;
+    border-style: none;
+}
+
+.order-quantity {
+    height: 30px;
+    width: 70px;
+}
+
+.quantity-row {
+    margin: 0!important;
+    border: 0!important;
+    padding: 0!important;
+}
+
+.order-quantity-btn:hover {
+
+    background-color: $primary;
+}
+
 .profile-picture {
     margin-top: 30px;
     height: 200px;
