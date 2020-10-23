@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     loggedIn: false,
+    isAdmin: true,
     firstname: "Alberto",
     username: "Albertito69",
     password: "albertitotupapa",
@@ -76,6 +77,9 @@ export default new Vuex.Store({
       return state.orders
     },
     cart: state => {
+      return state.cart
+    },
+    isAdmin: state => {
       return state.cart
     }
   },

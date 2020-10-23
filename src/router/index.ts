@@ -78,6 +78,13 @@ Vue.use(VueRouter)
     name: 'PaymentsHistory',
     component: () => import('../views/PaymentsHistory.vue')
   }
+  //Admin Routes
+  ,
+  {
+    path: '/allProducts',
+    name: 'AllProducts',
+    component: () => import('../views/Admin/AllProducts.vue')
+  }
 ]
 
 const router = new VueRouter({
