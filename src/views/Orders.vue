@@ -5,10 +5,13 @@
                 <div class="col-12">
                     <div class="row orders-title">
                         <div class="col-12">
-                            <h3 class="title mr-3">Pedidos</h3>
+                            <div class="row">
+                                <a class="fas fa-shopping-cart fa-2x edit-icon"></a>
+                                <h3 class="title ml-3">Mi Carrito</h3>
+                            </div>
                         </div>
                     </div>
-                    <div class="row orders-title">
+                    <div class="row orders-title mt-3">
                         <div class="col-4">
                             <h3 class="subtitle">Producto</h3>
                         </div>
@@ -62,11 +65,11 @@
             <div class="col-2 container">
                 <div class="row">
                     <div class="col-12">
-                        <b-button class="mt-5 edit-btn" variant="primary">Agregar Más</b-button>
-                        <b-button class="mt-5 edit-btn" variant="primary">Ver Pedidos</b-button>
+                        <b-button class="mt-5 edit-btn" variant="primary"  v-on:click="backToProducts">Agregar Más</b-button>
+                        <b-button class="mt-5 edit-btn" variant="primary" v-on:click="ordersHistory">Historial Pedidos</b-button>
                         <p class="orders-title">Servicios</p>
                         <input type="checkbox" id="checkbox" v-model="checked">
-                        <label for="checkbox">Delivery S/. 5.00</label>
+                        <label for="checkbox" class="ml-2">Delivery S/. 5.00</label>
                     </div>
                 </div>
                 <div class="row">
@@ -87,6 +90,7 @@
         checked: null,
         aux: null,
         quantity: null,
+
         order: [
           { "id": "1",
             "name": "Queso Edam",
@@ -142,6 +146,12 @@
                 product.quantity = this.aux.toString();
             }
         },
+        backToProducts() {
+            this.$router.push('/products');
+        },
+        ordersHistory() {
+            this.$router.push('/ordersHistory');
+        }
     }
   }
 </script>
