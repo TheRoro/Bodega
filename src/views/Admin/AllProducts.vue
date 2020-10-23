@@ -8,10 +8,10 @@
                             <h3 class="title mr-3">Todos mis Productos</h3>
                         </div>
                         <div class="col-2 mt-4">
-                            <b-button class="btn" type="submit" variant="primary" v-on:click="registerProduct()">Registrar Producto</b-button>
+                            <b-button class="btn text-success" type="submit" variant="primary" v-on:click="registerProduct()">Registrar Producto</b-button>
                         </div>
                     </div>
-                    <div class="row orders-title mt-3">
+                    <div class="row orders-title mt-5">
                         <div class="col-1">
                             <h3 class="subtitle">Codigo Producto</h3>
                         </div>
@@ -61,13 +61,11 @@
                                     </div>
                                     <div class="col-1">
                                         <router-link to="/editProduct">
-                                            <a class="fas fa-pencil-alt fa-2x edit-icon subtitle"></a>
+                                            <a class="fas fa-pencil-alt fa-2x edit-icon"></a>
                                         </router-link>
                                     </div>                
                                     <div class="col-1">
-                                        <router-link to="/editProfile">
-                                            <a class="fas fa-trash fa-2x edit-icon subtitle"></a>
-                                        </router-link>
+                                        <button class="btn-icon" v-on:click="removeProduct"><i class="fas fa-trash fa-2x edit-icon"></i></button>
                                     </div>
                                 </div>
                             </li>
@@ -202,14 +200,15 @@
       }
     },
     methods: {
-        backToProducts() {
-            this.$router.push('/products');
-        },
-        ordersHistory() {
-            this.$router.push('/ordersHistory');
-        },
         registerProduct() {
             this.$router.push('/registerProduct');
+        },
+        editProduct() {
+            this.$router.push('/editProduct');
+        },
+        removeProduct() {
+            //Change state of product to unavailable
+            alert("Removing product...")
         }
     }
   }

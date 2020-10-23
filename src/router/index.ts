@@ -93,7 +93,7 @@ Vue.use(VueRouter)
   {
     path: '/editProduct',
     name: 'EditProduct',
-    component: () => import('../views/Admin/EditProduct.vue')
+    component: () => import('../views/Admin/EditProduct.vue'),
   }
 ]
 
