@@ -18,6 +18,11 @@ export default new Vuex.Store({
     orders: 11,
     cart: [],
     itemDetail: [],
+    productName: "Queso Edam",
+    productDescription: "Riquisimo queso edam de 120 gr",
+    productPrice: 2.40,
+    productStock: 33,
+    productImage: "https://i.ibb.co/gmn70wj/edam.jpg",
   },
   mutations: {
     logIn (state) {
@@ -40,6 +45,21 @@ export default new Vuex.Store({
     },
     profilePicture (state, profilePicture) {
       state.profilePicture = profilePicture
+    },
+    productName (state, productName) {
+      state.productName = productName
+    },
+    productDescription (state, productDescription) {
+      state.productDescription = productDescription
+    },
+    productPrice (state, productPrice) {
+      state.productPrice = productPrice
+    },
+    productStock (state, productStock) {
+      state.productStock = productStock
+    },
+    productImage (state, productImage) {
+      state.productImage = productImage
     },
     /*addToCart (state, itemDetail) {
       state.cart = [...state.cart, {itemDetail}]
@@ -81,6 +101,21 @@ export default new Vuex.Store({
     },
     isAdmin: state => {
       return state.cart
+    },
+    productName: state => {
+      return state.productName
+    },
+    productDescription: state => {
+      return state.productDescription
+    },
+    productPrice: state => {
+      return state.productPrice
+    },
+    productStock: state => {
+      return state.productStock
+    },
+    productImage: state => {
+      return state.productImage
     }
   },
   actions: {
