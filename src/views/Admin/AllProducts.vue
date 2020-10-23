@@ -1,60 +1,73 @@
 <template>
-    <div class="container mt-4">
-        <div class="profile order-box row align-items-center justify-content-center">
+    <div class="products mt-4">
+        <div class="product-box mt-3">
             <div class="col-12 mt-4">
-                <div class="col-12">
+                <div class="col-12 product-box">
                     <div class="row orders-title">
-                        <div class="col-12">
+                        <div class="col-10 mt-4">
                             <h3 class="title mr-3">Todos mis Productos</h3>
+                        </div>
+                        <div class="col-2 mt-4">
+                            <b-button class="btn" type="submit" variant="primary" v-on:click="registerProduct()">Registrar Producto</b-button>
                         </div>
                     </div>
                     <div class="row orders-title mt-3">
-                        <div class="col-2">
-                            <h3 class="subtitle">Codigo Pedido</h3>
+                        <div class="col-1">
+                            <h3 class="subtitle">Codigo Producto</h3>
                         </div>
                         <div class="col-3">
-                            <h3 class="subtitle">Fecha generada</h3>
+                            <h3 class="subtitle">Nombre</h3>
                         </div>
                         <div class="col-3">
-                            <h3 class="subtitle">Fecha aceptada</h3>
+                            <h3 class="subtitle">Descripcion</h3>
                         </div>
-                        <div class="col-2">
-                            <h3 class="subtitle">Estado</h3>
+                        <div class="col-1">
+                            <h3 class="subtitle">Precio</h3>
                         </div>
-                        <div class="col-2">
-                            <h3 class="subtitle">Detalle</h3>
+                        <div class="col-1">
+                            <h3 class="subtitle">Stock</h3>
+                        </div>
+                        <div class="col-1">
+                            <h3 class="subtitle">Imagen</h3>
+                        </div>
+                        <div class="col-1">
+                            <h3 class="subtitle">Modificar</h3>
+                        </div>                
+                        <div class="col-1">
+                            <h3 class="subtitle">Dar de Baja</h3>
                         </div>
                     </div>
                     <div class="row orders-title">
                         <div class="col-12">
-                            <li v-for="(order, index) in orders" :key="index" class="">
-                                <div class="row orders-item-box ml-1 align-items-center">
-                                    <div class="col-2">
-                                        <h3 class="subtitle">{{order.id}}</h3>
+                            <li v-for="(product, index) in products" :key="index" class="">
+                                <div class="row orders-item-box align-items-center">
+                                    <div class="col-1">
+                                        <h3 class="subtitle">{{product.id}}</h3>
                                     </div>
                                     <div class="col-3">
-                                        <h3 class="subtitle">{{order.dateGenerated}}</h3>
+                                        <h3 class="subtitle">{{product.name}}</h3>
                                     </div>
                                     <div class="col-3">
-                                        <h3 class="subtitle">{{order.dateAccepted}}</h3>
+                                        <h3 class="subtitle">{{product.desciption}}</h3>
                                     </div>
-                                    <div class="col-2">
-                                        <div v-if="order.status == 1">
-                                            <h3 class="subtitle">Disponible</h3>
-                                        </div>
-                                        <div v-else>
-                                            <h3 class="subtitle">No Disponible</h3>
-                                        </div>
+                                    <div class="col-1">
+                                        <h3 class="subtitle">S/.{{product.price}}</h3>
                                     </div>
-                                    <div class="col-2">
-                                        <div v-if="order.status == 1">
-                                            <router-link to="/orderDetail">
-                                                <a class="fas fa-eye fa-2x edit-icon"></a>
-                                            </router-link>
-                                        </div>
-                                        <div v-else>
-                                            <a class="fas fa-eye-slash fa-2x"></a>
-                                        </div>
+                                    <div class="col-1">
+                                        <h3 class="subtitle">{{product.stock}}</h3>
+                                    </div>
+                                    <div class="col-1">
+                                        <a href="https://imgbb.com/"><img  class="order-img" :src="product.image" :alt="product.name" border="0" /></a>
+                                    </div>
+                                    <div class="col-1">
+                                        <router-link to="/editProduct">
+                                            <a class="fas fa-pencil-alt fa-2x edit-icon subtitle"></a>
+                                        </router-link>
+                                    </div>                
+                                    <div class="col-1">
+                                        <router-link to="/editProfile">
+                                            <a class="fas fa-trash fa-2x edit-icon subtitle"></a>
+                                        </router-link>
                                     </div>
                                 </div>
                             </li>
@@ -74,25 +87,117 @@
         checked: null,
         aux: null,
         quantity: null,
-        orders: [
-            {
-                id: 1,
-                dateGenerated: "12/05/2020",
-                dateAccepted: "13/05/2020",
-                status: 1,
-            },
-            {
-                id: 2,
-                dateGenerated: "24/05/2020",
-                dateAccepted: "27/05/2020",
-                status: 0,
-            },
-            {
-                id: 3,
-                dateGenerated: "30/05/2020",
-                dateAccepted: "31/05/2020",
-                status: 1,
-            },
+        products: [
+          { 
+            id: 1,
+            "name": "Queso Edam",
+            "desciption": "Bonle de 90 gr",
+            "state": "Available",
+            "price": "4.50",
+            "unity": "UN",
+            stock: 20,
+            "image": "https://i.ibb.co/gmn70wj/edam.jpg"
+          },
+          { 
+            id: 2,
+            "name": "Queso Crema",
+            "desciption": "Bonle de 170 gr",
+            "state": "Available",
+            "price": "8.50",
+            "unity": "UN",
+            stock: 42,
+            "image": "https://i.ibb.co/bRPVRcx/crema.jpg"
+          },
+          { 
+            id: 3,
+            "name": "Queso Cheddar",
+            "desciption": "Laive de 170 gr",
+            "state": "Available",
+            "price": "6.30",
+            "unity": "UN",
+            stock: 68,
+            "image": "https://i.ibb.co/XJcxV6Q/cheddar.jpg"
+          },
+          { 
+            id: 4,
+            "name": "Fanta",
+            "desciption": "Botella 2.25 LT",
+            "state": "Available",
+            "price": "5.20",
+            "unity": "UN",
+            stock: 21,
+            "image": "https://i.ibb.co/3fThG44/fanta.jpg"
+          },
+          { 
+            id: 5,
+            "name": "Lays",
+            "desciption": "Papas Lays 160 gr",
+            "state": "Available",
+            "price": "4.20",
+            "unity": "UN",
+            stock: 34,
+            "image": "https://i.ibb.co/nn3txMz/lays.jpg"
+          },
+          { 
+            id: 6,
+            "name": "Coca Cola",
+            "desciption": "Coca cola 200 ml",
+            "state": "Available",
+            "price": "4.20",
+            "unity": "UN",
+            stock: 58,
+            "image": "https://i.ibb.co/Kwr2kqn/coke.jpg"
+          },
+          { 
+            id: 7,
+            "name": "Queso Crema",
+            "desciption": "Bonle de 170 gr",
+            "state": "Available",
+            "price": "8.50",
+            "unity": "UN",
+            stock: 167,
+            "image": "https://i.ibb.co/bRPVRcx/crema.jpg"
+          },
+          { 
+            id: 8,
+            "name": "Queso Cheddar",
+            "desciption": "Laive de 170 gr",
+            "state": "Available",
+            "price": "6.30",
+            "unity": "UN",
+            stock: 11,
+            "image": "https://i.ibb.co/XJcxV6Q/cheddar.jpg"
+          },
+          { 
+            id: 9,
+            "name": "Fanta",
+            "desciption": "Botella 2.25 LT",
+            "state": "Available",
+            "price": "5.20",
+            "unity": "UN",
+            stock: 13,
+            "image": "https://i.ibb.co/3fThG44/fanta.jpg"
+          },
+          { 
+            id: 10,
+            "name": "Lays",
+            "desciption": "Papas Lays 160 gr",
+            "state": "Available",
+            "price": "4.20",
+            "unity": "UN",
+            stock: 70,
+            "image": "https://i.ibb.co/nn3txMz/lays.jpg"
+          },
+          { 
+            id: 11,
+            "name": "Coca Cola",
+            "desciption": "Coca cola 200 ml",
+            "state": "Available",
+            "price": "4.20",
+            "unity": "UN",
+            stock: 69,
+            "image": "https://i.ibb.co/Kwr2kqn/coke.jpg"
+          }
         ],
       }
     },
@@ -102,6 +207,9 @@
         },
         ordersHistory() {
             this.$router.push('/ordersHistory');
+        },
+        registerProduct() {
+            this.$router.push('/registerProduct');
         }
     }
   }
