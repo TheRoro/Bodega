@@ -260,3 +260,20 @@ body {
     height: 50px;
     width: 50px;
 }
+
+.modal-dialog,
+.modal-content {
+    /* 80% of window height */
+    height: 50%;
+}
+.payment-footer {
+    margin-top: 10%;
+}
+
+.modal-body {
+    max-height: calc(100% - 120px);
+}
+.modal-backdrop
+{
+    opacity:0.5 !important;
+}
