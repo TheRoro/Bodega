@@ -84,6 +84,16 @@ Vue.use(VueRouter)
     path: '/allProducts',
     name: 'AllProducts',
     component: () => import('../views/Admin/AllProducts.vue')
+  },
+  {
+    path: '/registerProduct',
+    name: 'RegisterProduct',
+    component: () => import('../views/Admin/RegisterProduct.vue')
+  },
+  {
+    path: '/editProduct',
+    name: 'EditProduct',
+    component: () => import('../views/Admin/EditProduct.vue')
   }
 ]
 
