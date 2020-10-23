@@ -16,7 +16,7 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-        <b-nav-item to="/login">
+        <b-nav-item to="/payments">
             <b-button size="lg" variant="primary text-success" class="nav-btn">Pagos</b-button>
         </b-nav-item>
         <b-nav-item to="/orders">
