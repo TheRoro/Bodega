@@ -110,6 +110,11 @@ Vue.use(VueRouter)
     name: 'RegisterCustomer',
     component: () => import('../views/Admin/RegisterCustomer.vue')
   },
+  {
+    path: '/allOrders',
+    name: 'AllOrders',
+    component: () => import('../views/Admin/AllOrders.vue'),
+  },
 ]
 
 const router = new VueRouter({
