@@ -115,6 +115,11 @@ Vue.use(VueRouter)
     name: 'AllOrders',
     component: () => import('../views/Admin/AllOrders.vue'),
   },
+  {
+    path: '/allPayments',
+    name: 'AllPayments',
+    component: () => import('../views/Admin/AllPayments.vue'),
+  },
 ]
 
 const router = new VueRouter({

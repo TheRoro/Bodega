@@ -28,7 +28,7 @@
                             <h3 class="subtitle">Detalle</h3>
                         </div>
                         <div class="col-1">
-                            <h3 class="subtitle">Eliminar</h3>
+                            <h3 class="subtitle">Dar de baja</h3>
                         </div>                
                     </div>
                     <div class="row orders-title">
