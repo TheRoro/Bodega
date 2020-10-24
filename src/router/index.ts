@@ -94,7 +94,22 @@ Vue.use(VueRouter)
     path: '/editProduct',
     name: 'EditProduct',
     component: () => import('../views/Admin/EditProduct.vue'),
-  }
+  },
+  {
+    path: '/allCustomers',
+    name: 'AllCustomers',
+    component: () => import('../views/Admin/AllCustomers.vue'),
+  },
+  {
+    path: '/editCustomer',
+    name: 'EditCustomer',
+    component: () => import('../views/Admin/EditCustomer.vue'),
+  },
+  {
+    path: '/registerCustomer',
+    name: 'RegisterCustomer',
+    component: () => import('../views/Admin/RegisterCustomer.vue')
+  },
 ]
 
 const router = new VueRouter({
