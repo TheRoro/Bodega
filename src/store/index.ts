@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     loggedIn: false,
-    isAdmin: true,
+    isAdmin: false,
     firstname: "Alberto",
     username: "Albertito69",
     password: "albertitotupapa",
@@ -35,6 +35,9 @@ export default new Vuex.Store({
     customerImage: "../../../public/assets/user.png",
   },
   mutations: {
+    isAdmin (state, isAdmin) {
+      state.isAdmin = isAdmin
+    },
     logIn (state) {
       state.loggedIn = true
     },
@@ -136,7 +139,7 @@ export default new Vuex.Store({
       return state.cart
     },
     isAdmin: state => {
-      return state.cart
+      return state.isAdmin
     },
     //Product
     productName: state => {
