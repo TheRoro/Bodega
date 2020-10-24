@@ -18,11 +18,21 @@ export default new Vuex.Store({
     orders: 11,
     cart: [],
     itemDetail: [],
+    //Product
     productName: "Queso Edam",
     productDescription: "Riquisimo queso edam de 120 gr",
     productPrice: 2.40,
     productStock: 33,
     productImage: "https://i.ibb.co/gmn70wj/edam.jpg",
+    //Customer
+    customerName: "Jhon Doe",
+    customerUsername: "johnTheKing",
+    customerPassword: "123123123",
+    customerAddress: "Calle Kosaraju 424",
+    customerRate: "3.60%",
+    customerType: "Compuesta",
+    customerAccount: "123-4567789",
+    customerImage: "../../../public/assets/user.png",
   },
   mutations: {
     logIn (state) {
@@ -46,6 +56,7 @@ export default new Vuex.Store({
     profilePicture (state, profilePicture) {
       state.profilePicture = profilePicture
     },
+    //Product
     productName (state, productName) {
       state.productName = productName
     },
@@ -60,6 +71,31 @@ export default new Vuex.Store({
     },
     productImage (state, productImage) {
       state.productImage = productImage
+    },
+    //Customer
+    customerName (state, customerName) {
+      state.customerName = customerName
+    },
+    customerUsername (state, customerUsername) {
+      state.customerUsername = customerUsername
+    },
+    customerPassword (state, customerPassword) {
+      state.customerPassword = customerPassword
+    },
+    customerAddress (state, customerAddress) {
+      state.customerAddress = customerAddress
+    },
+    customerRate (state, customerRate) {
+      state.customerRate = customerRate
+    },
+    customerType (state, customerType) {
+      state.customerType = customerType
+    },
+    customerAccount (state, customerAccount) {
+      state.customerAccount = customerAccount
+    },
+    customerImage (state, customerImage) {
+      state.customerImage = customerImage
     },
     /*addToCart (state, itemDetail) {
       state.cart = [...state.cart, {itemDetail}]
@@ -102,6 +138,7 @@ export default new Vuex.Store({
     isAdmin: state => {
       return state.cart
     },
+    //Product
     productName: state => {
       return state.productName
     },
@@ -116,7 +153,32 @@ export default new Vuex.Store({
     },
     productImage: state => {
       return state.productImage
-    }
+    },
+    //Customer
+    customerName: state => {
+      return state.customerName
+    },
+    customerUsername: state => {
+      return state.customerUsername
+    },
+    customerPassword: state => {
+      return state.customerPassword
+    },
+    customerAddress: state => {
+      return state.customerAddress
+    },
+    customerRate: state => {
+      return state.customerRate
+    },
+    customerType: state => {
+      return state.customerType
+    },
+    customerAccount: state => {
+      return state.customerAccount
+    },
+    customerImage: state => {
+      return state.customerImage
+    },
   },
   actions: {
   },

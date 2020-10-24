@@ -19,13 +19,13 @@
         <b-nav-item to="/allProducts">
             <b-button size="lg" variant="primary text-success" class="nav-btn">Productos</b-button>
         </b-nav-item>
-        <b-nav-item to="/orders">
+        <b-nav-item to="/allCustomers">
             <b-button size="lg" variant="primary text-success" class="nav-btn">Clientes</b-button>
         </b-nav-item>
-        <b-nav-item to="/products">
+        <b-nav-item to="/allPayments">
             <b-button size="lg" variant="primary text-success" class="nav-btn">Pagos</b-button>
         </b-nav-item>
-        <b-nav-item to="/products">
+        <b-nav-item to="/allOrders">
             <b-button size="lg" variant="primary text-success" class="nav-btn">Pedidos</b-button>
         </b-nav-item>
         <b-navbar-brand to="/profile">
