@@ -57,6 +57,9 @@
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
+        if(this.form.password == "admin") {
+          this.$store.commit('isAdmin', true)
+        }
         alert(JSON.stringify(this.form))
         this.$store.commit('logIn')
         console.log(this.$store.getters.LoggedStatus)
