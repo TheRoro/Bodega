@@ -10,6 +10,11 @@
                             <img src="../../public/assets/user.png" class="d-inline-block profile-picture" alt="Wapo logo">
                         </div>
                         <img v-if="this.$store.getters.profilePicture" :src="this.$store.getters.profilePicture" class="profile-picture"/>
+                        <div class="row">
+                            <div class="col-12">
+                                <b-button class="mt-5 edit-btn" variant="primary" v-on:click="logOut()">Cerrar Sesión</b-button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="profile-col col-auto col-sm-5 mt-2">
@@ -71,6 +76,10 @@
         this.$nextTick(() => {
           this.show = true
         })
+      },
+      logOut() {
+        //this.$store.commit('reset');
+        this.$store.commit('resetState');
       }
     }
   }

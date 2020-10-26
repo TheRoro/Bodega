@@ -1,10 +1,45 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+const logout:any = require('./modules/logout')
+
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
+function emptyState () {
+  return {
+    loggedIn: false,
+    isAdmin: false,
+    firstname: "",
+    username: "",
+    password: "",
+    profilePicture: '',
+    address: "",
+    accountNumber: "",
+    interestRate: "",
+    itemsPurchased: 0,
+    orders: 0,
+    cart: [],
+    itemDetail: [],
+    //Product
+    productName: "",
+    productDescription: "",
+    productPrice: 0,
+    productStock: 0,
+    productImage: "",
+    //Customer
+    customerName: "",
+    customerUsername: "",
+    customerPassword: "",
+    customerAddress: "",
+    customerRate: "",
+    customerType: "",
+    customerAccount: "",
+    customerImage: "",
+  }
+}
+
+function initialState () {
+  return {
     loggedIn: false,
     isAdmin: false,
     firstname: "Alberto",
@@ -33,8 +68,16 @@ export default new Vuex.Store({
     customerType: "Compuesta",
     customerAccount: "123-4567789",
     customerImage: "../../../public/assets/user.png",
-  },
+  }
+}
+
+export default new Vuex.Store({
+  state: initialState,
   mutations: {
+    resetState (state) {
+      alert("Reseting state");
+      Object.assign(state, emptyState())
+    },
     isAdmin (state, isAdmin) {
       state.isAdmin = isAdmin
     },
@@ -99,7 +142,7 @@ export default new Vuex.Store({
     },
     customerImage (state, customerImage) {
       state.customerImage = customerImage
-    },
+    }
     /*addToCart (state, itemDetail) {
       state.cart = [...state.cart, {itemDetail}]
     }*/
@@ -184,7 +227,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
+
   },
   modules: {
+    logout
   }
 })
