@@ -1,7 +1,7 @@
 <template>
   <div class="login container justify-content-center col-auto row">
     <div class="container row justify-content-center align-items-center">
-      <div class="row align-items-center col-12 col-sm-7 login-box ">
+      <div class="row align-items-center col-12 col-sm-7 login-box">
         <div class="col-12">
         <h1 class="title mb-3 mt-0">INICIAR SESIÓN</h1>
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
@@ -60,9 +60,8 @@
         if(this.form.password == "admin") {
           this.$store.commit('isAdmin', true)
         }
-        alert(JSON.stringify(this.form))
+        //alert(JSON.stringify(this.form))
         this.$store.commit('logIn')
-        console.log(this.$store.getters.LoggedStatus)
         this.$router.push('/homeLogged')  
       },
       onReset(evt) {
