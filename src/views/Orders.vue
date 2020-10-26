@@ -11,7 +11,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row orders-title mt-3">
+                    <div class="row orders-title mt-3 ml-1">
                         <div class="col-4">
                             <h3 class="subtitle">Producto</h3>
                         </div>
@@ -40,15 +40,11 @@
                                     </div>
                                     <div class="col-3 quantity-row">
                                         <div class="row align-items-center quantity-row">
-                                            <div class="">
-                                                <button class="order-quantity-btn" v-on:click="decrease(product)">-</button>
+                                                <button class="btn2 mr-2" v-on:click="decrease(product)"><i class="fas fa-minus"/></button>
+                                            <div class="mt-1 ml-2">
+                                                <h3 class="subtitle quantity-order">{{product.quantity}}</h3>                                                
                                             </div>
-                                            <div class="mt-2 order-quantity row justify-content-center">
-                                                <h3 class="subtitle">{{product.quantity}}</h3>                                                
-                                            </div>
-                                            <div class="">
-                                                <button class="order-quantity-btn" v-on:click="increase(product)">+</button>
-                                            </div>
+                                                <button class="btn2 ml-3" v-on:click="increase(product)"><i class="fas fa-plus"/></button>
                                             <div class="col-7">
                                             </div>
                                         </div>
