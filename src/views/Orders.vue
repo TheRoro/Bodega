@@ -60,7 +60,7 @@
                                         <h3 class="subtitle">Total a pagar</h3>
                                     </div>
                                     <div class="col-2">
-                                        <h3 class="subtitle">S/.{{this.totalCartPayment()}}</h3>
+                                        <h3 class="subtitle">S/.{{this.totalCart}}</h3>
                                     </div>
                                 </div>
                             </li>
@@ -74,7 +74,7 @@
                         <b-button class="mt-5 edit-btn" variant="primary"  v-on:click="backToProducts">Agregar Más</b-button>
                         <b-button class="mt-5 edit-btn" variant="primary" v-on:click="ordersHistory">Historial Pedidos</b-button>
                         <p class="orders-title">Servicios</p>
-                        <input type="checkbox" id="checkbox" v-model="withDelivery">
+                        <input type="checkbox" id="checkbox" v-model="withDelivery" v-on:click="toggleDelivery">
                         <label for="checkbox" class="ml-2">Delivery S/. 5.00</label>
                     </div>
                 </div>
@@ -91,6 +91,9 @@
 <script>
   export default {
     name: 'Orders',
+    created() {
+        this.totalCartPayment()
+    },
     data() {
       return {
         aux: null,
@@ -144,6 +147,7 @@
                 this.aux = this.quantity-1;
                 product.quantity = this.aux.toString();
             }
+            this.totalCartPayment()
         },
         increase(product) {
             this.quantity = parseInt(product.quantity);
@@ -151,6 +155,16 @@
                 this.aux = this.quantity+1;
                 product.quantity = this.aux.toString();
             }
+            this.totalCartPayment()
+        },
+        toggleDelivery() {
+            if(this.withDelivery == true) {
+                this.withDelivery = false;
+            }
+            else {
+                this.withDelivery = true;
+            }
+            this.totalCartPayment()
         },
         backToProducts() {
             this.$router.push('/products');
@@ -166,7 +180,7 @@
             if(this.withDelivery == true) {
                 this.totalCart+=5;
             }
-            return this.totalCart.toFixed(2);
+            this.totalCart = this.totalCart.toFixed(2);
         }
     }
   }

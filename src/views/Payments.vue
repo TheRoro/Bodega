@@ -84,7 +84,7 @@
                                     </div>
                                     <div class="col-2">
                                         <h3 class="subtitle">
-                                            S/. {{this.total()}}
+                                            S/. {{this.totalPay}}
                                         </h3>
                                     </div>
                                 </div>
@@ -110,6 +110,10 @@
 <script>
   export default {
     name: 'Orders',
+    created() {
+        //alert('At this point, this.property is now reactive and propertyComputed will update.')
+        this.total();
+    },
     data() {
       return {
         checked: null,
@@ -171,7 +175,7 @@
             this.payments.forEach(element => {
                 this.totalPay += element.price + element.rate + element.delivery + element.latePayment;
             });
-            return this.totalPay.toFixed(2);
+            this.totalPay = this.totalPay.toFixed(2);
         }
     }
   }
