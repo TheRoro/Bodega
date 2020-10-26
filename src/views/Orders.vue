@@ -1,12 +1,12 @@
 <template>
     <div class="container">
-        <div class="profile order-box row align-items-center">
+        <div class="profile order-box row align-items-center mt-3">
             <div class="col-9 mt-4">
                 <div class="col-12">
                     <div class="row orders-title">
                         <div class="col-12">
                             <div class="row">
-                                <a class="fas fa-shopping-cart fa-2x edit-icon"></a>
+                                <a class="fas fa-shopping-cart fa-2x"></a>
                                 <h3 class="title ml-3">Mi Carrito</h3>
                             </div>
                         </div>
@@ -58,6 +58,16 @@
                                     </div>
                                 </div>
                             </li>
+                            <li>
+                                <div class="row orders-item-box ml-1 align-items-center bg-primary text-warning">
+                                    <div class="col-10">
+                                        <h3 class="subtitle">Total a pagar</h3>
+                                    </div>
+                                    <div class="col-2">
+                                        <h3 class="subtitle">S/.{{this.totalCartPayment()}}</h3>
+                                    </div>
+                                </div>
+                            </li>
                         </div>
                     </div>
                 </div>
@@ -68,7 +78,7 @@
                         <b-button class="mt-5 edit-btn" variant="primary"  v-on:click="backToProducts">Agregar Más</b-button>
                         <b-button class="mt-5 edit-btn" variant="primary" v-on:click="ordersHistory">Historial Pedidos</b-button>
                         <p class="orders-title">Servicios</p>
-                        <input type="checkbox" id="checkbox" v-model="checked">
+                        <input type="checkbox" id="checkbox" v-model="withDelivery">
                         <label for="checkbox" class="ml-2">Delivery S/. 5.00</label>
                     </div>
                 </div>
@@ -87,10 +97,10 @@
     name: 'Orders',
     data() {
       return {
-        checked: null,
         aux: null,
         quantity: null,
-
+        totalCart: null,
+        withDelivery: false,
         order: [
           { "id": "1",
             "name": "Queso Edam",
@@ -151,6 +161,16 @@
         },
         ordersHistory() {
             this.$router.push('/ordersHistory');
+        },
+        totalCartPayment() {
+            this.totalCart = 0
+            this.order.forEach(element => {
+                this.totalCart += element.price * element.quantity;
+            });
+            if(this.withDelivery == true) {
+                this.totalCart+=5;
+            }
+            return this.totalCart.toFixed(2);
         }
     }
   }
