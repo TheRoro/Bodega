@@ -75,7 +75,7 @@ export default new Vuex.Store({
   state: initialState,
   mutations: {
     resetState (state) {
-      alert("Reseting state");
+      alert("Good bye!");
       Object.assign(state, emptyState())
     },
     isAdmin (state, isAdmin) {

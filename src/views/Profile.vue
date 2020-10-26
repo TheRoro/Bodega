@@ -80,6 +80,7 @@
       logOut() {
         //this.$store.commit('reset');
         this.$store.commit('resetState');
+        this.$router.push('/');
       }
     }
   }
