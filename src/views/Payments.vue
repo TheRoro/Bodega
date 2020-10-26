@@ -18,8 +18,8 @@
                 </b-modal>
             </div>
         </div>
-        <div class="profile order-box row align-items-center justify-content-center">
-            <div class="col-12 mt-4">
+        <div class="profile order-box row align-items-center justify-content-center mt-4">
+            <div class="col-12 mt-3">
                 <div class="col-12">
                     <div class="row orders-title">
                         <div class="col-12">
@@ -75,6 +75,20 @@
                                     </div>
                                 </div>
                             </li>
+                            <li>
+                                <div class="row orders-item-box ml-1 align-items-center bg-primary text-warning">
+                                    <div class="col-10">
+                                        <div class="col-auto">
+                                            <h3 class="subtitle">Total a pagar:</h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <h3 class="subtitle">
+                                            S/. {{this.total()}}
+                                        </h3>
+                                    </div>
+                                </div>
+                            </li>
                         </div>
                     </div>
                 </div>
@@ -101,6 +115,7 @@
         checked: null,
         aux: null,
         quantity: null,
+        totalPay: null,
         payments: [
             {
                 id: 1,
@@ -150,6 +165,13 @@
         },
         confirmPayment() {
             alert("BIEEEEEEN");
+        },
+        total() {
+            this.totalPay = 0
+            this.payments.forEach(element => {
+                this.totalPay += element.price + element.rate + element.delivery + element.latePayment;
+            });
+            return this.totalPay.toFixed(2);
         }
     }
   }
