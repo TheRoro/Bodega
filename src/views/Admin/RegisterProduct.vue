@@ -61,6 +61,7 @@
 </template>
 
 <script>
+  import { baseUrl } from '../../shared/baseUrl';
   export default {
     data() {
       return {
@@ -76,12 +77,18 @@
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
-        // this.$store.commit('firstname', this.form.name)
-        // this.$store.commit('username', this.form.username)
-        // this.$store.commit('password', this.form.password)
-        // this.$store.commit('address', this.form.address)
-        alert(JSON.stringify(this.form))
-        //this.$router.push('/profile')
+        this.axios.post(baseUrl + '/articles', {
+          description: this.form.description,
+          state: 1,
+          name: this.form.name,
+          price: parseInt(this.form.price),
+          unit: 'UN',
+        })
+        .then(function (response) {
+        })
+        .catch(function (error) {
+          alert("No se pudo crear el prodcuto de forma correcta");
+        });
       },
       imageUpload: function (event) {
         //this.$router.push('/imageUpload')
