@@ -48,16 +48,16 @@
                                         <h3 class="subtitle">{{product.name}}</h3>
                                     </div>
                                     <div class="col-3">
-                                        <h3 class="subtitle">{{product.desciption}}</h3>
+                                        <h3 class="subtitle">{{product.description}}</h3>
                                     </div>
                                     <div class="col-1">
-                                        <h3 class="subtitle">S/.{{product.price}}</h3>
+                                        <h3 class="subtitle">S/.{{product.price.toFixed(2)}}</h3>
                                     </div>
                                     <div class="col-1">
-                                        <h3 class="subtitle">{{product.stock}}</h3>
+                                        <h3 class="subtitle">{{22}}</h3>
                                     </div>
                                     <div class="col-1">
-                                        <a href="https://imgbb.com/"><img  class="order-img" :src="product.image" :alt="product.name" border="0" /></a>
+                                        <a><img  class="order-img" src="../../assets/logo.jpeg" :alt="product.name" border="0" /></a>
                                     </div>
                                     <div class="col-1">
                                         <router-link to="/editProduct">
@@ -78,125 +78,24 @@
 </template>
 
 <script>
+  import { baseUrl } from '../../shared/baseUrl';
   export default {
     name: 'Orders',
+    mounted () {
+      this.axios
+        .get(baseUrl + 'articles')
+        .then(response => {
+          this.info = response
+          console.log(response.data.content);
+          this.products = response.data.content;
+          })
+    },
     data() {
       return {
         checked: null,
         aux: null,
         quantity: null,
-        products: [
-          { 
-            id: 1,
-            "name": "Queso Edam",
-            "desciption": "Bonle de 90 gr",
-            "state": "Available",
-            "price": "4.50",
-            "unity": "UN",
-            stock: 20,
-            "image": "https://i.ibb.co/gmn70wj/edam.jpg"
-          },
-          { 
-            id: 2,
-            "name": "Queso Crema",
-            "desciption": "Bonle de 170 gr",
-            "state": "Available",
-            "price": "8.50",
-            "unity": "UN",
-            stock: 42,
-            "image": "https://i.ibb.co/bRPVRcx/crema.jpg"
-          },
-          { 
-            id: 3,
-            "name": "Queso Cheddar",
-            "desciption": "Laive de 170 gr",
-            "state": "Available",
-            "price": "6.30",
-            "unity": "UN",
-            stock: 68,
-            "image": "https://i.ibb.co/XJcxV6Q/cheddar.jpg"
-          },
-          { 
-            id: 4,
-            "name": "Fanta",
-            "desciption": "Botella 2.25 LT",
-            "state": "Available",
-            "price": "5.20",
-            "unity": "UN",
-            stock: 21,
-            "image": "https://i.ibb.co/3fThG44/fanta.jpg"
-          },
-          { 
-            id: 5,
-            "name": "Lays",
-            "desciption": "Papas Lays 160 gr",
-            "state": "Available",
-            "price": "4.20",
-            "unity": "UN",
-            stock: 34,
-            "image": "https://i.ibb.co/nn3txMz/lays.jpg"
-          },
-          { 
-            id: 6,
-            "name": "Coca Cola",
-            "desciption": "Coca cola 200 ml",
-            "state": "Available",
-            "price": "4.20",
-            "unity": "UN",
-            stock: 58,
-            "image": "https://i.ibb.co/Kwr2kqn/coke.jpg"
-          },
-          { 
-            id: 7,
-            "name": "Queso Crema",
-            "desciption": "Bonle de 170 gr",
-            "state": "Available",
-            "price": "8.50",
-            "unity": "UN",
-            stock: 167,
-            "image": "https://i.ibb.co/bRPVRcx/crema.jpg"
-          },
-          { 
-            id: 8,
-            "name": "Queso Cheddar",
-            "desciption": "Laive de 170 gr",
-            "state": "Available",
-            "price": "6.30",
-            "unity": "UN",
-            stock: 11,
-            "image": "https://i.ibb.co/XJcxV6Q/cheddar.jpg"
-          },
-          { 
-            id: 9,
-            "name": "Fanta",
-            "desciption": "Botella 2.25 LT",
-            "state": "Available",
-            "price": "5.20",
-            "unity": "UN",
-            stock: 13,
-            "image": "https://i.ibb.co/3fThG44/fanta.jpg"
-          },
-          { 
-            id: 10,
-            "name": "Lays",
-            "desciption": "Papas Lays 160 gr",
-            "state": "Available",
-            "price": "4.20",
-            "unity": "UN",
-            stock: 70,
-            "image": "https://i.ibb.co/nn3txMz/lays.jpg"
-          },
-          { 
-            id: 11,
-            "name": "Coca Cola",
-            "desciption": "Coca cola 200 ml",
-            "state": "Available",
-            "price": "4.20",
-            "unity": "UN",
-            stock: 69,
-            "image": "https://i.ibb.co/Kwr2kqn/coke.jpg"
-          }
-        ],
+        products: [],
       }
     },
     methods: {
