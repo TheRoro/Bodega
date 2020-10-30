@@ -18,7 +18,7 @@
                 <div class="profile-col col-auto col-sm-4 mt-5">
                   <div class="col-auto">
                     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-                      <b-form-group id="input-group-1" label="Modifique el nombre del cliente:" label-for="input-1">
+                      <b-form-group id="input-group-1" label="Ingrese el nombre del cliente:" label-for="input-1">
                         <b-form-input class="input-form2"
                           id="input-1"
                           v-model="form.name"
@@ -26,7 +26,7 @@
                           placeholder=""
                         ></b-form-input>
                       </b-form-group>
-                      <b-form-group id="input-group-2" label="Modifique el usuario:" label-for="input-2">
+                      <b-form-group id="input-group-2" label="Ingrese el usuario:" label-for="input-2">
                         <b-form-input class="input-form2"
                           id="input-2"
                           v-model="form.username"
@@ -34,7 +34,7 @@
                           placeholder=""
                         ></b-form-input>
                       </b-form-group>
-                      <b-form-group id="input-group-2" label="Modifique la contraseña:" label-for="input-2">
+                      <b-form-group id="input-group-2" label="Ingrese la contraseña:" label-for="input-2">
                         <b-form-input class="input-form2"
                           id="input-2"
                           v-model="form.password"
@@ -42,7 +42,7 @@
                           placeholder=""
                         ></b-form-input>
                       </b-form-group>
-                      <b-form-group id="input-group-2" label="Modifique la dirección:" label-for="input-2">
+                      <b-form-group id="input-group-2" label="Ingrese la dirección:" label-for="input-2">
                         <b-form-input class="input-form2"
                           id="input-2"
                           v-model="form.address"
@@ -56,7 +56,7 @@
               <div class="profile-col col-auto col-sm-4 mt-5">
                   <div class="col-auto">
                     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-                      <b-form-group id="input-group-1" label="Modifique la tasa de interés:" label-for="input-1">
+                      <b-form-group id="input-group-1" label="Ingrese la tasa de interés:" label-for="input-1">
                         <b-form-input class="input-form2"
                           id="input-1"
                           v-model="form.rate"
@@ -64,7 +64,7 @@
                           placeholder=""
                         ></b-form-input>
                       </b-form-group>
-                      <b-form-group id="input-group-2" label="Modifique el tipo del cliente:" label-for="input-2">
+                      <b-form-group id="input-group-2" label="Ingrese el tipo de interés:" label-for="input-2">
                         <b-form-input class="input-form2"
                           id="input-2"
                           v-model="form.type"
@@ -72,7 +72,7 @@
                           placeholder=""
                         ></b-form-input>
                       </b-form-group>
-                      <b-form-group id="input-group-2" label="Modifique el número de cuenta:" label-for="input-2">
+                      <b-form-group id="input-group-2" label="Ingrese el balance de cuenta:" label-for="input-2">
                         <b-form-input class="input-form2"
                           id="input-2"
                           v-model="form.account"
@@ -91,6 +91,7 @@
 </template>
 
 <script>
+  import { baseUrl } from '../../shared/baseUrl';
   export default {
     data() {
       return {
@@ -118,6 +119,54 @@
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
+        //Create User
+        this.axios.post(baseUrl + 'users', {
+            enabled: 1,
+            username: this.form.username,
+            password: this.form.password,
+          })
+          .then((responseUser) => {
+            //Create Customer
+            this.axios.post(baseUrl + 'users/' + responseUser.data.id + '/customers', {
+              address: this.form.address,
+              state: 1,
+              name: this.form.name,
+            })
+            .then((responseCustomer) => {
+                //Create Credit Account
+                var rateType = this.convertRateType()
+                let today = new Date().toISOString()
+                this.axios.post(baseUrl + 'customers/' + responseCustomer.data.id + '/creditAccounts', {
+                  state: 1,
+                  generated_date: today,
+                  interest_rate: rateType,
+                  interest_rate_value: parseFloat(this.form.rate),
+                  balance: parseFloat(this.form.account),
+                  actual_balance: parseFloat(this.form.account),
+                })
+                .then((responseAccount) => {
+                    //Create Payment
+                    this.axios.post(baseUrl + 'creditAccounts/' + responseAccount.data.id + '/payment', {
+                      state: 1,
+                    })
+                    .then(function (response) {
+                      
+                    })
+                    .catch(function (error) {
+                      alert("No se pudo crear el pago de forma correcta");
+                    });
+                })
+                .catch(function (error) {
+                  alert("No se pudo crear la cuenta de forma correcta");
+                });
+              })
+            .catch(function (error) {
+              alert("No se pudo crear el cliente de forma correcta");
+            });
+          })
+          .catch(function (error) {
+            alert("No se pudo crear el usuario de forma correcta");
+          });
         this.$store.commit('customerName', this.form.name)
         this.$store.commit('customerUsername', this.form.username)
         this.$store.commit('customerPassword', this.form.password)
@@ -125,8 +174,22 @@
         this.$store.commit('customerRate', this.form.rate)
         this.$store.commit('customerType', this.form.type)
         this.$store.commit('customerAccount', this.form.account)
-        alert(JSON.stringify(this.form))
         this.$router.push('/allCustomers')
+      },
+      convertRateType: function() {
+        var type = this.form.type;
+        if(type.toLowerCase() === 'simple') {
+          return 1;
+        }
+        else if(type.toLowerCase() === 'compuesta' || type.toLowerCase() === 'compuesto') {
+          return 2;
+        }
+        else if(type.toLowerCase() === 'efectiva' || type.toLowerCase() === 'efectivo') {
+          return 3;
+        }
+        else {
+          return null;
+        }
       },
       imageUpload: function (event) {
         //this.$router.push('/imageUpload')
