@@ -81,7 +81,7 @@
           description: this.form.description,
           state: 1,
           name: this.form.name,
-          price: parseInt(this.form.price),
+          price: parseFloat(this.form.price),
           unit: 'UN',
         })
         .then(function (response) {
