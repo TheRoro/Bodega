@@ -108,11 +108,20 @@
 </template>
 
 <script>
+  import { baseUrl } from '../shared/baseUrl';
   export default {
     name: 'Orders',
     created() {
         //alert('At this point, this.property is now reactive and propertyComputed will update.')
         this.total();
+    },
+    mounted() {
+        this.axios
+        .get(baseUrl + 'articles')
+        .then(response => {
+          this.info = response
+          this.payments = response.data.content;
+          })
     },
     data() {
       return {

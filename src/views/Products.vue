@@ -9,7 +9,7 @@
       <ul class="listOfProducts">
         <li v-for="(product, index) in products" :key="index" class="product">
         <div>
-           <a href="https://imgbb.com/"><img  class="prod-img" :src="product.image" :alt="product.name" border="0" /></a>
+           <a><img  class="prod-img" src="../assets/logo.jpeg" :alt="product.name" border="0" /></a>
         </div>
         <router-link to="/product-details">
             <h2 class="product-name mt-2"
@@ -18,11 +18,11 @@
             </h2>
           </router-link>
           <div>
-            <span class="text-link">{{ product.desciption }}</span>
+            <span class="text-link">{{ product.description }}</span>
           </div>
           <div class="mt-2 title2">
-            <span>S/. {{ product.price }}</span>
-            <span>{{ " " + product.unity }}</span>
+            <span>S/. {{ product.price.toFixed(2) }}</span>
+            <span>{{ " " + product.unit }}</span>
           </div>
           <b-button class="mt-4 btn" type="submit" variant="secondary" v-on:click="addProductToCart(product)">Añadir al carrito</b-button>
         </li>
@@ -32,102 +32,21 @@
 </template>
 
 <script>
-
+  import { baseUrl } from '../shared/baseUrl';
   export default {
     name: 'Products',
     data() {
       return {
-        products: [
-          { 
-            "name": "Queso Edam",
-            "desciption": "Bonle de 90 gr",
-            "state": "Available",
-            "price": "4.50",
-            "unity": "UN",
-            "image": "https://i.ibb.co/gmn70wj/edam.jpg"
-          },
-          { 
-            "name": "Queso Crema",
-            "desciption": "Bonle de 170 gr",
-            "state": "Available",
-            "price": "8.50",
-            "unity": "UN",
-            "image": "https://i.ibb.co/bRPVRcx/crema.jpg"
-          },
-          { 
-            "name": "Queso Cheddar",
-            "desciption": "Laive de 170 gr",
-            "state": "Available",
-            "price": "6.30",
-            "unity": "UN",
-            "image": "https://i.ibb.co/XJcxV6Q/cheddar.jpg"
-          },
-          { 
-            "name": "Fanta",
-            "desciption": "Botella 2.25 LT",
-            "state": "Available",
-            "price": "5.20",
-            "unity": "UN",
-            "image": "https://i.ibb.co/3fThG44/fanta.jpg"
-          },
-          { 
-            "name": "Lays",
-            "desciption": "Papas Lays 160 gr",
-            "state": "Available",
-            "price": "4.20",
-            "unity": "UN",
-            "image": "https://i.ibb.co/nn3txMz/lays.jpg"
-          },
-          { 
-            "name": "Coca Cola",
-            "desciption": "Coca cola 200 ml",
-            "state": "Available",
-            "price": "4.20",
-            "unity": "UN",
-            "image": "https://i.ibb.co/Kwr2kqn/coke.jpg"
-          },
-          { 
-            "name": "Queso Crema",
-            "desciption": "Bonle de 170 gr",
-            "state": "Available",
-            "price": "8.50",
-            "unity": "UN",
-            "image": "https://i.ibb.co/bRPVRcx/crema.jpg"
-          },
-          { 
-            "name": "Queso Cheddar",
-            "desciption": "Laive de 170 gr",
-            "state": "Available",
-            "price": "6.30",
-            "unity": "UN",
-            "image": "https://i.ibb.co/XJcxV6Q/cheddar.jpg"
-          },
-          { 
-            "name": "Fanta",
-            "desciption": "Botella 2.25 LT",
-            "state": "Available",
-            "price": "5.20",
-            "unity": "UN",
-            "image": "https://i.ibb.co/3fThG44/fanta.jpg"
-          },
-          { 
-            "name": "Lays",
-            "desciption": "Papas Lays 160 gr",
-            "state": "Available",
-            "price": "4.20",
-            "unity": "UN",
-            "image": "https://i.ibb.co/nn3txMz/lays.jpg"
-          },
-          { 
-            "name": "Coca Cola",
-            "desciption": "Coca cola 200 ml",
-            "state": "Available",
-            "price": "4.20",
-            "unity": "UN",
-            "image": "https://i.ibb.co/Kwr2kqn/coke.jpg"
-          }
-        ]
+        products: []
       }
+    },
+    mounted () {
+      this.axios
+        .get(baseUrl + 'articles')
+        .then(response => {
+          this.info = response
+          this.products = response.data.content;
+          })
     },
     methods: {
         addProductToCart(product) {
