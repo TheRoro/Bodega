@@ -85,9 +85,9 @@
       this.axios
         .get(baseUrl + 'articles')
         .then(response => {
-          this.info = response
-          console.log(response.data.content);
-          this.products = response.data.content;
+            this.info = response
+            //console.log(response.data.content);
+            this.products = response.data.content;
           })
     },
     data() {

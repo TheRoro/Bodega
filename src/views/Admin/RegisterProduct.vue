@@ -89,9 +89,9 @@
         .catch(function (error) {
           alert("No se pudo crear el prodcuto de forma correcta");
         });
+        this.$router.push('/allProducts')
       },
       imageUpload: function (event) {
-        //this.$router.push('/imageUpload')
       },
       onReset(evt) {
         evt.preventDefault()

@@ -57,12 +57,19 @@
                   <div class="col-auto">
                     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
                       <b-form-group id="input-group-1" label="Ingrese la tasa de interés:" label-for="input-1">
-                        <b-form-input class="input-form2"
-                          id="input-1"
-                          v-model="form.rate"
-                          required
-                          placeholder=""
-                        ></b-form-input>
+                        <div class="row">
+                          <div class="col-10">
+                            <b-form-input class="input-form2"
+                              id="input-1"
+                              v-model="form.rate"
+                              required
+                              placeholder=""
+                            ></b-form-input>
+                          </div>
+                          <div class="col-1">
+                            <h3 class="subtitle mt-3">%</h3>
+                          </div>
+                        </div>
                       </b-form-group>
                       <b-form-group id="input-group-2" label="Ingrese el tipo de interés:" label-for="input-2">
                         <b-form-input class="input-form2"
@@ -150,7 +157,7 @@
                       state: 1,
                     })
                     .then(function (response) {
-                      
+                        
                     })
                     .catch(function (error) {
                       alert("No se pudo crear el pago de forma correcta");
@@ -174,6 +181,7 @@
         this.$store.commit('customerRate', this.form.rate)
         this.$store.commit('customerType', this.form.type)
         this.$store.commit('customerAccount', this.form.account)
+        alert("Se registró satisfactoriamente el usuario");
         this.$router.push('/allCustomers')
       },
       convertRateType: function() {
