@@ -38,7 +38,7 @@
                                         </div>
                                     </div>
                                     <div class="col-3">
-                                        <h3 class="subtitle">S/.{{payment.total.toFixed(2)}}</h3>
+                                        <h3 class="subtitle">S/.{{payment.amount.toFixed(2)}}</h3>
                                     </div>      
                                     <div class="col-3">
                                         <button class="btn-icon" v-on:click="removeOrder"><i class="fas fa-trash fa-2x edit-icon"></i></button>
@@ -54,30 +54,23 @@
 </template>
 
 <script>
+  import { baseUrl } from '../../shared/baseUrl';
   export default {
     name: 'Orders',
+    mounted () {
+      this.axios
+        .get(baseUrl + 'paymentMoves')
+        .then(response => {
+            this.info = response
+            this.payments = response.data;
+          })
+    },
     data() {
       return {
         checked: null,
         aux: null,
         quantity: null,
-        payments: [
-            {
-                id: 1,
-                state: 1,
-                total: 2.50,
-            },
-            {
-                id: 2,
-                state: 1,
-                total: 2.50,
-            },
-            {
-                id: 3,
-                state: 0,
-                total: 2.50,
-            },
-        ],
+        payments: [],
       }
     },
     methods: {

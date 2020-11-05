@@ -21,11 +21,8 @@
                         <div class="col-3">
                             <h3 class="subtitle">Descripcion</h3>
                         </div>
-                        <div class="col-1">
+                        <div class="col-2">
                             <h3 class="subtitle">Precio</h3>
-                        </div>
-                        <div class="col-1">
-                            <h3 class="subtitle">Stock</h3>
                         </div>
                         <div class="col-1">
                             <h3 class="subtitle">Imagen</h3>
@@ -50,11 +47,8 @@
                                     <div class="col-3">
                                         <h3 class="subtitle">{{product.description}}</h3>
                                     </div>
-                                    <div class="col-1">
+                                    <div class="col-2">
                                         <h3 class="subtitle">S/.{{product.price.toFixed(2)}}</h3>
-                                    </div>
-                                    <div class="col-1">
-                                        <h3 class="subtitle">{{22}}</h3>
                                     </div>
                                     <div class="col-1">
                                         <a><img  class="order-img" src="../../assets/logo.jpeg" :alt="product.name" border="0" /></a>
@@ -86,7 +80,6 @@
         .get(baseUrl + 'articles')
         .then(response => {
             this.info = response
-            //console.log(response.data.content);
             this.products = response.data.content;
           })
     },
