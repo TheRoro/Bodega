@@ -39,15 +39,7 @@
                             id="input-2"
                             v-model="form.price"
                             required
-                            placeholder=""
-                          ></b-form-input>
-                        </b-form-group>
-                        <b-form-group id="input-group-2" label="Ingrese stock del producto:" label-for="input-2">
-                          <b-form-input class="input-form2"
-                            id="input-2"
-                            v-model="form.stock"
-                            required
-                            placeholder=""
+                            placeholder="S/."
                           ></b-form-input>
                         </b-form-group>
                         <b-button class="mt-4 edit-btn" type="submit" variant="primary">Aceptar</b-button>
