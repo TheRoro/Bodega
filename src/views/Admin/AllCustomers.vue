@@ -113,7 +113,6 @@
         .get(baseUrl + 'customerInfo')
         .then(responseUser => {
             this.customerInfo = responseUser.data;
-            console.log(this.customerInfo);
             this.formatDate();
         });
     },

@@ -39,10 +39,10 @@
                                         <h3 class="subtitle">{{order.id}}</h3>
                                     </div>
                                     <div class="col-2">
-                                        <h3 class="subtitle">{{order.dateGenerated}}</h3>
+                                        <h3 class="subtitle">{{order.generated_date}}</h3>
                                     </div>
                                     <div class="col-2">
-                                        <h3 class="subtitle">{{order.dateAccepted}}</h3>
+                                        <h3 class="subtitle">{{order.accepted_date}}</h3>
                                     </div>
                                     <div class="col-2">
                                         <div v-if="order.state == 1">
@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                     <div class="col-2">
-                                        <h3 class="subtitle">S/.{{order.price.toFixed(2)}}</h3>
+                                        <h3 class="subtitle">S/.{{order.total_amount.toFixed(2)}}</h3>
                                     </div>
                                     <div class="col-1">
                                         <div v-if="order.state == 1">
@@ -79,42 +79,45 @@
 </template>
 
 <script>
+  import { baseUrl } from '../../shared/baseUrl';
   export default {
     name: 'Orders',
+    mounted () {
+      this.axios
+        .get(baseUrl + 'orders')
+        .then(response => {
+            this.info = response
+            this.orders = response.data;
+            this.formatDate();
+            console.log(this.orders);
+          })
+    },
     data() {
       return {
         checked: null,
         aux: null,
         quantity: null,
-        orders: [
-            {
-                id: 1,
-                dateGenerated: "12/05/2020",
-                dateAccepted: "13/05/2020",
-                state: 1,
-                price: 2.50,
-            },
-            {
-                id: 2,
-                dateGenerated: "24/05/2020",
-                dateAccepted: "27/05/2020",
-                state: 0,
-                price: 2.50,
-            },
-            {
-                id: 3,
-                dateGenerated: "30/05/2020",
-                dateAccepted: "31/05/2020",
-                state: 1,
-                price: 2.50,
-            },
-        ],
+        orders: [],
       }
     },
     methods: {
         removeOrder() {
             //Change state of product to unavailable
             alert("Removing order...")
+        },
+        formatDate() {
+            for (let i = 0; i < this.orders.length; i++) {
+                let date = this.orders[i].generated_date;
+                let splitDate = date.split("-")
+                let formatDate = splitDate[2][0] + splitDate[2][1] + '/' + splitDate[1] + '/' + splitDate[0];
+                this.orders[i].generated_date = formatDate;
+            }
+            for (let i = 0; i < this.orders.length; i++) {
+                let date = this.orders[i].accepted_date;
+                let splitDate = date.split("-")
+                let formatDate = splitDate[2][0] + splitDate[2][1] + '/' + splitDate[1] + '/' + splitDate[0];
+                this.orders[i].accepted_date = formatDate;
+            }
         }
     }
   }
