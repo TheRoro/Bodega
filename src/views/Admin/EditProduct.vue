@@ -42,13 +42,8 @@
                             placeholder=""
                           ></b-form-input>
                         </b-form-group>
-                        <b-form-group id="input-group-2" label="Modifique stock del producto:" label-for="input-2">
-                          <b-form-input class="input-form2"
-                            id="input-2"
-                            v-model="form.stock"
-                            required
-                            placeholder=""
-                          ></b-form-input>
+                        <b-form-group id="input-group-2" label="Modifique el estado del producto:" label-for="input-2">
+                          <b-form-select v-model="form.state" :options="options"></b-form-select>
                         </b-form-group>
                         <b-button class="mt-4 edit-btn" type="submit" variant="primary">Aceptar</b-button>
                       </b-form>
@@ -61,33 +56,51 @@
 </template>
 
 <script>
+  import { baseUrl } from '../../shared/baseUrl';
   export default {
+    mounted () {
+      this.axios
+        .get(baseUrl + 'articles/' + this.$route.params.id)
+        .then(response => {
+            this.info = response
+            this.product = response.data;
+            this.form.name = this.product.name;
+            this.form.description = this.product.description;
+            this.form.price = this.product.price.toFixed(2);
+            this.form.state = this.product.state;        
+          })
+    },
     data() {
       return {
         form: {
           name: '',
           description: '',
           price: '',
-          stock: ''
+          state: ''
         },
-        show: true
+        show: true,
+        product: [],
+        options: [
+          { value: 1, text: 'Disponible' },
+          { value: 0, text: 'No disponible' }
+        ]
       }
     },
     created() {
-      this.form.name = this.$store.getters.productName;
-      this.form.description = this.$store.getters.productDescription;
-      this.form.price = this.$store.getters.productPrice;
-      this.form.stock = this.$store.getters.productStock;
     },
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
-        this.$store.commit('productName', this.form.name)
-        this.$store.commit('productDescription', this.form.description)
-        this.$store.commit('productPrice', this.form.price)
-        this.$store.commit('productStock', this.form.stock)
-        alert(JSON.stringify(this.form))
-        this.$router.push('/allProducts')
+        this.axios
+        .put(baseUrl + 'articles/' + this.$route.params.id, {
+          name: this.form.name,
+          description: this.form.description,
+          price: parseFloat(this.form.price),
+          state: parseInt(this.form.state),
+        })
+        .then(response => {
+            this.$router.push('/allProducts')
+          })
       },
       imageUpload: function (event) {
         //this.$router.push('/imageUpload')

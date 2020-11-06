@@ -91,7 +91,7 @@ Vue.use(VueRouter)
     component: () => import('../views/Admin/RegisterProduct.vue')
   },
   {
-    path: '/editProduct',
+    path: '/editProduct/:id',
     name: 'EditProduct',
     component: () => import('../views/Admin/EditProduct.vue'),
   },

@@ -25,14 +25,14 @@
                             <h3 class="subtitle">Precio</h3>
                         </div>
                         <div class="col-1">
+                            <h3 class="subtitle">Estado</h3>
+                        </div>
+                        <div class="col-1">
                             <h3 class="subtitle">Imagen</h3>
                         </div>
                         <div class="col-1">
                             <h3 class="subtitle">Modificar</h3>
                         </div>                
-                        <div class="col-1">
-                            <h3 class="subtitle">Dar de Baja</h3>
-                        </div>
                     </div>
                     <div class="row orders-title">
                         <div class="col-12">
@@ -51,15 +51,20 @@
                                         <h3 class="subtitle">S/.{{product.price.toFixed(2)}}</h3>
                                     </div>
                                     <div class="col-1">
+                                        <div v-if="product.state == 1">
+                                            <h3 class="subtitle">Disponible</h3>
+                                        </div>
+                                        <div v-else>
+                                            <h3 class="subtitle">No Disponible</h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-1">
                                         <a><img  class="order-img" src="../../../public/assets/product.png" :alt="product.name" border="0" /></a>
                                     </div>
                                     <div class="col-1">
-                                        <router-link to="/editProduct">
+                                        <router-link :to="`/editProduct/${product.id}`">
                                             <a class="fas fa-pencil-alt fa-2x edit-icon"></a>
                                         </router-link>
-                                    </div>                
-                                    <div class="col-1">
-                                        <button class="btn-icon" v-on:click="removeProduct"><i class="fas fa-trash fa-2x edit-icon"></i></button>
                                     </div>
                                 </div>
                             </li>
