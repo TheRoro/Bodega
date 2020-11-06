@@ -19,7 +19,7 @@
                             <h3 class="subtitle">Nombre</h3>
                         </div>
                         <div class="col-1">
-                            <h3 class="subtitle">Usuario</h3>
+                            <h3 class="subtitle">Usuario/ Número</h3>
                         </div>
                         <div class="col-1">
                             <h3 class="subtitle">Contraseña</h3>
