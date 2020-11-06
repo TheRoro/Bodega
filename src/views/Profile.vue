@@ -26,19 +26,34 @@
                             </router-link>
                         </div>
                         <div class="data mt-4">
-                            <p>Nombre: {{this.$store.getters.firstname}}</p>
-                            <p>Usuario: {{this.$store.getters.username}}</p>
-                            <p>Dirección: {{this.$store.getters.address}}</p>
+                            <p>Nombre: {{this.customer.name}}</p>
+                            <p>Usuario: {{this.user.username}}</p>
+                            <p>Dirección: {{this.customer.address}}</p>
                         </div>
                     </div>
                 </div>
                 <div class="profile-col col-auto col-sm-4 mt-2">
                     <div class="col-auto">
                         <h3 class="title">Cuenta Crediticia</h3>
-                        <p>Número de Cuenta: {{this.$store.getters.accountNumber}}</p>
-                        <p>Tasa de Interés establecida: {{this.$store.getters.interestRate}}</p>
-                        <p>Compras: {{this.$store.getters.itemsPurchased}}</p>
-                        <p>Pedidos: {{this.$store.getters.orders}}</p>
+                        <p>Balance inicial: {{this.creditAccount.balance}}</p>
+                        <p>Balance actual: {{this.creditAccount.actual_balance}}</p>
+                        <p>Tasa de interés: {{this.creditAccount.interest_rate_value}}%</p>
+                        <div v-if="this.creditAccount.interest_rate == 1">
+                            <p class="">Tipo de interés: Simple</p>
+                        </div>
+                        <div v-if="this.creditAccount.interest_rate == 2">
+                            <p class="">Tipo de interés: Compuesto</p>
+                        </div>
+                        <div v-if="this.creditAccount.interest_rate == 3">
+                            <p class="">Tipo de interés: Efectivo</p>
+                        </div>
+                        <p>Fecha de creación de cuenta: {{this.creditAccount.generated_date}}</p>
+                        <div v-if="this.creditAccount.state == 1">
+                            <p class="">Estado de la cuenta: Activo</p>
+                        </div>
+                        <div v-if="this.creditAccount.state == 2">
+                            <p class="">Estado de la cuenta: De baja</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,14 +63,38 @@
 </template>
 
 <script>
+  import { baseUrl } from '../shared/baseUrl';
   export default {
+    mounted() {
+        //get my user
+        this.axios
+        .get(baseUrl + 'users/' + this.$store.getters.userId)
+        .then(responseUser => {
+            this.user = responseUser.data;
+        });
+        //get my profile(customer)
+        this.axios
+        .get(baseUrl + 'users/' + this.$store.getters.userId + '/customers')
+        .then(responseCustomer => {
+            this.customer = responseCustomer.data.content[0];
+            this.axios
+            .get(baseUrl + 'customers/' + this.customer.id + '/creditAccounts')
+            .then(responseCreditAccount => {
+                this.creditAccount = responseCreditAccount.data;
+                this.formatDate()
+            });
+        });
+    },
     data() {
       return {
         form: {
           email: '',
           password: '',
         },
-        show: true
+        show: true,
+        user: [],
+        customer: [],
+        creditAccount: []
       }
     },
     methods: {
@@ -81,6 +120,12 @@
         //this.$store.commit('reset');
         this.$store.commit('resetState');
         this.$router.push('/');
+      },
+      formatDate() {
+        let date = this.creditAccount.generated_date;
+        let splitDate = date.split("-")
+        let formatDate = splitDate[2][0] + splitDate[2][1] + '/' + splitDate[1] + '/' + splitDate[0];
+        this.creditAccount.generated_date = formatDate;
       }
     }
   }

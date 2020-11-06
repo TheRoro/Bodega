@@ -7,6 +7,8 @@ Vue.use(Vuex)
 
 function emptyState () {
   return {
+    userId: 2,
+    customerId: 2,
     loggedIn: false,
     isAdmin: false,
     firstname: "",
@@ -40,6 +42,8 @@ function emptyState () {
 
 function initialState () {
   return {
+    userId: 2,
+    customerId: 2,
     loggedIn: false,
     isAdmin: false,
     firstname: "Alberto",
@@ -74,6 +78,12 @@ function initialState () {
 export default new Vuex.Store({
   state: initialState,
   mutations: {
+    userId(state, userId) {
+      state.userId = userId
+    },
+    customerId(state, customerId) {
+      state.customerId = customerId
+    },
     resetState (state) {
       alert("Good bye!");
       Object.assign(state, emptyState())
@@ -148,6 +158,12 @@ export default new Vuex.Store({
     }*/
   },
   getters: {
+    userId: state => {
+      return state.userId
+    },
+    customerId: state => {
+      return state.customerId
+    },
     loggedStatus: state => {
       return state.loggedIn
     },
