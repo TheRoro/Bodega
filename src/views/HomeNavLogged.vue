@@ -20,10 +20,10 @@
             <b-button size="lg" variant="primary text-success" class="nav-btn">Pagos</b-button>
         </b-nav-item>
         <b-nav-item to="/orders">
-            <b-button size="lg" variant="primary text-success" class="nav-btn">Pedidos</b-button>
+            <b-button size="lg" variant="primary text-success" class="nav-btn">Mi carrito</b-button>
         </b-nav-item>
         <b-nav-item to="/products">
-            <b-button size="lg" variant="primary text-success" class="nav-btn">Productos</b-button>
+            <b-button size="lg" variant="primary text-success" class="nav-btn">Comprar</b-button>
         </b-nav-item>
         <b-navbar-brand to="/profile">
             <img v-if="this.$store.getters.profilePicture == ''" src="../../public/assets/user.png" class="d-inline-block align-top nav-logo" alt="Wapo logo" >
