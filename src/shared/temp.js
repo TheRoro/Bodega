@@ -6,7 +6,6 @@ this.axios.post(baseUrl + '/users', {
   })
   .then(function (responseUser) {
       //Create Customer
-      console.log(responseUser.content.id);
       this.axios.post(baseUrl + '/users/' + responseUser.content.id + '/customers', {
         address: this.form.address,
         state: 1,
