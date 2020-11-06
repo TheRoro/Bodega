@@ -9,6 +9,7 @@ function emptyState () {
   return {
     userId: 2,
     customerId: 2,
+    creditAccountId: 1,
     loggedIn: false,
     isAdmin: false,
     firstname: "",
@@ -44,6 +45,7 @@ function initialState () {
   return {
     userId: 2,
     customerId: 2,
+    creditAccountId: 1,
     loggedIn: false,
     isAdmin: false,
     firstname: "Alberto",
@@ -83,6 +85,9 @@ export default new Vuex.Store({
     },
     customerId(state, customerId) {
       state.customerId = customerId
+    },
+    creditAccountId(state, creditAccountId) {
+      state.creditAccountId = creditAccountId
     },
     resetState (state) {
       alert("Good bye!");
@@ -163,6 +168,9 @@ export default new Vuex.Store({
     },
     customerId: state => {
       return state.customerId
+    },
+    creditAccountId: state => {
+      return state.creditAccountId
     },
     loggedStatus: state => {
       return state.loggedIn

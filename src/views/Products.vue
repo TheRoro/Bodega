@@ -2,14 +2,14 @@
   <div class="products mt-4">
     <div class="align-items-center product-title-box pt-1">
       <div class="col-12 pt-4">
-        <h2 class="text-success title2">Productos</h2>
+        <h2 class="text-success title2">Productos Disponibles</h2>
       </div>
     </div>
     <div class="product-box mt-3">
       <ul class="listOfProducts">
         <li v-for="(product, index) in products" :key="index" class="product">
         <div>
-           <a><img  class="prod-img" src="../assets/logo.jpeg" :alt="product.name" border="0" /></a>
+           <a><img  class="prod-img" src="../../public/assets/product.png" :alt="product.name" border="0" /></a>
         </div>
         <router-link to="/product-details">
             <h2 class="product-name mt-2"
@@ -22,7 +22,6 @@
           </div>
           <div class="mt-2 title2">
             <span>S/. {{ product.price.toFixed(2) }}</span>
-            <span>{{ " " + product.unit }}</span>
           </div>
           <b-button class="mt-4 btn" type="submit" variant="secondary" v-on:click="addProductToCart(product)">Añadir al carrito</b-button>
         </li>
