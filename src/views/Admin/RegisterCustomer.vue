@@ -69,12 +69,7 @@
                         </div>
                       </b-form-group>
                       <b-form-group id="input-group-2" label="Ingrese el tipo de interés:" label-for="input-2">
-                        <b-form-input class="input-form2"
-                          id="input-2"
-                          v-model="form.type"
-                          required
-                          placeholder=""
-                        ></b-form-input>
+                          <b-form-select v-model="form.type" :options="tasas"></b-form-select>  
                       </b-form-group>
                       <b-form-group id="input-group-2" label="Ingrese el balance de cuenta:" label-for="input-2">
                         <b-form-input class="input-form2"
@@ -108,7 +103,12 @@
           type: '',
           account: '',
         },
-        show: true
+        show: true,
+        tasas: [
+          { value: 1, text: 'Simple' },
+          { value: 2, text: 'Compuesto' },
+          { value: 3, text: 'Efectivo' }
+        ],
       }
     },
     created() {
@@ -138,12 +138,11 @@
             })
             .then((responseCustomer) => {
                 //Create Credit Account
-                var rateType = this.convertRateType()
                 let today = new Date().toISOString()
                 this.axios.post(baseUrl + 'customers/' + responseCustomer.data.id + '/creditAccounts', {
                   state: 1,
                   generated_date: today,
-                  interest_rate: rateType,
+                  interest_rate: parseInt(this.form.type),
                   interest_rate_value: parseFloat(this.form.rate),
                   balance: parseFloat(this.form.account),
                   actual_balance: parseFloat(this.form.account),
@@ -153,8 +152,8 @@
                     this.axios.post(baseUrl + 'creditAccounts/' + responseAccount.data.id + '/payment', {
                       state: 1,
                     })
-                    .then(function (response) {
-                        
+                    .then((response) => {
+                        this.$router.push('/allCustomers')
                     })
                     .catch(function (error) {
                       alert("No se pudo crear el pago de forma correcta");
@@ -171,30 +170,9 @@
           .catch(function (error) {
             alert("No se pudo crear el usuario de forma correcta");
           });
-        this.$store.commit('customerName', this.form.name)
-        this.$store.commit('customerUsername', this.form.username)
-        this.$store.commit('customerPassword', this.form.password)
-        this.$store.commit('customerAddress', this.form.address)
-        this.$store.commit('customerRate', this.form.rate)
-        this.$store.commit('customerType', this.form.type)
-        this.$store.commit('customerAccount', this.form.account)
-        alert("Se registró satisfactoriamente el usuario");
-        this.$router.push('/allCustomers')
-      },
-      convertRateType: function() {
-        var type = this.form.type;
-        if(type.toLowerCase() === 'simple') {
-          return 1;
-        }
-        else if(type.toLowerCase() === 'compuesta' || type.toLowerCase() === 'compuesto') {
-          return 2;
-        }
-        else if(type.toLowerCase() === 'efectiva' || type.toLowerCase() === 'efectivo') {
-          return 3;
-        }
-        else {
-          return null;
-        }
+
+        //alert("Se registró satisfactoriamente el usuario");
+        //this.$router.push('/allCustomers')
       },
       imageUpload: function (event) {
         //this.$router.push('/imageUpload')
