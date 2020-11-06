@@ -5,13 +5,14 @@
         <div class="col-12">
         <h1 class="title mb-3 mt-0">INICIAR SESIÓN</h1>
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-          <b-form-group id="input-group-1" label="Email:" label-for="input-1">
+          <b-form-group id="input-group-1" label="Número de teléfono:" label-for="input-1">
+            
             <b-form-input class="input-form"
               id="input-1"
               v-model="form.email"
-              type="email"
+              type="tel"
               required
-              placeholder="Email o número de teléfono"
+              placeholder="Número de teléfono"
             ></b-form-input>
           </b-form-group>
 
@@ -48,7 +49,7 @@
     data() {
       return {
         form: {
-          email: '',
+          email: '+51 ',
           password: '',
         },
         show: true
