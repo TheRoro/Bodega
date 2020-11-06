@@ -29,7 +29,6 @@ export default {
         }
     },
     created() {
-        this.item.imageUrl = this.$store.getters.profilePicture;
     },
     methods: {
         onChange(e) {
@@ -38,8 +37,6 @@ export default {
         this.item.imageUrl = URL.createObjectURL(file)
         },
         saveImage: function (event) {
-            this.$store.commit('profilePicture', this.item.imageUrl)
-            //alert(JSON.stringify(this.$store.getters.profilePicture))
             this.$router.push('/editProfile')
         },
         discardChanges: function (event) {

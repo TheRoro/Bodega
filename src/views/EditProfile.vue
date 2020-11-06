@@ -49,10 +49,7 @@
                     <div class="col-auto">
                         <h3 class="title">Cambiar foto de perfil</h3>
                         <div class="ml-5">
-                          <div v-if="this.$store.getters.profilePicture == ''">
-                              <img src="../../public/assets/user.png" class="d-inline-block profile-picture-edit" alt="Wapo logo">
-                          </div>
-                          <img v-if="this.$store.getters.profilePicture" :src="this.$store.getters.profilePicture"  class="profile-picture-edit"/>
+                        <img src="../../public/assets/user.png" class="d-inline-block profile-picture-edit" alt="Wapo logo">
                         </div>
                         <b-button class="mt-5 edit-btn" variant="primary" v-on:click="imageUpload">Subir Foto</b-button>
                     </div>
