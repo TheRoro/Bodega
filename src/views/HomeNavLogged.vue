@@ -26,9 +26,7 @@
             <b-button size="lg" variant="primary text-success" class="nav-btn">Comprar</b-button>
         </b-nav-item>
         <b-navbar-brand to="/profile">
-            <img v-if="this.$store.getters.profilePicture == ''" src="../../public/assets/user.png" class="d-inline-block align-top nav-logo" alt="Wapo logo" >
-            <img v-if="this.$store.getters.profilePicture" :src="this.$store.getters.profilePicture"  class="d-inline-block align-top nav-logo"/>
-                        
+            <img src="../../public/assets/user.png" class="d-inline-block align-top nav-logo" alt="Wapo logo" >        
         </b-navbar-brand>
         </b-navbar-nav>
     </b-collapse>

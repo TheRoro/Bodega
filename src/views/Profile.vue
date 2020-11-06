@@ -6,10 +6,7 @@
                 <div class="profile-col col-auto col-sm-3 mt-2">
                     <div class="col-auto">
                         <h3 class="title">Foto de Perfil</h3>
-                        <div v-if="this.$store.getters.profilePicture == ''">
-                            <img src="../../public/assets/user.png" class="d-inline-block profile-picture" alt="Wapo logo">
-                        </div>
-                        <img v-if="this.$store.getters.profilePicture" :src="this.$store.getters.profilePicture" class="profile-picture"/>
+                        <img src="../../public/assets/user.png" class="d-inline-block profile-picture" alt="Wapo logo">
                         <div class="row">
                             <div class="col-12">
                                 <b-button class="mt-5 edit-btn" variant="primary" v-on:click="logOut()">Cerrar Sesión</b-button>
@@ -98,26 +95,16 @@
       }
     },
     methods: {
-      onSubmit(evt) {
-        evt.preventDefault()
-        alert(JSON.stringify(this.form))
-        this.$store.commit('logIn')
-        console.log(this.$store.getters.LoggedStatus)
-        this.$router.push('/homeLogged')  
-      },
       onReset(evt) {
         evt.preventDefault()
-        // Reset our form values
         this.form.email = ''
         this.form.password = ''
-        // Trick to reset/clear native browser form validation state
         this.show = false
         this.$nextTick(() => {
           this.show = true
         })
       },
       logOut() {
-        //this.$store.commit('reset');
         this.$store.commit('resetState');
         this.$router.push('/');
       },
