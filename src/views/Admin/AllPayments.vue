@@ -19,7 +19,7 @@
                             <h3 class="subtitle">Total</h3>
                         </div>
                         <div class="col-3">
-                            <h3 class="subtitle">Dar de baja</h3>
+                            <h3 class="subtitle">Fecha generada</h3>
                         </div>             
                     </div>
                     <div class="row orders-title col-12">
@@ -41,7 +41,7 @@
                                         <h3 class="subtitle">S/.{{payment.amount.toFixed(2)}}</h3>
                                     </div>      
                                     <div class="col-3">
-                                        <button class="btn-icon" v-on:click="removeOrder"><i class="fas fa-trash fa-2x edit-icon"></i></button>
+                                        <h3 class="subtitle">{{payment.generated_date}}</h3>
                                     </div>
                                 </div>
                             </li>
@@ -63,6 +63,7 @@
         .then(response => {
             this.info = response
             this.payments = response.data;
+            this.formatDate();
           })
     },
     data() {
@@ -77,6 +78,15 @@
         removeOrder() {
             //Change state of product to unavailable
             alert("Removing payment...")
+        },
+        formatDate() {
+            for (let i = 0; i < this.payments.length; i++) {
+                //2000-12-11 19:00:00
+                let date = this.payments[i].generated_date;
+                let splitDate = date.split("-")
+                let formatDate = splitDate[2][0] + splitDate[2][1] + '/' + splitDate[1] + '/' + splitDate[0];
+                this.payments[i].generated_date = formatDate;
+            }
         }
     }
   }

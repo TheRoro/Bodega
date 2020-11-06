@@ -138,7 +138,6 @@
         formatDate() {
             for (let i = 0; i < this.customerInfo.length; i++) {
                 //2000-12-11 19:00:00
-                console.log(this.customerInfo[i].date)
                 let date = this.customerInfo[i].date;
                 let splitDate = date.split("-")
                 let formatDate = splitDate[2][0] + splitDate[2][1] + '/' + splitDate[1] + '/' + splitDate[0];
