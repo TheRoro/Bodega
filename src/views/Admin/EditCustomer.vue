@@ -114,6 +114,7 @@
       this.form.rate = this.$store.getters.customerRate;
       this.form.type = this.$store.getters.customerType;
       this.form.account = this.$store.getters.customerAccount;
+      console.log(this.$route.params.id)
     },
     methods: {
       onSubmit(evt) {

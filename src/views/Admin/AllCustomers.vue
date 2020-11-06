@@ -86,7 +86,7 @@
                                         </div>
                                     </div>
                                     <div class="col-1">
-                                        <router-link to="/editCustomer">
+                                        <router-link :to="`/editCustomer/${customer.customerId}`">
                                             <a class="fas fa-pencil-alt fa-2x edit-icon"></a>
                                         </router-link>
                                     </div>                

@@ -101,7 +101,7 @@ Vue.use(VueRouter)
     component: () => import('../views/Admin/AllCustomers.vue'),
   },
   {
-    path: '/editCustomer',
+    path: '/editCustomer/:id',
     name: 'EditCustomer',
     component: () => import('../views/Admin/EditCustomer.vue'),
   },
