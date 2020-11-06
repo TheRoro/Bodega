@@ -51,7 +51,7 @@
                                         <h3 class="subtitle">S/.{{product.price.toFixed(2)}}</h3>
                                     </div>
                                     <div class="col-1">
-                                        <a><img  class="order-img" src="../../assets/logo.jpeg" :alt="product.name" border="0" /></a>
+                                        <a><img  class="order-img" src="../../../public/assets/product.png" :alt="product.name" border="0" /></a>
                                     </div>
                                     <div class="col-1">
                                         <router-link to="/editProduct">
