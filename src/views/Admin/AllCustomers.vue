@@ -24,7 +24,7 @@
                         <div class="col-1">
                             <h3 class="subtitle">Contraseña</h3>
                         </div>
-                        <div class="col-1">
+                        <div class="col-2">
                             <h3 class="subtitle">Dirección</h3>
                         </div>
                         <div class="col-1">
@@ -41,9 +41,6 @@
                         </div>
                         <div class="col-1">
                             <h3 class="subtitle">Modificar</h3>
-                        </div>
-                        <div class="col-1">
-                            <h3 class="subtitle">Dar de baja</h3>
                         </div>
                     </div>
                     <div class="row orders-title">
@@ -62,7 +59,7 @@
                                     <div class="col-1">
                                         <h3 class="subtitle">{{customer.password}}</h3>
                                     </div>
-                                    <div class="col-1">
+                                    <div class="col-2">
                                         <h3 class="subtitle">{{customer.address}}</h3>
                                     </div>
                                     <div class="col-1">
@@ -90,9 +87,6 @@
                                             <a class="fas fa-pencil-alt fa-2x edit-icon"></a>
                                         </router-link>
                                     </div>                
-                                    <div class="col-1">
-                                        <button class="btn-icon" v-on:click="removeCustomer"><i class="fas fa-trash fa-2x edit-icon"></i></button>
-                                    </div>
                                 </div>
                             </li>
                         </div>
