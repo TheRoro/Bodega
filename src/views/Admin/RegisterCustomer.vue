@@ -7,10 +7,7 @@
                     <div class="col-auto">
                         <h3 class="title">Registrar Cliente</h3>
                         <div class="">
-                          <div v-if="this.$store.getters.customerImage == ''">
-                              <img src="../../../public/assets/user.png" class="d-inline-block profile-picture-edit" alt="Wapo logo">
-                          </div>
-                          <img v-if="this.$store.getters.customerImage" src="../../../public/assets/user.png"  class="profile-picture-edit"/>
+                          <img src="../../../public/assets/user.png"  class="profile-picture-edit"/>
                         </div>
                         <b-button class="mt-5 edit-btn" variant="primary" v-on:click="imageUpload">Subir Foto</b-button>
                     </div>

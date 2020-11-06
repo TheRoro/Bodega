@@ -53,7 +53,7 @@
               <div class="profile-col col-auto col-sm-4 mt-5">
                   <div class="col-auto">
                     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-                      <b-form-group id="input-group-1" label="Modifique la tasa de interés:" label-for="input-1">
+                      <b-form-group id="input-group-1" label="Modifique la tasa de interés (%):" label-for="input-1">
                         <b-form-input class="input-form2"
                           id="input-1"
                           v-model="form.rate"
@@ -61,18 +61,16 @@
                           placeholder=""
                         ></b-form-input>
                       </b-form-group>
-                      <b-form-group id="input-group-2" label="Modifique el tipo del cliente:" label-for="input-2">
-                        <b-form-input class="input-form2"
-                          id="input-2"
-                          v-model="form.type"
-                          required
-                          placeholder=""
-                        ></b-form-input>
+                      <b-form-group id="input-group-2" label="Modifique el tipo de interés:" label-for="input-2">
+                        <b-form-select v-model="form.type" :options="tasas"></b-form-select>
                       </b-form-group>
-                      <b-form-group id="input-group-2" label="Modifique el número de cuenta:" label-for="input-2">
-                        <b-form-input class="input-form2"
-                          id="input-2"
-                          v-model="form.account"
+                      <b-form-group id="input-group-2" label="Modifique el estado del cliente:" label-for="input-2">
+                        <b-form-select v-model="form.state" :options="estados"></b-form-select>
+                      </b-form-group>
+                      <b-form-group id="input-group-1" label="Modifique el saldo actual (S/.):" label-for="input-1">
+                          <b-form-input class="input-form2"
+                          id="input-1"
+                          v-model="form.saldoActual"
                           required
                           placeholder=""
                         ></b-form-input>
@@ -88,7 +86,33 @@
 </template>
 
 <script>
+  import { baseUrl } from '../../shared/baseUrl';
   export default {
+    mounted () {
+      this.axios
+        .get(baseUrl + 'users/' + this.$route.params.id)
+        .then(response => {
+            this.user = response.data;
+            this.form.username = this.user.username;
+            this.form.password = this.user.password;
+              this.axios
+              .get(baseUrl + 'users/' + this.$route.params.id + '/customers')
+              .then(responseCustomer => {
+                  this.customer = responseCustomer.data.content[0];
+                  this.form.name = this.customer.name;
+                  this.form.address = this.customer.address;
+                    this.axios
+                    .get(baseUrl + 'customers/' + this.customer.id + '/creditAccounts')
+                    .then(responseCreditAccount => {
+                        this.creditAccount = responseCreditAccount.data;
+                        this.form.rate = this.creditAccount.interest_rate_value;
+                        this.form.type = this.creditAccount.interest_rate;
+                        this.form.state = this.creditAccount.state;
+                        this.form.saldoActual = this.creditAccount.actual_balance;
+                    });   
+                })
+          })
+    },
     data() {
       return {
         form: {
@@ -98,35 +122,53 @@
           address: '',
           rate: '',
           type: '',
-          account: '',
+          state: '',
+          saldoActual: '',
         },
         show: true,
         user: [],
         customer: [],
         creditAccount: [],
+        tasas: [
+          { value: 1, text: 'Simple' },
+          { value: 2, text: 'Compuesta' },
+          { value: 3, text: 'Efectiva' }
+        ],
+        estados: [
+          { value: 1, text: 'Disponible' },
+          { value: 0, text: 'De baja' }
+        ]
       }
-    },
-    created() {
-      this.form.name = this.$store.getters.customerName;
-      this.form.username = this.$store.getters.customerUsername;
-      this.form.password = this.$store.getters.customerPassword;
-      this.form.address = this.$store.getters.customerAddress;
-      this.form.rate = this.$store.getters.customerRate;
-      this.form.type = this.$store.getters.customerType;
-      this.form.account = this.$store.getters.customerAccount;
     },
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
-        this.$store.commit('customerName', this.form.name)
-        this.$store.commit('customerUsername', this.form.username)
-        this.$store.commit('customerPassword', this.form.password)
-        this.$store.commit('customerAddress', this.form.address)
-        this.$store.commit('customerRate', this.form.rate)
-        this.$store.commit('customerType', this.form.type)
-        this.$store.commit('customerAccount', this.form.account)
-        alert(JSON.stringify(this.form))
-        this.$router.push('/allCustomers')
+        this.axios
+        .put(baseUrl + 'users/' + this.$route.params.id, {
+          username: this.form.username,
+          password: this.form.password,
+          enabled: 1
+        })
+        .then(response => {
+              this.axios
+              .put(baseUrl + 'users/' + this.$route.params.id + '/customers/' + this.customer.id , {
+                name: this.form.name,
+                address: this.form.address,
+                state: parseInt(this.form.state)
+              })
+              .then(response => {
+                  this.axios
+                  .put(baseUrl + 'customers/' + this.customer.id + '/creditAccounts', {
+                    state: 1,
+                    interest_rate: parseInt(this.form.type),
+                    interest_rate_value: this.form.rate,
+                    balance: this.creditAccount.balance,
+                    actual_balance: this.form.saldoActual,
+                    generated_date: this.creditAccount.generated_date,
+                  })
+                  this.$router.push('/allCustomers')
+              })
+        })
       },
       imageUpload: function (event) {
         //this.$router.push('/imageUpload')
