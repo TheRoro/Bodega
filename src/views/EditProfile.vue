@@ -64,7 +64,26 @@
 </template>
 
 <script>
+  import { baseUrl } from '../shared/baseUrl';
   export default {
+    mounted() {
+        //get my user
+        this.axios
+        .get(baseUrl + 'users/' + this.$store.getters.userId)
+        .then(responseUser => {
+            this.user = responseUser.data;
+            this.form.username = this.user.username
+            this.form.password = this.user.password
+        });
+        //get my profile(customer)
+        this.axios
+        .get(baseUrl + 'users/' + this.$store.getters.userId + '/customers')
+        .then(responseCustomer => {
+            this.customer = responseCustomer.data.content[0];
+            this.form.name = this.customer.name;
+            this.form.address = this.customer.address;
+        });
+    },
     data() {
       return {
         form: {
@@ -73,24 +92,33 @@
           password: '',
           address: ''
         },
-        show: true
+        show: true,
+        user: [],
+        customer: []
       }
     },
     created() {
-      this.form.name = this.$store.getters.firstname;
-      this.form.username = this.$store.getters.username
-      this.form.password = this.$store.getters.password
-      this.form.address = this.$store.getters.address
     },
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
-        this.$store.commit('firstname', this.form.name)
-        this.$store.commit('username', this.form.username)
-        this.$store.commit('password', this.form.password)
-        this.$store.commit('address', this.form.address)
-        alert(JSON.stringify(this.form))
-        this.$router.push('/profile')
+        this.axios
+        .put(baseUrl + 'users/' + this.$store.getters.userId, {
+          username: this.form.username,
+          password: this.form.password,
+          enabled: 1
+        })
+        .then(response => {
+              this.axios
+              .put(baseUrl + 'users/' + this.$store.getters.userId + '/customers/' + this.$store.getters.customerId , {
+                name: this.form.name,
+                address: this.form.address,
+                state: 1
+              })
+              .then(response => {
+                  this.$router.push('/profile')
+              })
+        })
       },
       imageUpload: function (event) {
         this.$router.push('/imageUpload')
