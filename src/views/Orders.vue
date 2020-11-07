@@ -176,6 +176,10 @@
                 this.axios.post(baseUrl + 'orders/' + this.orderId + '/articles', this.cart)
                 .then(responseCartInfo => {
                     console.log(responseCartInfo)
+                    alert("Se ha registrado satisfactoriamente su compra")
+                    this.cart = []
+                    this.$store.commit('updateCart', this.cart);
+                    this.$router.push('/ordersHistory');
                 })
             })
         }
