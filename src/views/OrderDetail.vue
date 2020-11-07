@@ -10,7 +10,7 @@
                     </div>
                     <div class="row orders-title mt-3">
                         <div class="col-2">
-                            <h3 class="subtitle">Codigo Producto</h3>
+                            <h3 class="subtitle">Codigo Pedido</h3>
                         </div>
                         <div class="col-3">
                             <h3 class="subtitle">Nombre Producto</h3>
@@ -63,8 +63,7 @@
         .get(baseUrl + 'orders/' + this.$route.params.id + '/articles')
         .then(response => {
             this.orderInfo = response.data;
-            //console.log(this.orderInfo)
-            //get the orderDetails and store it in the orderDetail array
+            this.formatPrice();
           })
     },
     data() {
@@ -73,35 +72,6 @@
         aux: null,
         quantity: null,
         orderInfo: [],
-        orderDetail: [
-            {
-                id: 1,
-                name: "Papas Lays",
-                price: 2.50,
-                quantity: 3,
-                dateGenerated: "12/05/2020",
-                dateAccepted: "13/05/2020",
-                status: 1,
-            },
-            {
-                id: 2,
-                name: "Coca Cola",
-                price: 4.00,
-                quantity: 4,
-                dateGenerated: "24/05/2020",
-                dateAccepted: "27/05/2020",
-                status: 0,
-            },
-            {
-                id: 3,
-                name: "Pringles",
-                price: 5.50,
-                quantity: 3,
-                dateGenerated: "30/05/2020",
-                dateAccepted: "31/05/2020",
-                status: 1,
-            },
-        ],
       }
     },
     methods: {
@@ -110,6 +80,13 @@
         },
         ordersHistory() {
             this.$router.push('/ordersHistory');
+        },
+        formatPrice() {
+            for (let i = 0; i < this.orderInfo.length; i++) {
+                let price = parseFloat(this.orderInfo[i].price);
+                price = price.toFixed(2);
+                this.orderInfo[i].price = price;
+            }
         }
     }
   }

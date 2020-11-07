@@ -12,10 +12,10 @@
                         <div class="col-2">
                             <h3 class="subtitle">Codigo Pedido</h3>
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                             <h3 class="subtitle">Fecha generada</h3>
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                             <h3 class="subtitle">Fecha aceptada</h3>
                         </div>
                         <div class="col-2">
@@ -23,6 +23,9 @@
                         </div>
                         <div class="col-2">
                             <h3 class="subtitle">Monto</h3>
+                        </div>
+                        <div class="col-2">
+                            <h3 class="subtitle">Detalle</h3>
                         </div>
                     </div>
                     <div class="row orders-title">
@@ -32,10 +35,10 @@
                                     <div class="col-2">
                                         <h3 class="subtitle">{{order.id}}</h3>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-2">
                                         <h3 class="subtitle">{{order.generated_date}}</h3>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-2">
                                         <h3 class="subtitle">{{order.accepted_date}}</h3>
                                     </div>
                                     <div class="col-2">
@@ -51,6 +54,16 @@
                                             <h3 class="subtitle">S/.{{order.total_amount.toFixed(2)}}</h3>
                                         </div>
                                     </div>
+                                    <div class="col-2">
+                                        <div v-if="order.state == 1">
+                                            <router-link :to="`/orderDetail/${order.id}`">
+                                                <a class="fas fa-eye fa-2x edit-icon"></a>
+                                            </router-link>
+                                        </div>
+                                        <div v-else>
+                                            <a class="fas fa-eye-slash fa-2x text-info"></a>
+                                        </div>
+                                    </div>  
                                 </div>
                             </li>
                         </div>
