@@ -15,14 +15,11 @@
                         <div class="col-1">
                             <h3 class="subtitle">Codigo Cliente</h3>
                         </div>
-                        <div class="col-1">
+                        <div class="col-2">
                             <h3 class="subtitle">Nombre</h3>
                         </div>
-                        <div class="col-1">
+                        <div class="col-2">
                             <h3 class="subtitle">Usuario/ Número</h3>
-                        </div>
-                        <div class="col-1">
-                            <h3 class="subtitle">Contraseña</h3>
                         </div>
                         <div class="col-2">
                             <h3 class="subtitle">Dirección</h3>
@@ -30,7 +27,7 @@
                         <div class="col-1">
                             <h3 class="subtitle">Imagen</h3>
                         </div>
-                        <div class="col-2">
+                        <div class="col-1">
                             <h3 class="subtitle">Fecha Registro</h3>
                         </div>
                         <div class="col-1">
@@ -50,14 +47,11 @@
                                     <div class="col-1">
                                         <h3 class="subtitle">{{customer.customerId}}</h3>
                                     </div>
-                                    <div class="col-1">
+                                    <div class="col-2">
                                         <h3 class="subtitle">{{customer.name}}</h3>
                                     </div>
-                                    <div class="col-1">
+                                    <div class="col-2">
                                         <h3 class="subtitle">{{customer.username}}</h3>
-                                    </div>
-                                    <div class="col-1">
-                                        <h3 class="subtitle">{{customer.password}}</h3>
                                     </div>
                                     <div class="col-2">
                                         <h3 class="subtitle">{{customer.address}}</h3>
@@ -65,7 +59,7 @@
                                     <div class="col-1">
                                         <a><img  class="order-img" src="../../../public/assets/user.png" :alt="customer.name" border="0" /></a>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-1">
                                         <h3 class="subtitle">{{customer.date}}</h3>
                                     </div>
                                     <div class="col-1">
