@@ -36,7 +36,8 @@
     name: 'Products',
     data() {
       return {
-        products: []
+        products: [],
+        cart: [],
       }
     },
     mounted () {
@@ -46,14 +47,23 @@
           this.info = response
           this.products = response.data.content;
           })
+      this.cart = this.$store.getters.cart;
     },
     methods: {
         addProductToCart(product) {
-          console.log("Añadido producto", product, "al carrito.");
-          this.itemDetail= [product.name, 1];
-          this.$store.commit('addToCart', this.itemDetail)
-          this.item = this.$store.getters.cart
-          console.log(this.item[0].itemDetail)
+          var exists = false;
+          for (let index = 0; index < this.cart.length; index++) {
+            if(this.cart[index].id === product.id){
+              this.cart[index].quantity++
+              exists = true;
+            }
+          }
+          if(exists === false) {
+            alert("Se ha añadido el producto al carrito");
+            product.quantity = 1;
+            this.cart.push(product)
+          }
+          this.$store.commit('updateCart', this.cart);
         }
     }
   }

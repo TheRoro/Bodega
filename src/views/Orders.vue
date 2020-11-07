@@ -27,16 +27,16 @@
                     </div>
                     <div class="row orders-title">
                         <div class="col-12">
-                            <li v-for="(product, index) in order" :key="index" class="">
+                            <li v-for="(product, index) in cart" :key="index" class="">
                                 <div class="row orders-item-box ml-1 align-items-center">
                                     <div class="col-1">
-                                        <a href="https://imgbb.com/"><img  class="order-img" :src="product.image" :alt="product.name" border="0" /></a>
+                                        <img  class="order-img" src="../../public/assets/product.png" :alt="product.name" border="0" />
                                     </div>
                                     <div class="col-3">
                                         <h3 class="subtitle">{{product.name}}</h3>
                                     </div>
                                     <div class="col-3">
-                                        <h3 class="subtitle">S/.{{product.price}}</h3>
+                                        <h3 class="subtitle">S/.{{product.price.toFixed(2)}}</h3>
                                     </div>
                                     <div class="col-3 quantity-row">
                                         <div class="row align-items-center quantity-row">
@@ -80,7 +80,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <b-button class="mt-5 edit-btn" variant="primary">Aceptar</b-button>
+                        <b-button class="mt-5 edit-btn" variant="primary" v-on:click="submitCart()">Aceptar</b-button>
                     </div>
                 </div>
             </div>
@@ -89,10 +89,15 @@
 </template>
 
 <script>
+  import { baseUrl } from '../shared/baseUrl';
   export default {
     name: 'Orders',
     created() {
-        this.totalCartPayment()
+        
+    },
+    mounted () {
+      this.cart = this.$store.getters.cart;
+      this.totalCartPayment()
     },
     data() {
       return {
@@ -100,44 +105,8 @@
         quantity: null,
         totalCart: null,
         withDelivery: false,
-        order: [
-          { "id": "1",
-            "name": "Queso Edam",
-            "price": "4.60",
-            "quantity": "2",
-            "image": "https://i.ibb.co/gmn70wj/edam.jpg"
-          },
-          { "id": "2",
-            "name": "Queso Crema",
-            "price": "1.00",
-            "quantity": "5",
-            "image": "https://i.ibb.co/bRPVRcx/crema.jpg"
-          },
-          {  "id": "3",
-            "name": "Queso Cheddar",
-            "price": "4.20",
-            "quantity": "1",
-            "image": "https://i.ibb.co/XJcxV6Q/cheddar.jpg"
-          },
-          { "id": "4",
-            "name": "Fanta",
-            "price": "4.00",
-            "quantity": "1",
-            "image": "https://i.ibb.co/3fThG44/fanta.jpg"
-          },
-          { "id": "5",
-            "name": "Lays",
-            "price": "2.50",
-            "quantity": "3",
-            "image": "https://i.ibb.co/nn3txMz/lays.jpg"
-          },
-          { "id": "6",
-            "name": "Coca Cola",
-            "price": "4.30",
-            "quantity": "3",
-            "image": "https://i.ibb.co/Kwr2kqn/coke.jpg"
-          }
-        ]
+        orderId: '',
+        cart: [],
       }
     },
     methods: {
@@ -146,6 +115,15 @@
             if(this.quantity - 1 >= 1) {
                 this.aux = this.quantity-1;
                 product.quantity = this.aux.toString();
+            }
+            if(this.quantity - 1 == 0) {
+                var pos = 0
+                for (let index = 0; index < this.cart.length; index++) {
+                    if(this.cart[index].id === product.id){
+                        pos = index;
+                    }
+                }
+                this.cart.splice(pos, 1)
             }
             this.totalCartPayment()
         },
@@ -174,13 +152,32 @@
         },
         totalCartPayment() {
             this.totalCart = 0
-            this.order.forEach(element => {
+            this.cart.forEach(element => {
                 this.totalCart += element.price * element.quantity;
             });
             if(this.withDelivery == true) {
                 this.totalCart+=5;
             }
             this.totalCart = this.totalCart.toFixed(2);
+            this.$store.commit('updateCart', this.cart);
+        },
+        submitCart() {
+            let today = new Date().toISOString()
+            this.axios.post(baseUrl + 'customers/' + this.$store.getters.customerId + '/orders', {
+                total_amount: this.totalCart,
+                payment_method: 1,
+                generated_date: today,
+                accepted_date: today, //replace with null
+                state: 1,
+            })
+            .then(responseOrder => {
+                this.orderId = responseOrder.data.id
+                console.log(responseOrder.data.id)
+                this.axios.post(baseUrl + 'orders/' + this.orderId + '/articles', this.cart)
+                .then(responseCartInfo => {
+                    console.log(responseCartInfo)
+                })
+            })
         }
     }
   }

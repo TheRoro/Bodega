@@ -64,6 +64,14 @@
   import { baseUrl } from '../shared/baseUrl';
   export default {
     name: 'Orders',
+    mounted () {
+      this.axios
+        .get(baseUrl + 'orders')
+        .then(response => {
+            //this.orders = response.data;
+            //get the orderDetails and store it in the orderDetail array
+          })
+    },
     data() {
       return {
         checked: null,
