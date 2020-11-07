@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="col-1">
                                         <div v-if="order.state == 1">
-                                            <router-link :to="`/orderDetail/${order.id}`">
+                                            <router-link :to="`/orderDetail/${order.orderId}`">
                                                 <a class="fas fa-eye fa-2x edit-icon"></a>
                                             </router-link>
                                         </div>
@@ -88,7 +88,7 @@
         .then(response => {
             this.orders = response.data;
             this.formatDate();
-            console.log(this.orders);
+            //console.log(this.orders);
           })
     },
     data() {

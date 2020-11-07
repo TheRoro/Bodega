@@ -15,22 +15,19 @@
                         <div class="col-3">
                             <h3 class="subtitle">Nombre Producto</h3>
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
                             <h3 class="subtitle">Precio</h3>
                         </div>
-                        <div class="col-1">
+                        <div class="col-2">
                             <h3 class="subtitle">Cantidad</h3>
                         </div>
                         <div class="col-2">
-                            <h3 class="subtitle">Fecha Generada</h3>
-                        </div>
-                        <div class="col-2">
-                            <h3 class="subtitle">Fecha Aceptada</h3>
+                            <h3 class="subtitle">Imagen Producto</h3>
                         </div>
                     </div>
                     <div class="row orders-title">
                         <div class="col-12">
-                            <li v-for="(line, index) in orderDetail" :key="index" class="">
+                            <li v-for="(line, index) in orderInfo" :key="index" class="">
                                 <div class="row orders-item-box ml-1 align-items-center">
                                     <div class="col-2">
                                         <h3 class="subtitle">{{line.id}}</h3>
@@ -38,17 +35,14 @@
                                     <div class="col-3">
                                         <h3 class="subtitle">{{line.name}}</h3>
                                     </div>
-                                    <div class="col-2">
-                                        <h3 class="subtitle">S/.{{line.price.toFixed(2)}}</h3>
+                                    <div class="col-3">
+                                        <h3 class="subtitle">S/.{{line.price}}</h3>
                                     </div>
-                                    <div class="col-1">
+                                    <div class="col-2">
                                         <h3 class="subtitle">{{line.quantity}}</h3>
                                     </div>
                                     <div class="col-2">
-                                        <h3 class="subtitle">{{line.dateGenerated}}</h3>
-                                    </div>
-                                    <div class="col-2">
-                                        <h3 class="subtitle">{{line.dateAccepted}}</h3>
+                                        <img  class="order-img" src="../../public/assets/product.png" :alt="line.name" border="0" />
                                     </div>
                                 </div>
                             </li>
@@ -66,9 +60,10 @@
     name: 'Orders',
     mounted () {
       this.axios
-        .get(baseUrl + 'orders')
+        .get(baseUrl + 'orders/' + this.$route.params.id + '/articles')
         .then(response => {
-            //this.orders = response.data;
+            this.orderInfo = response.data;
+            console.log(this.orderInfo)
             //get the orderDetails and store it in the orderDetail array
           })
     },
@@ -77,6 +72,7 @@
         checked: null,
         aux: null,
         quantity: null,
+        orderInfo: [],
         orderDetail: [
             {
                 id: 1,
