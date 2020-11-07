@@ -27,51 +27,39 @@
                         </div>
                     </div>
                     <div class="row orders-title mt-3">
-                        <div class="col-2">
+                        <div class="col-3">
                             <h3 class="subtitle">No Pedido</h3>
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
                             <h3 class="subtitle">Precio</h3>
                         </div>
-                        <div class="col-2">
-                            <h3 class="subtitle">Interés</h3>
+                        <div class="col-3">
+                            <h3 class="subtitle">Fecha generada</h3>
                         </div>
-                        <div class="col-2">
-                            <h3 class="subtitle">Delivery</h3>
-                        </div>
-                        <div class="col-2">
-                            <h3 class="subtitle">Mora</h3>
-                        </div>
-                        <div class="col-2">
-                            <h3 class="subtitle">Total</h3>
+                        <div class="col-3">
+                            <h3 class="subtitle">Estado</h3>
                         </div>
                     </div>
                     <div class="row orders-title">
                         <div class="col-12">
                             <li v-for="(payment, index) in payments" :key="index" class="">
                                 <div class="row orders-item-box ml-1 align-items-center">
-                                    <div class="col-2">
-                                        <h3 class="subtitle">{{payment.number}}</h3>
+                                    <div class="col-3">
+                                        <h3 class="subtitle">{{payment.paymentId}}</h3>
                                     </div>
-                                    <div class="col-2">
-                                        <h3 class="subtitle">S/.{{payment.price.toFixed(2)}}</h3>
+                                    <div class="col-3">
+                                        <h3 class="subtitle">S/.{{payment.amount.toFixed(2)}}</h3>
                                     </div>
-                                    <div class="col-2">
-                                        <h3 class="subtitle">S/.{{payment.rate.toFixed(2)}}</h3>
+                                    <div class="col-3">
+                                        <h3 class="subtitle">S/.{{payment.generated_date}}</h3>
                                     </div>
-                                    <div class="col-2">
-                                        <h3 class="subtitle">S/.{{payment.delivery.toFixed(2)}}</h3>
-                                    </div>
-                                    <div class="col-2">
-                                        <h3 class="subtitle">S/.{{payment.latePayment.toFixed(2)}}</h3>
-                                    </div>
-                                    <div class="col-2">
-                                        <h3 class="subtitle">
-                                            S/.{{(payment.price+
-                                            payment.rate+
-                                            payment.delivery+
-                                            payment.latePayment).toFixed(2)}}
-                                        </h3>
+                                    <div class="col-3">
+                                        <div v-if="payment.state == 1">
+                                            <h3 class="subtitle">Disponible</h3>
+                                        </div>
+                                        <div v-else>
+                                            <h3 class="subtitle">No Disponible</h3>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
@@ -117,10 +105,11 @@
     },
     mounted() {
         this.axios
-        .get(baseUrl + 'creditAccount/' + this.$store.getters.creditAccountId + '/creditAccountMovements')
+        .get(baseUrl + 'customers/' + this.$store.getters.customerId + '/paymentMoves')
         .then(response => {
-          //this.payments = response.data.content;
+          this.payments = response.data.content;
           console.log(response.data.content)
+          this.formatDate();
           })
     },
     data() {
@@ -129,44 +118,7 @@
         aux: null,
         quantity: null,
         totalPay: null,
-        payments: [
-    {
-        id: 1,
-        number: 3,
-        price: 2.50,
-        rate: 2.50,
-        delivery: 5.00,
-        latePayment: 3.00,
-        status: 1,
-    },
-    {
-        id: 2,
-        number: 2,
-        price: 1.50,
-        rate: 6.50,
-        delivery: 5.00,
-        latePayment: 7.00,
-        status: 1,
-    },
-    {
-        id: 3,
-        number: 1,
-        price: 6.50,
-        rate: 0.50,
-        delivery: 5.00,
-        latePayment: 5.00,
-        status: 1,
-    },
-    {
-        id: 4,
-        number: 8,
-        price: 10.50,
-        rate: 6.70,
-        delivery: 5.00,
-        latePayment: 0.00,
-        status: 1,
-    },
-],
+        payments: [],
       }
     },
     methods: {
@@ -182,9 +134,18 @@
         total() {
             this.totalPay = 0
             this.payments.forEach(element => {
-                this.totalPay += element.price + element.rate + element.delivery + element.latePayment;
+                this.totalPay += element.amount;
             });
             this.totalPay = this.totalPay.toFixed(2);
+        },
+        formatDate() {
+            for (let i = 0; i < this.payments.length; i++) {
+                //2000-12-11 19:00:00
+                let date = this.payments[i].generated_date;
+                let splitDate = date.split("-")
+                let formatDate = splitDate[2][0] + splitDate[2][1] + '/' + splitDate[1] + '/' + splitDate[0];
+                this.payments[i].generated_date = formatDate;
+            }
         }
     }
   }
