@@ -27,7 +27,9 @@ function initialState () {
     isAdmin: false,
     itemsPurchased: 10,
     orders: 11,
-    cart: [],
+    cart: [
+
+    ]
   }
 }
 
@@ -55,9 +57,9 @@ export default new Vuex.Store({
     logOut (state) {
       state.loggedIn = false
     },
-    /*addToCart (state, itemDetail) {
-      state.cart = [...state.cart, {itemDetail}]
-    }*/
+    updateCart (state, newCart) {
+      state.cart = newCart;
+    }
   },
   getters: {
     userId: state => {
