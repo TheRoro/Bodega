@@ -9,7 +9,7 @@
             
             <b-form-input class="input-form"
               id="input-1"
-              v-model="form.email"
+              v-model="form.username"
               type="tel"
               required
               placeholder="Número de teléfono"
@@ -45,25 +45,60 @@
 </template>
 
 <script>
+  import { baseUrl } from '../shared/baseUrl';
   export default {
     data() {
       return {
         form: {
-          email: '+51 ',
+          username: '+51 ',
           password: '',
         },
-        show: true
+        show: true,
+        user: [],
+        customer: [],
+        creditAccount: []
       }
     },
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
-        if(this.form.password == "admin") {
-          this.$store.commit('isAdmin', true)
-        }
-        //alert(JSON.stringify(this.form))
-        this.$store.commit('logIn')
-        this.$router.push('/homeLogged')  
+        this.axios
+        .post(baseUrl + 'login', {
+          username: this.form.username,
+          password: this.form.password,
+        })
+        .then(response => {
+            this.user = response.data;
+            if(this.user.id !== null){
+                  this.$store.commit('userId', this.user.id);
+                  this.$store.commit('logIn')
+                  this.axios
+                  .get(baseUrl + 'users/' + this.$store.getters.userId + '/customers')
+                  .then(responseCustomer => {
+                      this.customer = responseCustomer.data.content[0];
+                      this.$store.commit('customerId', this.customer.id);
+                      this.axios
+                      .get(baseUrl + 'customers/' + this.customer.id + '/creditAccounts')
+                      .then(responseCreditAccount => {
+                          this.creditAccount = responseCreditAccount.data;
+                          this.$store.commit('creditAccountId', this.creditAccount.id);
+                          //UserId customerId and creditAccountId set correctly
+                      });
+                  });
+              if(this.user.id === 1){ //admin validation
+                alert("Welcome ADMIN");
+                this.$store.commit('isAdmin', true);
+              }
+              else{
+                alert("Welcome CUSTOMER");
+              }
+              this.$router.push('/homeLogged')
+            }
+            else{
+              alert("Wrong username or password")
+            }
+            
+        })
       },
       onReset(evt) {
         evt.preventDefault()
