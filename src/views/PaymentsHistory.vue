@@ -24,7 +24,7 @@
                             <li v-for="(payment, index) in payments" :key="index" class="">
                                 <div class="row orders-item-box ml-1 align-items-center">
                                     <div class="col-4">
-                                        <h3 class="subtitle">{{payment.number}}</h3>
+                                        <h3 class="subtitle">{{payment.paymentId}}</h3>
                                     </div>
                                     <div class="col-4">
                                         <div v-if="payment.state == 1">
@@ -36,10 +36,7 @@
                                     </div>
                                     <div class="col-4">
                                         <h3 class="subtitle">
-                                            S/.{{(payment.price+
-                                            payment.rate+
-                                            payment.delivery+
-                                            payment.latePayment).toFixed(2)}}
+                                            S/.{{payment.amount.toFixed(2)}}
                                         </h3>
                                     </div>
                                 </div>
@@ -53,55 +50,23 @@
 </template>
 
 <script>
+  import { baseUrl } from '../shared/baseUrl';
   export default {
     name: 'Orders',
+    mounted() {
+        this.axios
+        .get(baseUrl + 'customers/' + this.$store.getters.customerId + '/paymentMoves')
+        .then(response => {
+          this.payments = response.data;
+          this.formatDate();
+          })
+    },
     data() {
       return {
         checked: null,
         aux: null,
         quantity: null,
-        payments: [
-            {
-                id: 1,
-                number: 3,
-                price: 2.50,
-                rate: 2.50,
-                delivery: 5.00,
-                latePayment: 3.00,
-                state: 1,
-                status: 1,
-            },
-            {
-                id: 2,
-                number: 2,
-                price: 1.50,
-                rate: 6.50,
-                delivery: 5.00,
-                latePayment: 7.00,
-                state: 0,
-                status: 1,
-            },
-            {
-                id: 3,
-                number: 1,
-                price: 6.50,
-                rate: 0.50,
-                delivery: 5.00,
-                latePayment: 5.00,
-                state: 1,
-                status: 1,
-            },
-            {
-                id: 4,
-                number: 8,
-                price: 10.50,
-                rate: 6.70,
-                delivery: 5.00,
-                latePayment: 0.00,
-                state: 1,
-                status: 1,
-            },
-        ],
+        payments: [],
       }
     },
     methods: {
@@ -110,6 +75,15 @@
         },
         ordersHistory() {
             this.$router.push('/ordersHistory');
+        },
+        formatDate() {
+            for (let i = 0; i < this.payments.length; i++) {
+                //2000-12-11 19:00:00
+                let date = this.payments[i].generated_date;
+                let splitDate = date.split("-")
+                let formatDate = splitDate[2][0] + splitDate[2][1] + '/' + splitDate[1] + '/' + splitDate[0];
+                this.payments[i].generated_date = formatDate;
+            }
         }
     }
   }
