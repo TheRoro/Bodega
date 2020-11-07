@@ -9,13 +9,16 @@
                         </div>
                     </div>
                     <div class="row orders-title mt-5 col-12">
-                        <div class="col-3">
+                        <div class="col-1">
                             <h3 class="subtitle">Codigo de Pago</h3>
+                        </div>
+                        <div class="col-3">
+                            <h3 class="subtitle">Nombre del cliente</h3>
                         </div>
                         <div class="col-3">
                             <h3 class="subtitle">Estado</h3>
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                             <h3 class="subtitle">Total</h3>
                         </div>
                         <div class="col-3">
@@ -26,8 +29,11 @@
                         <div class="col-12">
                             <li v-for="(payment, index) in payments" :key="index" class="">
                                 <div class="row orders-item-box align-items-center">
+                                    <div class="col-1">
+                                        <h3 class="subtitle">{{payment.paymentId}}</h3>
+                                    </div>
                                     <div class="col-3">
-                                        <h3 class="subtitle">{{payment.id}}</h3>
+                                        <h3 class="subtitle">{{payment.customerName}}</h3>
                                     </div>
                                     <div class="col-3">
                                         <div v-if="payment.state == 1">
@@ -37,7 +43,7 @@
                                             <h3 class="subtitle">No Disponible</h3>
                                         </div>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-2">
                                         <h3 class="subtitle">S/.{{payment.amount.toFixed(2)}}</h3>
                                     </div>      
                                     <div class="col-3">
@@ -61,7 +67,6 @@
       this.axios
         .get(baseUrl + 'paymentMoves')
         .then(response => {
-            this.info = response
             this.payments = response.data;
             this.formatDate();
           })
