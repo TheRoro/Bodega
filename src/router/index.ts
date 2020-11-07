@@ -64,7 +64,7 @@ Vue.use(VueRouter)
     component: () => import('../views/OrdersHistory.vue')
   },
   {
-    path: '/orderDetail',
+    path: '/orderDetail/:id',
     name: 'OrderDetail',
     component: () => import('../views/OrderDetail.vue')
   },

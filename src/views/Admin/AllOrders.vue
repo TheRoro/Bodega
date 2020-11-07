@@ -13,6 +13,9 @@
                             <h3 class="subtitle">Codigo Pedido</h3>
                         </div>
                         <div class="col-2">
+                            <h3 class="subtitle">Usuario</h3>
+                        </div>
+                        <div class="col-2">
                             <h3 class="subtitle">Fecha Generada</h3>
                         </div>
                         <div class="col-2">
@@ -21,15 +24,12 @@
                         <div class="col-2">
                             <h3 class="subtitle">Estado</h3>
                         </div>
-                        <div class="col-2">
+                        <div class="col-1">
                             <h3 class="subtitle">Precio</h3>
                         </div>
                         <div class="col-1">
                             <h3 class="subtitle">Detalle</h3>
-                        </div>
-                        <div class="col-1">
-                            <h3 class="subtitle">Dar de baja</h3>
-                        </div>                
+                        </div>            
                     </div>
                     <div class="row orders-title">
                         <div class="col-12">
@@ -39,6 +39,9 @@
                                         <h3 class="subtitle">{{order.id}}</h3>
                                     </div>
                                     <div class="col-2">
+                                        <h3 class="subtitle">Acá falta el nombre del usuario</h3>
+                                    </div>
+                                    <div class="col-2">
                                         <h3 class="subtitle">{{order.generated_date}}</h3>
                                     </div>
                                     <div class="col-2">
@@ -46,18 +49,18 @@
                                     </div>
                                     <div class="col-2">
                                         <div v-if="order.state == 1">
-                                            <h3 class="subtitle">Disponible</h3>
+                                            <h3 class="subtitle">Aceptado</h3>
                                         </div>
                                         <div v-else>
-                                            <h3 class="subtitle">No Disponible</h3>
+                                            <h3 class="subtitle">Generado</h3>
                                         </div>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-1">
                                         <h3 class="subtitle">S/.{{order.total_amount.toFixed(2)}}</h3>
                                     </div>
                                     <div class="col-1">
                                         <div v-if="order.state == 1">
-                                            <router-link to="/orderDetail">
+                                            <router-link :to="`/orderDetail/${order.id}`">
                                                 <a class="fas fa-eye fa-2x edit-icon"></a>
                                             </router-link>
                                         </div>
@@ -65,9 +68,6 @@
                                             <a class="fas fa-eye-slash fa-2x text-info"></a>
                                         </div>
                                     </div>              
-                                    <div class="col-1">
-                                        <button class="btn-icon" v-on:click="removeOrder"><i class="fas fa-trash fa-2x edit-icon"></i></button>
-                                    </div>
                                 </div>
                             </li>
                         </div>
