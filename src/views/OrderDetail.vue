@@ -61,6 +61,7 @@
 </template>
 
 <script>
+  import { baseUrl } from '../shared/baseUrl';
   export default {
     name: 'Orders',
     data() {
