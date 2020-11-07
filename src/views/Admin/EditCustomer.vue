@@ -101,13 +101,13 @@
                   this.customer = responseCustomer.data.content[0];
                   this.form.name = this.customer.name;
                   this.form.address = this.customer.address;
+                  this.form.state = this.customer.state;
                     this.axios
                     .get(baseUrl + 'customers/' + this.customer.id + '/creditAccounts')
                     .then(responseCreditAccount => {
                         this.creditAccount = responseCreditAccount.data;
                         this.form.rate = this.creditAccount.interest_rate_value;
                         this.form.type = this.creditAccount.interest_rate;
-                        this.form.state = this.creditAccount.state;
                         this.form.saldoActual = this.creditAccount.actual_balance;
                     });   
                 })
@@ -135,7 +135,7 @@
           { value: 3, text: 'Efectiva' }
         ],
         estados: [
-          { value: 1, text: 'Disponible' },
+          { value: 1, text: 'Activo' },
           { value: 0, text: 'De baja' }
         ]
       }
