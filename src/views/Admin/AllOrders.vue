@@ -36,10 +36,10 @@
                             <li v-for="(order, index) in orders" :key="index" class="">
                                 <div class="row orders-item-box align-items-center">
                                     <div class="col-2">
-                                        <h3 class="subtitle">{{order.id}}</h3>
+                                        <h3 class="subtitle">{{order.orderId}}</h3>
                                     </div>
                                     <div class="col-2">
-                                        <h3 class="subtitle">Acá falta el nombre del usuario</h3>
+                                        <h3 class="subtitle">{{order.customerName}}</h3>
                                     </div>
                                     <div class="col-2">
                                         <h3 class="subtitle">{{order.generated_date}}</h3>
@@ -86,7 +86,6 @@
       this.axios
         .get(baseUrl + 'orders')
         .then(response => {
-            this.info = response
             this.orders = response.data;
             this.formatDate();
             console.log(this.orders);
