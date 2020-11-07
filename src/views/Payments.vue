@@ -51,7 +51,7 @@
                                         <h3 class="subtitle">S/.{{payment.amount.toFixed(2)}}</h3>
                                     </div>
                                     <div class="col-3">
-                                        <h3 class="subtitle">S/.{{payment.generated_date}}</h3>
+                                        <h3 class="subtitle">{{payment.generated_date}}</h3>
                                     </div>
                                     <div class="col-3">
                                         <div v-if="payment.state == 1">
@@ -101,15 +101,15 @@
     name: 'Orders',
     created() {
         //alert('At this point, this.property is now reactive and propertyComputed will update.')
-        this.total();
+        
     },
     mounted() {
         this.axios
         .get(baseUrl + 'customers/' + this.$store.getters.customerId + '/paymentMoves')
         .then(response => {
-          this.payments = response.data.content;
-          console.log(response.data.content)
+          this.payments = response.data;
           this.formatDate();
+          this.total();
           })
     },
     data() {

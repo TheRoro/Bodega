@@ -63,7 +63,7 @@
         .get(baseUrl + 'orders/' + this.$route.params.id + '/articles')
         .then(response => {
             this.orderInfo = response.data;
-            console.log(this.orderInfo)
+            //console.log(this.orderInfo)
             //get the orderDetails and store it in the orderDetail array
           })
     },
