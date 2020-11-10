@@ -101,6 +101,7 @@
         .get(baseUrl + 'customerInfo')
         .then(responseUser => {
             this.customerInfo = responseUser.data;
+            this.formatCustomerList()
             this.formatDate();
         });
     },
@@ -131,6 +132,9 @@
                 let formatDate = splitDate[2][0] + splitDate[2][1] + '/' + splitDate[1] + '/' + splitDate[0];
                 this.customerInfo[i].date = formatDate;
             }
+        },
+        formatCustomerList() {
+            this.customerInfo.shift();
         }
     }
   }
