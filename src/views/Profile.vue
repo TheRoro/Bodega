@@ -32,8 +32,8 @@
                 <div class="profile-col col-auto col-sm-4 mt-2">
                     <div class="col-auto">
                         <h3 class="title">Cuenta Crediticia</h3>
-                        <p>Balance inicial: {{this.creditAccount.balance}}</p>
-                        <p>Balance actual: {{this.creditAccount.actual_balance}}</p>
+                        <p>Balance inicial: S/. {{this.creditAccount.balance}}</p>
+                        <p>Balance actual: S/. {{this.creditAccount.actual_balance}}</p>
                         <p>Tasa de interés: {{this.creditAccount.interest_rate_value}}%</p>
                         <div v-if="this.creditAccount.interest_rate == 1">
                             <p class="">Tipo de interés: Simple</p>
@@ -79,6 +79,7 @@
             .then(responseCreditAccount => {
                 this.creditAccount = responseCreditAccount.data;
                 this.formatDate()
+                this.formatBalance()
             });
         });
     },
@@ -113,6 +114,10 @@
         let splitDate = date.split("-")
         let formatDate = splitDate[2][0] + splitDate[2][1] + '/' + splitDate[1] + '/' + splitDate[0];
         this.creditAccount.generated_date = formatDate;
+      },
+      formatBalance() {
+        this.creditAccount.balance = this.creditAccount.balance.toFixed(2);
+        this.creditAccount.actual_balance = this.creditAccount.actual_balance.toFixed(2);
       }
     }
   }
