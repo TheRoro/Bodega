@@ -172,17 +172,14 @@
             })
             .then(responseOrder => {
                 this.orderId = responseOrder.data.id
-                console.log(responseOrder.data.id)
                 this.axios.post(baseUrl + 'orders/' + this.orderId + '/articles', this.cart)
                 .then(responseCartInfo => {
-                    console.log(responseCartInfo)
                     alert("Se ha registrado satisfactoriamente su compra")
                     this.cart = []
                     this.$store.commit('updateCart', this.cart);
                     this.$router.push('/ordersHistory');
                     this.axios.post(baseUrl + 'orders/' + this.orderId + '/creditAccount')
                     .then(movementResponse =>{
-                        console.log(movementResponse);
                     });
                 })
                 

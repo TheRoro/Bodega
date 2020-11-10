@@ -28,7 +28,7 @@
         <b-nav-item to="/allOrders">
             <b-button size="lg" variant="primary text-success" class="nav-btn">Pedidos</b-button>
         </b-nav-item>
-        <b-navbar-brand to="/profile">
+        <b-navbar-brand to="/adminProfile">
             <img src="../../../public/assets/user.png" class="d-inline-block align-top nav-logo" alt="Wapo logo" >                        
         </b-navbar-brand>
         </b-navbar-nav>

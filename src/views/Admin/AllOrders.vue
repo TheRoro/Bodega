@@ -88,7 +88,6 @@
         .then(response => {
             this.orders = response.data;
             this.formatDate();
-            //console.log(this.orders);
           })
     },
     data() {

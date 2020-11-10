@@ -105,7 +105,7 @@
     },
     mounted() {
         this.axios
-        .get(baseUrl + 'customers/' + this.$store.getters.customerId + '/paymentMoves')
+        .get(baseUrl + 'orders/' + this.$store.getters.customerId + '/paymentMoves')
         .then(response => {
           this.payments = response.data;
           this.formatDate();
