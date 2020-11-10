@@ -120,6 +120,11 @@ Vue.use(VueRouter)
     name: 'AllPayments',
     component: () => import('../views/Admin/AllPayments.vue'),
   },
+  {
+    path: '/adminProfile',
+    name: 'AdminProfile',
+    component: () => import('../views/Admin/AdminProfile.vue'),
+  },
 ]
 
 const router = new VueRouter({
