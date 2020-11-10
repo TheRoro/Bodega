@@ -180,7 +180,12 @@
                     this.cart = []
                     this.$store.commit('updateCart', this.cart);
                     this.$router.push('/ordersHistory');
+                    this.axios.post(baseUrl + 'orders/' + this.orderId + '/creditAccount')
+                    .then(movementResponse =>{
+                        console.log(movementResponse);
+                    });
                 })
+                
             })
         }
     }
