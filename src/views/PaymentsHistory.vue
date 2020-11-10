@@ -9,13 +9,16 @@
                         </div>
                     </div>
                     <div class="row orders-title mt-3">
-                        <div class="col-4">
+                        <div class="col-3">
                             <h3 class="subtitle">Codigo de Pago</h3>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
+                            <h3 class="subtitle">Fecha Aceptada</h3>
+                        </div>
+                        <div class="col-3">
                             <h3 class="subtitle">Estado</h3>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <h3 class="subtitle">Total</h3>
                         </div>
                     </div>

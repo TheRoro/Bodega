@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="profile order-box row align-items-center mt-3">
+        <div class="profile order-box row mt-3">
             <div class="col-9 mt-4">
                 <div class="col-12">
                     <div class="row orders-title">
@@ -73,9 +73,6 @@
                     <div class="col-12">
                         <b-button class="mt-5 edit-btn" variant="primary"  v-on:click="backToProducts">Agregar Más</b-button>
                         <b-button class="mt-5 edit-btn" variant="primary" v-on:click="ordersHistory">Historial Pedidos</b-button>
-                        <p class="orders-title">Servicios</p>
-                        <input type="checkbox" id="checkbox" v-model="withDelivery" v-on:click="toggleDelivery">
-                        <label for="checkbox" class="ml-2">Delivery S/. 5.00</label>
                     </div>
                 </div>
                 <div class="row">
@@ -104,7 +101,6 @@
         aux: null,
         quantity: null,
         totalCart: null,
-        withDelivery: false,
         orderId: '',
         cart: [],
       }
@@ -135,15 +131,6 @@
             }
             this.totalCartPayment()
         },
-        toggleDelivery() {
-            if(this.withDelivery == true) {
-                this.withDelivery = false;
-            }
-            else {
-                this.withDelivery = true;
-            }
-            this.totalCartPayment()
-        },
         backToProducts() {
             this.$router.push('/products');
         },
@@ -155,9 +142,6 @@
             this.cart.forEach(element => {
                 this.totalCart += element.price * element.quantity;
             });
-            if(this.withDelivery == true) {
-                this.totalCart+=5;
-            }
             this.totalCart = this.totalCart.toFixed(2);
             this.$store.commit('updateCart', this.cart);
         },
