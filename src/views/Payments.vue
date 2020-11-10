@@ -31,13 +31,13 @@
                             <h3 class="subtitle">No Pedido</h3>
                         </div>
                         <div class="col-3">
-                            <h3 class="subtitle">Precio</h3>
+                            <h3 class="subtitle">Monto</h3>
                         </div>
                         <div class="col-3">
                             <h3 class="subtitle">Fecha generada</h3>
                         </div>
                         <div class="col-3">
-                            <h3 class="subtitle">Estado</h3>
+                            <h3 class="subtitle">Fecha Aceptada</h3>
                         </div>
                     </div>
                     <div class="row orders-title">
@@ -45,32 +45,27 @@
                             <li v-for="(payment, index) in payments" :key="index" class="">
                                 <div class="row orders-item-box ml-1 align-items-center">
                                     <div class="col-3">
-                                        <h3 class="subtitle">{{payment.paymentId}}</h3>
-                                    </div>
-                                    <div class="col-3">
-                                        <h3 class="subtitle">S/.{{payment.amount.toFixed(2)}}</h3>
+                                        <h3 class="subtitle">{{payment.orderId}}</h3>
                                     </div>
                                     <div class="col-3">
                                         <h3 class="subtitle">{{payment.generated_date}}</h3>
                                     </div>
                                     <div class="col-3">
-                                        <div v-if="payment.state == 1">
-                                            <h3 class="subtitle">Disponible</h3>
-                                        </div>
-                                        <div v-else>
-                                            <h3 class="subtitle">No Disponible</h3>
-                                        </div>
+                                        <h3 class="subtitle">{{payment.accepted_date}}</h3>
+                                    </div>
+                                    <div class="col-3">
+                                        <h3 class="subtitle">S/.{{payment.total_amount.toFixed(2)}}</h3>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="row orders-item-box ml-1 align-items-center bg-primary text-warning">
-                                    <div class="col-10">
+                                    <div class="col-9">
                                         <div class="col-auto">
                                             <h3 class="subtitle">Total a pagar:</h3>
                                         </div>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-3">
                                         <h3 class="subtitle">
                                             S/. {{this.totalPay}}
                                         </h3>
@@ -105,7 +100,7 @@
     },
     mounted() {
         this.axios
-        .get(baseUrl + 'orders/' + this.$store.getters.customerId + '/paymentMoves')
+        .get(baseUrl + 'customers/' + this.$store.getters.customerId + '/unpaidOrders')
         .then(response => {
           this.payments = response.data;
           this.formatDate();
@@ -129,12 +124,13 @@
             this.$router.push('/ordersHistory');
         },
         confirmPayment() {
-            alert("BIEEEEEEN");
+            this.axios.post(baseUrl + 'creditAccount/' + this.$store.getters.customerId + '/paymentMoves');
+            alert("Se ha realizado exitosamente el pago");
         },
         total() {
             this.totalPay = 0
             this.payments.forEach(element => {
-                this.totalPay += element.amount;
+                this.totalPay += element.total_amount;
             });
             this.totalPay = this.totalPay.toFixed(2);
         },
@@ -145,6 +141,12 @@
                 let splitDate = date.split("-")
                 let formatDate = splitDate[2][0] + splitDate[2][1] + '/' + splitDate[1] + '/' + splitDate[0];
                 this.payments[i].generated_date = formatDate;
+            }
+            for (let i = 0; i < this.payments.length; i++) {
+                let date = this.payments[i].accepted_date;
+                let splitDate = date.split("-")
+                let formatDate = splitDate[2][0] + splitDate[2][1] + '/' + splitDate[1] + '/' + splitDate[0];
+                this.payments[i].accepted_date = formatDate;
             }
         }
     }
