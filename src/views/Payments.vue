@@ -23,21 +23,21 @@
                 <div class="col-12">
                     <div class="row orders-title">
                         <div class="col-12">
-                            <h3 class="title mr-3">Pagos</h3>
+                            <h3 class="title mr-3">Pagos Pendientes</h3>
                         </div>
                     </div>
                     <div class="row orders-title mt-3">
                         <div class="col-3">
-                            <h3 class="subtitle">No Pedido</h3>
-                        </div>
-                        <div class="col-3">
-                            <h3 class="subtitle">Monto</h3>
+                            <h3 class="subtitle">Codigo Pedido</h3>
                         </div>
                         <div class="col-3">
                             <h3 class="subtitle">Fecha generada</h3>
                         </div>
                         <div class="col-3">
-                            <h3 class="subtitle">Fecha Aceptada</h3>
+                            <h3 class="subtitle">Estado</h3>
+                        </div>
+                        <div class="col-3">
+                            <h3 class="subtitle">Monto</h3>
                         </div>
                     </div>
                     <div class="row orders-title">
@@ -51,7 +51,7 @@
                                         <h3 class="subtitle">{{payment.generated_date}}</h3>
                                     </div>
                                     <div class="col-3">
-                                        <h3 class="subtitle">{{payment.accepted_date}}</h3>
+                                        <h3 class="subtitle">Pendiente</h3>
                                     </div>
                                     <div class="col-3">
                                         <h3 class="subtitle">S/.{{payment.total_amount.toFixed(2)}}</h3>
