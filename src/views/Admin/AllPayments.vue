@@ -68,7 +68,7 @@
         .get(baseUrl + 'paymentMoves')
         .then(response => {
             this.payments = response.data;
-            this.formatDate();
+            //this.formatDate();
           })
     },
     data() {
