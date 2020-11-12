@@ -37,7 +37,7 @@
                                             <h3 class="subtitle">Pagado</h3>
                                         </div>
                                         <div v-else>
-                                            <h3 class="subtitle">No Pagado</h3>
+                                            <h3 class="subtitle">Pagado</h3>
                                         </div>
                                     </div>
                                     <div class="col-3">
