@@ -114,8 +114,8 @@
           { value: 3, text: 'Efectivo' }
         ],
         monedas: [
-          { value: 1, text: 'S/. Soles' },
-          { value: 2, text: '$ Dólares' }
+          { value: 'soles', text: 'S/. Soles' },
+          { value: 'dolares', text: '$ Dólares' }
         ],
       }
     },
@@ -155,6 +155,7 @@
                   interest_rate_value: parseFloat(this.form.rate),
                   balance: parseFloat(this.form.account),
                   actual_balance: parseFloat(this.form.account),
+                  currency: this.form.currency
                 })
                 .then((responseAccount) => {
                     //Create Payment
