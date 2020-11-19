@@ -79,6 +79,9 @@
                           placeholder=""
                         ></b-form-input>
                       </b-form-group>
+                      <b-form-group id="input-group-2" label="Ingrese la moneda:" label-for="input-2">
+                          <b-form-select v-model="form.currency" :options="monedas"></b-form-select>  
+                      </b-form-group>
                       <b-button class="mt-4 edit-btn" type="submit" variant="primary">Aceptar</b-button>
                     </b-form>
                   </div>
@@ -102,12 +105,17 @@
           rate: '',
           type: '',
           account: '',
+          currency: '',
         },
         show: true,
         tasas: [
           { value: 1, text: 'Simple' },
           { value: 2, text: 'Compuesto' },
           { value: 3, text: 'Efectivo' }
+        ],
+        monedas: [
+          { value: 1, text: 'S/. Soles' },
+          { value: 2, text: '$ Dólares' }
         ],
       }
     },
@@ -119,6 +127,7 @@
       this.form.rate = "";
       this.form.type = "";
       this.form.account = "";
+      this.form.currency = "";
     },
     methods: {
       onSubmit(evt) {

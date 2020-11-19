@@ -32,8 +32,18 @@
                 <div class="profile-col col-auto col-sm-4 mt-2">
                     <div class="col-auto">
                         <h3 class="title">Cuenta Crediticia</h3>
-                        <p>Balance inicial: S/. {{this.creditAccount.balance}}</p>
+                        <div v-if="this.creditAccount.currency == 1">
+                            <p>Balance inicial: S/. {{this.creditAccount.balance}}</p>
+                            <p>Balance actual: S/. {{this.creditAccount.actual_balance}}</p>
+                        </div>
+                        <div v-if="this.creditAccount.currency == 2">
+                            <p>Balance inicial: $ {{(this.creditAccount.balance / dollar).toFixed(2)}}</p>
+                            <p>Balance actual: $ {{(this.creditAccount.actual_balance / dollar).toFixed(2)}}</p>
+                        </div>
+                        <!-- <p>Balance inicial: S/. {{this.creditAccount.balance}}</p>
                         <p>Balance actual: S/. {{this.creditAccount.actual_balance}}</p>
+                        <p>Balance inicial: $ {{(this.creditAccount.balance / dollar).toFixed(2)}}</p>
+                        <p>Balance actual: $ {{(this.creditAccount.actual_balance / dollar).toFixed(2)}}</p> -->
                         <p>Tasa de interés: {{this.creditAccount.interest_rate_value}}%</p>
                         <div v-if="this.creditAccount.interest_rate == 1">
                             <p class="">Tipo de interés: Simple</p>
@@ -92,7 +102,8 @@
         show: true,
         user: [],
         customer: [],
-        creditAccount: []
+        creditAccount: [],
+        dollar: 3.61, 
       }
     },
     methods: {

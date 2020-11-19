@@ -15,6 +15,7 @@ function emptyState () {
     itemsPurchased: 0,
     orders: 0,
     cart: [],
+    delivery: false
   }
 }
 
@@ -27,6 +28,7 @@ function initialState () {
     isAdmin: false,
     itemsPurchased: 10,
     orders: 11,
+    delivery: false,
     cart: [
 
     ]
@@ -44,6 +46,9 @@ export default new Vuex.Store({
     },
     creditAccountId(state, creditAccountId) {
       state.creditAccountId = creditAccountId
+    },
+    delivery(state, delivery) {
+      state.delivery = delivery
     },
     resetState (state) {
       Object.assign(state, emptyState())
@@ -85,6 +90,9 @@ export default new Vuex.Store({
     },
     isAdmin: state => {
       return state.isAdmin
+    },
+    delivery: state => {
+      return state.delivery
     },
   },
   actions: {
