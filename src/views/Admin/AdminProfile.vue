@@ -28,10 +28,19 @@
                             <a class="fas fa-pencil-alt fa-2x edit-icon"></a>
                         </router-link>
                       </div>
-                      <div class="data mt-4">
-                          <p>Nombre: {{this.customer.name}}</p>
-                          <p>Usuario: {{this.user.username}}</p>
-                          <p>Dirección: {{this.customer.address}}</p>
+                      <div class="row">
+                        <div class="col-6">
+                          <div class="data mt-4">
+                            <p>Nombre: {{this.customer.name}}</p>
+                            <p>Usuario: {{this.user.username}}</p>
+                            <p>Dirección: {{this.customer.address}}</p>
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div class="data mt-4">
+                            <b-button class="mt-5 edit-btn" variant="primary" v-on:click="cobrarMantenimiento()">Cobrar Mantenimiento</b-button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                 </div>
@@ -88,6 +97,14 @@
         let splitDate = date.split("-")
         let formatDate = splitDate[2][0] + splitDate[2][1] + '/' + splitDate[1] + '/' + splitDate[0];
         this.creditAccount.generated_date = formatDate;
+      },
+      cobrarMantenimiento() {
+        alert("Se estará cobrando mantimiento a todas las cuentas de credito activas...");
+        // this.axios
+        // .get(baseUrl + 'maintainance')
+        // .then(responseCustomer => {
+        //     this.customer = responseCustomer.data.content[0];
+        // });
       }
     }
   }

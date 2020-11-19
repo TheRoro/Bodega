@@ -21,6 +21,7 @@ function emptyState () {
       productPrice: 0,
       productStock: 0,
       productImage: "",
+      delivery: false,
       //Customer
       customerName: "",
       customerUsername: "",
@@ -53,6 +54,7 @@ export const getDefaultState = () => ({
     productPrice: 0,
     productStock: 0,
     productImage: "",
+    delivery: false,
     //Customer
     customerName: "",
     customerUsername: "",

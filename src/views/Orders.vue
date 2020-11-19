@@ -28,29 +28,41 @@
                     <div class="row orders-title">
                         <div class="col-12">
                             <li v-for="(product, index) in cart" :key="index" class="">
-                                <div class="row orders-item-box ml-1 align-items-center">
-                                    <div class="col-1">
-                                        <img  class="order-img" src="../../public/assets/product.png" :alt="product.name" border="0" />
-                                    </div>
-                                    <div class="col-3">
-                                        <h3 class="subtitle">{{product.name}}</h3>
-                                    </div>
-                                    <div class="col-3">
-                                        <h3 class="subtitle">S/.{{product.price.toFixed(2)}}</h3>
-                                    </div>
-                                    <div class="col-3 quantity-row">
-                                        <div class="row align-items-center quantity-row">
-                                                <button class="btn2 mr-2" v-on:click="decrease(product)"><i class="fas fa-minus"/></button>
-                                            <div class="mt-1 ml-2">
-                                                <h3 class="subtitle quantity-order">{{product.quantity}}</h3>                                                
-                                            </div>
-                                                <button class="btn2 ml-3" v-on:click="increase(product)"><i class="fas fa-plus"/></button>
-                                            <div class="col-7">
-                                            </div>
+                                <div v-if="product.name == 'delivery'">
+                                    <div class="row orders-item-box ml-1 align-items-center">
+                                        <div class="col-10">
+                                            <h3>Delivery</h3>
+                                        </div>
+                                        <div class="col-2">
+                                            <h3 class="subtitle">S/.{{"5.00"}}</h3>
                                         </div>
                                     </div>
-                                    <div class="col-2">
-                                        <h3 class="subtitle">S/.{{(parseFloat(product.price)*parseFloat(product.quantity)).toFixed(2)}}</h3>
+                                </div>
+                                <div v-else>
+                                    <div class="row orders-item-box ml-1 align-items-center">
+                                        <div class="col-1">
+                                            <img  class="order-img" src="../../public/assets/product.png" :alt="product.name" border="0" />
+                                        </div>
+                                        <div class="col-3">
+                                            <h3 class="subtitle">{{product.name}}</h3>
+                                        </div>
+                                        <div class="col-3">
+                                            <h3 class="subtitle">S/.{{product.price.toFixed(2)}}</h3>
+                                        </div>
+                                        <div class="col-3 quantity-row">
+                                            <div class="row align-items-center quantity-row">
+                                                    <button class="btn2 mr-2" v-on:click="decrease(product)"><i class="fas fa-minus"/></button>
+                                                <div class="mt-1 ml-2">
+                                                    <h3 class="subtitle quantity-order">{{product.quantity}}</h3>                                                
+                                                </div>
+                                                    <button class="btn2 ml-3" v-on:click="increase(product)"><i class="fas fa-plus"/></button>
+                                                <div class="col-7">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <h3 class="subtitle">S/.{{(parseFloat(product.price)*parseFloat(product.quantity)).toFixed(2)}}</h3>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
@@ -73,6 +85,9 @@
                     <div class="col-12">
                         <b-button class="mt-5 edit-btn" variant="primary"  v-on:click="backToProducts">Agregar Más</b-button>
                         <b-button class="mt-5 edit-btn" variant="primary" v-on:click="ordersHistory">Historial Pedidos</b-button>
+                        <p class="orders-title">Servicios</p>
+                        <input type="checkbox" id="checkbox" v-model="withDelivery" v-on:click="toggleDelivery">
+                        <label for="checkbox" class="ml-2">Delivery S/. 5.00</label>
                     </div>
                 </div>
                 <div class="row">
@@ -94,6 +109,7 @@
     },
     mounted () {
       this.cart = this.$store.getters.cart;
+      this.withDelivery = this.$store.getters.delivery;
       this.totalCartPayment()
     },
     data() {
@@ -103,6 +119,16 @@
         totalCart: null,
         orderId: '',
         cart: [],
+        withDelivery: false,
+        delivery: {
+            description: "Selected a delivery service",
+            id: 1,
+            name: "delivery",
+            price: 5.0,
+            quantity: 1,
+            state: 1,
+            unit: "UN"
+        },
       }
     },
     methods: {
@@ -129,6 +155,27 @@
                 this.aux = this.quantity+1;
                 product.quantity = this.aux.toString();
             }
+            this.totalCartPayment()
+        },
+        toggleDelivery() {
+            var exists = false;
+            for (let index = 0; index < this.cart.length; index++) {
+                if(this.cart[index].name === this.delivery.name){
+                //this.cart[index].quantity++
+                    exists = true;
+                    this.cart.splice(index,1)
+                    this.withDelivery = false;
+                    this.$store.commit('delivery', this.withDelivery);
+                    alert("Se ha removido el Delivery");
+                }
+            }
+            if(exists === false) {
+                alert("Se ha seleccionado Delivery");
+                this.withDelivery = true;
+                this.$store.commit('delivery', this.withDelivery);
+                this.cart.push(this.delivery)
+            }
+            this.$store.commit('updateCart', this.cart);
             this.totalCartPayment()
         },
         backToProducts() {
