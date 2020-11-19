@@ -100,11 +100,11 @@
       },
       cobrarMantenimiento() {
         alert("Se estará cobrando mantimiento a todas las cuentas de credito activas...");
-        // this.axios
-        // .get(baseUrl + 'maintainance')
-        // .then(responseCustomer => {
-        //     this.customer = responseCustomer.data.content[0];
-        // });
+        this.axios
+        .put(baseUrl + 'maintenancePayment')
+        .then(response => {
+            
+          })
       }
     }
   }
