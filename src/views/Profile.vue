@@ -32,11 +32,11 @@
                 <div class="profile-col col-auto col-sm-4 mt-2">
                     <div class="col-auto">
                         <h3 class="title">Cuenta Crediticia</h3>
-                        <div v-if="this.creditAccount.currency == 1">
+                        <div v-if="this.creditAccount.currency == 'soles'">
                             <p>Balance inicial: S/. {{this.creditAccount.balance}}</p>
                             <p>Balance actual: S/. {{this.creditAccount.actual_balance}}</p>
                         </div>
-                        <div v-if="this.creditAccount.currency == 2">
+                        <div v-if="this.creditAccount.currency == 'dolares'">
                             <p>Balance inicial: $ {{(this.creditAccount.balance / dollar).toFixed(2)}}</p>
                             <p>Balance actual: $ {{(this.creditAccount.actual_balance / dollar).toFixed(2)}}</p>
                         </div>
