@@ -7,9 +7,12 @@
                         Confimación de Pago
                     </template>
                     <div class="d-block text-center mt-3">
-                    <h3>¿Estás seguro que deseas realizar tu pago?</h3>
+                    <h3>Ingrese el Token de Confimación</h3>
                     </div>
                     <div class="col-12 payment-footer">
+                        <div class="row col-12 ml-1">
+                            <b-form-input type="number" v-model="user_token"></b-form-input>
+                        </div>
                         <div class="row">
                             <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-example')" variant="success">Cancelar Pago</b-button>
                             <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-example')" variant="primary"  v-on:click="confirmPayment()">Confirmar Pago</b-button>
@@ -114,6 +117,8 @@
         quantity: null,
         totalPay: null,
         payments: [],
+        user_token: null,
+        real_token: null,
       }
     },
     methods: {
@@ -124,8 +129,22 @@
             this.$router.push('/ordersHistory');
         },
         confirmPayment() {
-            this.axios.post(baseUrl + 'creditAccount/' + this.$store.getters.customerId + '/paymentMoves');
-            alert("Se ha realizado exitosamente el pago");
+            this.axios
+            .get(baseUrl + 'tokens')
+            .then(response => {
+                this.real_token = response.data.token;
+                //alert(this.real_token);
+            })
+            if(this.real_token === this.user_token) {
+                alert("Token aceptado");
+                this.axios.post(baseUrl + 'creditAccount/' + this.$store.getters.customerId + '/paymentMoves');
+                alert("Se ha realizado exitosamente el pago");
+                this.$router.push('/paymentsHistory');
+            }
+            else{
+                alert("Token incorrecto")
+            }
+            
         },
         total() {
             this.totalPay = 0

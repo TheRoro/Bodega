@@ -7,6 +7,14 @@
                         <div class="col-auto mt-4">
                             <h3 class="title mr-3">Todos los pagos</h3>
                         </div>
+                        <div class="col-auto mt-4">
+                            <b-button size="lg" variant="primary text-success" class="nav-btn" v-on:click="generateToken">Generar Token</b-button>
+                        </div>
+                        <div class="col-6 mt-2" v-if="this.actual_token !== null">
+                            <div class="col-12 mt-4">
+                                <h3 class="token mt-2">El token generado es: {{this.actual_token}}</h3>
+                            </div>
+                        </div>
                     </div>
                     <div class="row orders-title mt-5 col-12">
                         <div class="col-1">
@@ -77,6 +85,7 @@
         aux: null,
         quantity: null,
         payments: [],
+        actual_token: null,
       }
     },
     methods: {
@@ -92,6 +101,13 @@
                 let formatDate = splitDate[2][0] + splitDate[2][1] + '/' + splitDate[1] + '/' + splitDate[0];
                 this.payments[i].generated_date = formatDate;
             }
+        },
+        generateToken() {
+            this.axios
+            .post(baseUrl + 'tokens')
+            .then(response => {
+                this.actual_token = response.data.token;
+            })
         }
     }
   }
