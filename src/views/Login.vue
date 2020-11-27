@@ -95,7 +95,10 @@
         if(($event.key === "Backspace" || $event.keyCode === 46) && this.form.username.length === 3) {
           $event.preventDefault();
         }
-        if($event.keyCode >= 48 && $event.keyCode <= 57 || $event.keyCode === 8 || $event.keyCode >= 37 && $event.keyCode <= 40 || $event.keyCode === 46 || $event.keyCode === 9){
+        if($event.keyCode >= 48 && $event.keyCode <= 57 && this.form.username.length < 12){
+          
+        }
+        else if($event.keyCode === 8 || $event.keyCode >= 37 && $event.keyCode <= 40 || $event.keyCode === 46 || $event.keyCode === 9){
         }
         else{
           $event.preventDefault();
