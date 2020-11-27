@@ -129,6 +129,7 @@
             state: 1,
             unit: "UN"
         },
+        balanceActual: null,
       }
     },
     methods: {
@@ -199,6 +200,12 @@
             else if(this.cart.includes(this.delivery) && this.cart.length === 1) {
                 alert("No es posible registrar solo el Delivery");
             }
+            this.axios.get(baseUrl + 'customers/' + this.$store.getters.customerId + '/creditAccounts')
+            .then(response => {
+                this.balanceActual = response.data.actual_balance;
+                            if(this.balanceActual < this.totalCart) {
+                alert("Ha sobrepasado su saldo actual!");
+            }
             else{
                 let today = new Date().toISOString()
                 this.axios.post(baseUrl + 'customers/' + this.$store.getters.customerId + '/orders', {
@@ -216,6 +223,7 @@
                         this.cart = []
                         this.$store.commit('updateCart', this.cart);
                         this.$router.push('/ordersHistory');
+
                         this.axios.post(baseUrl + 'orders/' + this.orderId + '/creditAccount')
                         .then(movementResponse =>{
                             this.$store.commit('delivery', false);
@@ -224,6 +232,8 @@
                     
                 })
             }
+            })
+
         }
     }
   }
