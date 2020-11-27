@@ -23,6 +23,7 @@
                             v-model="form.username"
                             required
                             placeholder="Usuario"
+                            @keydown="validateUsername($event)"
                           ></b-form-input>
                         </b-form-group>
                         <b-form-group id="input-group-2" label="Contraseña:" label-for="input-2">
@@ -99,26 +100,48 @@
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
-        this.axios
-        .put(baseUrl + 'users/' + this.$store.getters.userId, {
-          username: this.form.username,
-          password: this.form.password,
-          enabled: 1
-        })
-        .then(response => {
-              this.axios
-              .put(baseUrl + 'users/' + this.$store.getters.userId + '/customers/' + this.$store.getters.customerId , {
-                name: this.form.name,
-                address: this.form.address,
-                state: 1
-              })
-              .then(response => {
-                  this.$router.push('/profile')
-              })
-        })
+        if(this.validateTotal()){
+          this.axios
+          .put(baseUrl + 'users/' + this.$store.getters.userId, {
+            username: this.form.username,
+            password: this.form.password,
+            enabled: 1
+          })
+          .then(response => {
+                this.axios
+                .put(baseUrl + 'users/' + this.$store.getters.userId + '/customers/' + this.$store.getters.customerId , {
+                  name: this.form.name,
+                  address: this.form.address,
+                  state: 1
+                })
+                .then(response => {
+                    this.$router.push('/profile')
+                })
+          })
+        }
       },
       imageUpload: function (event) {
         this.$router.push('/imageUpload')
+      },
+      validateUsername($event){
+        if(($event.key === "Backspace" || $event.keyCode === 46) && this.form.username.length === 3) {
+          $event.preventDefault();
+        }
+        if($event.keyCode >= 48 && $event.keyCode <= 57 && this.form.username.length < 12){
+          
+        }
+        else if($event.keyCode === 8 || $event.keyCode >= 37 && $event.keyCode <= 40 || $event.keyCode === 46 || $event.keyCode === 9){
+        }
+        else{
+          $event.preventDefault();
+        }
+      },
+      validateTotal() {
+        if(this.form.username.length !== 12) {
+          alert("Ingrese el usuario de forma correcta")
+          return false;
+        }
+        return true;
       },
       onReset(evt) {
         evt.preventDefault()

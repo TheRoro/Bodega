@@ -29,6 +29,7 @@
                           v-model="form.username"
                           required
                           placeholder=""
+                          @keydown="validateUsername($event)"
                         ></b-form-input>
                       </b-form-group>
                       <b-form-group id="input-group-2" label="Ingrese la contraseña:" label-for="input-2">
@@ -61,6 +62,7 @@
                               v-model="form.rate"
                               required
                               placeholder=""
+                              @keydown="validateNumber($event)"
                             ></b-form-input>
                           </div>
                           <div class="col-1">
@@ -77,6 +79,7 @@
                           v-model="form.account"
                           required
                           placeholder=""
+                          @keydown="validateBalance($event)"
                         ></b-form-input>
                       </b-form-group>
                       <b-form-group id="input-group-2" label="Ingrese la moneda:" label-for="input-2">
@@ -99,7 +102,7 @@
       return {
         form: {
           name: '',
-          username: '',
+          username: '+51',
           password: '',
           address: '',
           rate: '',
@@ -121,7 +124,7 @@
     },
     created() {
       this.form.name = "";
-      this.form.username = "";
+      this.form.username = "+51";
       this.form.password = "";
       this.form.address = "";
       this.form.rate = "";
@@ -186,6 +189,38 @@
       },
       imageUpload: function (event) {
         //this.$router.push('/imageUpload')
+      },
+      validateNumber($event){
+        if(this.form.rate.includes(".") && $event.keyCode === 190){
+          $event.preventDefault();
+        }
+        if($event.keyCode >= 48 && $event.keyCode <= 57 || $event.keyCode === 8 || $event.keyCode >= 37 && $event.keyCode <= 40 || $event.keyCode === 46 || $event.keyCode === 9 || $event.keyCode === 190){
+        
+        }
+        else{
+          $event.preventDefault();
+        }
+      },
+      validateBalance($event){
+        if(this.form.account.includes(".") && $event.keyCode === 190){
+          $event.preventDefault();
+        }
+        if($event.keyCode >= 48 && $event.keyCode <= 57 || $event.keyCode === 8 || $event.keyCode >= 37 && $event.keyCode <= 40 || $event.keyCode === 46 || $event.keyCode === 9 || $event.keyCode === 190){
+        
+        }
+        else{
+          $event.preventDefault();
+        }
+      },
+      validateUsername($event){
+        if(($event.key === "Backspace" || $event.keyCode === 46) && this.form.username.length === 3) {
+          $event.preventDefault();
+        }
+        if($event.keyCode >= 48 && $event.keyCode <= 57 || $event.keyCode === 8 || $event.keyCode >= 37 && $event.keyCode <= 40 || $event.keyCode === 46 || $event.keyCode === 9){
+        }
+        else{
+          $event.preventDefault();
+        }
       },
       onReset(evt) {
         evt.preventDefault()

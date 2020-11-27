@@ -46,6 +46,7 @@
         .then(response => {
           this.info = response
           this.products = response.data.content;
+          this.removeDelivery()
           })
       this.cart = this.$store.getters.cart;
     },
@@ -64,6 +65,9 @@
             this.cart.push(product)
           }
           this.$store.commit('updateCart', this.cart);
+        },
+        removeDelivery() {
+          this.products.splice(0,1);
         }
     }
   }

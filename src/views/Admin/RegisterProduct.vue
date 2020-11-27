@@ -37,6 +37,7 @@
                             v-model="form.price"
                             required
                             placeholder="S/."
+                            @keydown="validateNumber($event)"
                           ></b-form-input>
                         </b-form-group>
                         <b-button class="mt-4 edit-btn" type="submit" variant="primary">Aceptar</b-button>
@@ -60,7 +61,7 @@
           price: '',
           stock: ''
         },
-        show: true
+        show: true,
       }
     },
     methods: {
@@ -81,6 +82,17 @@
         this.$router.push('/allProducts')
       },
       imageUpload: function (event) {
+      },
+      validateNumber($event){
+        if(this.form.price.includes(".") && $event.keyCode === 190){
+          $event.preventDefault();
+        }
+        if($event.keyCode >= 48 && $event.keyCode <= 57 || $event.keyCode === 8 || $event.keyCode >= 37 && $event.keyCode <= 40 || $event.keyCode === 46 || $event.keyCode === 9 || $event.keyCode === 190){
+        
+        }
+        else{
+          $event.preventDefault();
+        }
       },
       onReset(evt) {
         evt.preventDefault()
