@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <div class="row orders-item-box ml-1 align-items-center bg-primary text-warning">
                                     <div class="col-9">
                                         <div class="col-auto">
@@ -71,6 +71,20 @@
                                     <div class="col-3">
                                         <h3 class="subtitle">
                                             S/. {{this.totalPay}}
+                                        </h3>
+                                    </div>
+                                </div>
+                            </li> -->
+                            <li>
+                                <div class="row orders-item-box ml-1 align-items-center bg-primary text-warning">
+                                    <div class="col-9">
+                                        <div class="col-auto">
+                                            <h3 class="subtitle">Total a pagar con interes:</h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <h3 class="subtitle">
+                                            S/. {{this.total.toFixed(2)}}
                                         </h3>
                                     </div>
                                 </div>
@@ -109,6 +123,13 @@
           this.formatDate();
           this.total();
           })
+        this.axios
+        .get(baseUrl + 'creditAccount/' + this.$store.getters.creditAccountId + '/paymentMoves')
+        .then(response => {
+            this.total = response.data.amount;
+            console.log(this.total)
+            console.log(response)
+        })
     },
     data() {
       return {
@@ -119,6 +140,7 @@
         payments: [],
         user_token: null,
         real_token: null,
+        total: null
       }
     },
     methods: {
