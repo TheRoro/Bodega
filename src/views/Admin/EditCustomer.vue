@@ -167,32 +167,34 @@
       },
       onSubmit(evt) {
         evt.preventDefault()
-        this.axios
-        .put(baseUrl + 'users/' + this.$route.params.id, {
-          username: this.form.username,
-          password: this.form.password,
-          enabled: 1
-        })
-        .then(response => {
-              this.axios
-              .put(baseUrl + 'users/' + this.$route.params.id + '/customers/' + this.customer.id , {
-                name: this.form.name,
-                address: this.form.address,
-                state: parseInt(this.form.state)
-              })
-              .then(response => {
-                  this.axios
-                  .put(baseUrl + 'customers/' + this.customer.id + '/creditAccounts', {
-                    state: 1,
-                    interest_rate: parseInt(this.form.type),
-                    interest_rate_value: this.form.rate,
-                    balance: this.creditAccount.balance,
-                    actual_balance: this.form.saldoActual,
-                    generated_date: this.creditAccount.generated_date,
-                  })
-                  this.$router.push('/allCustomers')
-              })
-        })
+        if(this.validateTotal()){
+          this.axios
+          .put(baseUrl + 'users/' + this.$route.params.id, {
+            username: this.form.username,
+            password: this.form.password,
+            enabled: 1
+          })
+          .then(response => {
+                this.axios
+                .put(baseUrl + 'users/' + this.$route.params.id + '/customers/' + this.customer.id , {
+                  name: this.form.name,
+                  address: this.form.address,
+                  state: parseInt(this.form.state)
+                })
+                .then(response => {
+                    this.axios
+                    .put(baseUrl + 'customers/' + this.customer.id + '/creditAccounts', {
+                      state: 1,
+                      interest_rate: parseInt(this.form.type),
+                      interest_rate_value: this.form.rate,
+                      balance: this.creditAccount.balance,
+                      actual_balance: this.form.saldoActual,
+                      generated_date: this.creditAccount.generated_date,
+                    })
+                    this.$router.push('/allCustomers')
+                })
+          })
+        }
       },
       imageUpload: function (event) {
         //this.$router.push('/imageUpload')
@@ -204,11 +206,21 @@
         if(($event.key === "Backspace" || $event.keyCode === 46) && this.form.username.length === 3) {
           $event.preventDefault();
         }
-        if($event.keyCode >= 48 && $event.keyCode <= 57 || $event.keyCode === 8 || $event.keyCode >= 37 && $event.keyCode <= 40 || $event.keyCode === 46 || $event.keyCode === 9){
+        if($event.keyCode >= 48 && $event.keyCode <= 57 && this.form.username.length < 12){
+          
+        }
+        else if($event.keyCode === 8 || $event.keyCode >= 37 && $event.keyCode <= 40 || $event.keyCode === 46 || $event.keyCode === 9){
         }
         else{
           $event.preventDefault();
         }
+      },
+      validateTotal() {
+        if(this.form.username.length !== 12 || this.form.name.length === 0 || this.form.password.length === 0 || this.form.address.length === 0) {
+          alert("Ingrese el usuario de forma correcta")
+          return false;
+        }
+        return true;
       },
     }
   }
