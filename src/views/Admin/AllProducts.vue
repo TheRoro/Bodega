@@ -86,6 +86,7 @@
         .then(response => {
             this.info = response
             this.products = response.data.content;
+            this.removeDelivery()
           })
     },
     data() {
@@ -106,6 +107,9 @@
         removeProduct() {
             //Change state of product to unavailable
             alert("Removing product...")
+        },
+        removeDelivery() {
+            this.products.shift();
         }
     }
   }

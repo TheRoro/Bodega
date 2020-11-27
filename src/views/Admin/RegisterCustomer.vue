@@ -133,59 +133,71 @@
       this.form.currency = "";
     },
     methods: {
+      validateUsername($event){
+        if(($event.key === "Backspace" || $event.keyCode === 46) && this.form.username.length === 3) {
+          $event.preventDefault();
+        }
+        if($event.keyCode >= 48 && $event.keyCode <= 57 && this.form.username.length < 12){
+          
+        }
+        else if($event.keyCode === 8 || $event.keyCode >= 37 && $event.keyCode <= 40 || $event.keyCode === 46 || $event.keyCode === 9){
+        }
+        else{
+          $event.preventDefault();
+        }
+      },
       onSubmit(evt) {
         evt.preventDefault()
+        if(this.validateTotal()){
         //Create User
-        this.axios.post(baseUrl + 'users', {
-            enabled: 1,
-            username: this.form.username,
-            password: this.form.password,
-          })
-          .then((responseUser) => {
-            //Create Customer
-            this.axios.post(baseUrl + 'users/' + responseUser.data.id + '/customers', {
-              address: this.form.address,
-              state: 1,
-              name: this.form.name,
+          this.axios.post(baseUrl + 'users', {
+              enabled: 1,
+              username: this.form.username,
+              password: this.form.password,
             })
-            .then((responseCustomer) => {
-                //Create Credit Account
-                let today = new Date().toISOString()
-                this.axios.post(baseUrl + 'customers/' + responseCustomer.data.id + '/creditAccounts', {
-                  state: 1,
-                  generated_date: today,
-                  interest_rate: parseInt(this.form.type),
-                  interest_rate_value: parseFloat(this.form.rate),
-                  balance: parseFloat(this.form.account),
-                  actual_balance: parseFloat(this.form.account),
-                  currency: this.form.currency
-                })
-                .then((responseAccount) => {
-                    //Create Payment
-                    this.axios.post(baseUrl + 'creditAccounts/' + responseAccount.data.id + '/payment', {
-                      state: 1,
-                    })
-                    .then((response) => {
-                        this.$router.push('/allCustomers')
-                    })
-                    .catch(function (error) {
-                      alert("No se pudo crear el pago de forma correcta");
-                    });
-                })
-                .catch(function (error) {
-                  alert("No se pudo crear la cuenta de forma correcta");
-                });
+            .then((responseUser) => {
+              //Create Customer
+              this.axios.post(baseUrl + 'users/' + responseUser.data.id + '/customers', {
+                address: this.form.address,
+                state: 1,
+                name: this.form.name,
               })
+              .then((responseCustomer) => {
+                  //Create Credit Account
+                  let today = new Date().toISOString()
+                  this.axios.post(baseUrl + 'customers/' + responseCustomer.data.id + '/creditAccounts', {
+                    state: 1,
+                    generated_date: today,
+                    interest_rate: parseInt(this.form.type),
+                    interest_rate_value: parseFloat(this.form.rate),
+                    balance: parseFloat(this.form.account),
+                    actual_balance: parseFloat(this.form.account),
+                    currency: this.form.currency
+                  })
+                  .then((responseAccount) => {
+                      //Create Payment
+                      this.axios.post(baseUrl + 'creditAccounts/' + responseAccount.data.id + '/payment', {
+                        state: 1,
+                      })
+                      .then((response) => {
+                          this.$router.push('/allCustomers')
+                      })
+                      .catch(function (error) {
+                        alert("No se pudo crear el pago de forma correcta");
+                      });
+                  })
+                  .catch(function (error) {
+                    alert("No se pudo crear la cuenta de forma correcta");
+                  });
+                })
+              .catch(function (error) {
+                alert("No se pudo crear el cliente de forma correcta");
+              });
+            })
             .catch(function (error) {
-              alert("No se pudo crear el cliente de forma correcta");
+              alert("No se pudo crear el usuario de forma correcta");
             });
-          })
-          .catch(function (error) {
-            alert("No se pudo crear el usuario de forma correcta");
-          });
-
-        //alert("Se registró satisfactoriamente el usuario");
-        //this.$router.push('/allCustomers')
+        }
       },
       imageUpload: function (event) {
         //this.$router.push('/imageUpload')
@@ -212,19 +224,16 @@
           $event.preventDefault();
         }
       },
-      validateUsername($event){
-        if(($event.key === "Backspace" || $event.keyCode === 46) && this.form.username.length === 3) {
-          $event.preventDefault();
-        }
-        if($event.keyCode >= 48 && $event.keyCode <= 57 || $event.keyCode === 8 || $event.keyCode >= 37 && $event.keyCode <= 40 || $event.keyCode === 46 || $event.keyCode === 9){
-        }
-        else{
-          $event.preventDefault();
-        }
-      },
       onReset(evt) {
         evt.preventDefault()
-      }
+      },
+      validateTotal() {
+        if(this.form.username.length !== 12 || this.form.name.length === 0 || this.form.password.length === 0 || this.form.address.length === 0) {
+          alert("Ingrese el usuario de forma correcta")
+          return false;
+        }
+        return true;
+      },
     }
   }
 </script>
