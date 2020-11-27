@@ -29,6 +29,7 @@
                           v-model="form.username"
                           required
                           placeholder=""
+                          @keydown="validateUsername($event)"
                         ></b-form-input>
                       </b-form-group>
                       <b-form-group id="input-group-2" label="Modifique la contraseña:" label-for="input-2">
@@ -59,6 +60,7 @@
                           v-model="form.rate"
                           required
                           placeholder=""
+                          @keydown="validateNumber($event)"
                         ></b-form-input>
                       </b-form-group>
                       <b-form-group id="input-group-2" label="Modifique el tipo de interés:" label-for="input-2">
@@ -73,6 +75,7 @@
                           v-model="form.saldoActual"
                           required
                           placeholder=""
+                          @keydown="validateBalance($event)"
                         ></b-form-input>
                       </b-form-group>
                       <b-button class="mt-4 edit-btn" type="submit" variant="primary">Aceptar</b-button>
@@ -141,6 +144,27 @@
       }
     },
     methods: {
+        validateNumber($event){
+        if(String(this.form.rate).includes('.') && $event.keyCode === 190){
+          $event.preventDefault();
+        }
+        if($event.keyCode >= 48 && $event.keyCode <= 57 || $event.keyCode === 8 || $event.keyCode >= 37 && $event.keyCode <= 40 || $event.keyCode === 46 || $event.keyCode === 9 || $event.keyCode === 190){
+        }
+        else{
+          $event.preventDefault();
+        }
+      },
+      validateBalance($event){
+        if(String(this.form.saldoActual).includes('.') && $event.keyCode === 190){
+          $event.preventDefault();
+        }
+        if($event.keyCode >= 48 && $event.keyCode <= 57 || $event.keyCode === 8 || $event.keyCode >= 37 && $event.keyCode <= 40 || $event.keyCode === 46 || $event.keyCode === 9 || $event.keyCode === 190){
+        
+        }
+        else{
+          $event.preventDefault();
+        }
+      },
       onSubmit(evt) {
         evt.preventDefault()
         this.axios
@@ -175,7 +199,17 @@
       },
       onReset(evt) {
         evt.preventDefault()
-      }
+      },
+      validateUsername($event){
+        if(($event.key === "Backspace" || $event.keyCode === 46) && this.form.username.length === 3) {
+          $event.preventDefault();
+        }
+        if($event.keyCode >= 48 && $event.keyCode <= 57 || $event.keyCode === 8 || $event.keyCode >= 37 && $event.keyCode <= 40 || $event.keyCode === 46 || $event.keyCode === 9){
+        }
+        else{
+          $event.preventDefault();
+        }
+      },
     }
   }
 </script>

@@ -6,16 +6,14 @@
         <h1 class="title mb-3 mt-0">INICIAR SESIÓN</h1>
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
           <b-form-group id="input-group-1" label="Número de teléfono:" label-for="input-1">
-            
             <b-form-input class="input-form"
               id="input-1"
               v-model="form.username"
-              type="tel"
               required
               placeholder="Número de teléfono"
+              @keydown="validateUsername($event)"
             ></b-form-input>
           </b-form-group>
-
           <b-form-group id="input-group-2" label="Contraseña:" label-for="input-2">
             <b-form-input class="input-form"
               id="input-2"
@@ -23,18 +21,11 @@
               required
               placeholder="Contraseña"
               type="password"
+              
             ></b-form-input>
           </b-form-group>
-
           <b-button class="mt-4 btn" type="submit" variant="success">Iniciar Sesión</b-button>
-
-
         </b-form>
-        <!---
-        <b-card class="mt-3" header="Form Data Result">
-          <pre class="m-0">{{ form }}</pre>
-        </b-card>
-        --->
         <div class="login-link">
           <router-link class="login-link" to="/signup">Recordar Contraseña</router-link>
         </div>
@@ -50,7 +41,7 @@
     data() {
       return {
         form: {
-          username: '+51 ',
+          username: '+51',
           password: '',
         },
         show: true,
@@ -99,6 +90,16 @@
             }
             
         })
+      },
+      validateUsername($event){
+        if(($event.key === "Backspace" || $event.keyCode === 46) && this.form.username.length === 3) {
+          $event.preventDefault();
+        }
+        if($event.keyCode >= 48 && $event.keyCode <= 57 || $event.keyCode === 8 || $event.keyCode >= 37 && $event.keyCode <= 40 || $event.keyCode === 46 || $event.keyCode === 9){
+        }
+        else{
+          $event.preventDefault();
+        }
       },
       onReset(evt) {
         evt.preventDefault()

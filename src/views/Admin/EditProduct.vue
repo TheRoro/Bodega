@@ -37,6 +37,7 @@
                             v-model="form.price"
                             required
                             placeholder=""
+                            @keydown="validateNumber($event)"
                           ></b-form-input>
                         </b-form-group>
                         <b-form-group id="input-group-2" label="Modifique el estado del producto:" label-for="input-2">
@@ -101,6 +102,17 @@
       },
       imageUpload: function (event) {
         //this.$router.push('/imageUpload')
+      },
+      validateNumber($event){
+        if(this.form.price.includes(".") && $event.keyCode === 190){
+          $event.preventDefault();
+        }
+        if($event.keyCode >= 48 && $event.keyCode <= 57 || $event.keyCode === 8 || $event.keyCode >= 37 && $event.keyCode <= 40 || $event.keyCode === 46 || $event.keyCode === 9 || $event.keyCode === 190){
+        
+        }
+        else{
+          $event.preventDefault();
+        }
       },
       onReset(evt) {
         evt.preventDefault()

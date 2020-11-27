@@ -29,7 +29,7 @@
                         <div class="col-12">
                             <li v-for="(product, index) in cart" :key="index" class="">
                                 <div v-if="product.name == 'delivery'">
-                                    <div class="row orders-item-box ml-1 align-items-center">
+                                    <div class="mt-2 row orders-item-box ml-1 align-items-center bg-success text-secondary">
                                         <div class="col-10">
                                             <h3>Delivery</h3>
                                         </div>
@@ -173,7 +173,7 @@
                 alert("Se ha seleccionado Delivery");
                 this.withDelivery = true;
                 this.$store.commit('delivery', this.withDelivery);
-                this.cart.push(this.delivery)
+                this.cart.splice(0,0,this.delivery)
             }
             this.$store.commit('updateCart', this.cart);
             this.totalCartPayment()
@@ -193,28 +193,37 @@
             this.$store.commit('updateCart', this.cart);
         },
         submitCart() {
-            let today = new Date().toISOString()
-            this.axios.post(baseUrl + 'customers/' + this.$store.getters.customerId + '/orders', {
-                total_amount: this.totalCart,
-                payment_method: 1,
-                generated_date: today,
-                accepted_date: today, //replace with null
-                state: 1,
-            })
-            .then(responseOrder => {
-                this.orderId = responseOrder.data.id
-                this.axios.post(baseUrl + 'orders/' + this.orderId + '/articles', this.cart)
-                .then(responseCartInfo => {
-                    alert("Se ha registrado satisfactoriamente su compra")
-                    this.cart = []
-                    this.$store.commit('updateCart', this.cart);
-                    this.$router.push('/ordersHistory');
-                    this.axios.post(baseUrl + 'orders/' + this.orderId + '/creditAccount')
-                    .then(movementResponse =>{
-                    });
+            if(this.cart.length === 0) {
+                alert("Seleccione un producto");
+            }
+            else if(this.cart.includes(this.delivery) && this.cart.length === 1) {
+                alert("No es posible registrar solo el Delivery");
+            }
+            else{
+                let today = new Date().toISOString()
+                this.axios.post(baseUrl + 'customers/' + this.$store.getters.customerId + '/orders', {
+                    total_amount: this.totalCart,
+                    payment_method: 1,
+                    generated_date: today,
+                    accepted_date: today, //replace with null
+                    state: 1,
                 })
-                
-            })
+                .then(responseOrder => {
+                    this.orderId = responseOrder.data.id
+                    this.axios.post(baseUrl + 'orders/' + this.orderId + '/articles', this.cart)
+                    .then(responseCartInfo => {
+                        alert("Se ha registrado satisfactoriamente su compra")
+                        this.cart = []
+                        this.$store.commit('updateCart', this.cart);
+                        this.$router.push('/ordersHistory');
+                        this.axios.post(baseUrl + 'orders/' + this.orderId + '/creditAccount')
+                        .then(movementResponse =>{
+                            this.$store.commit('delivery', false);
+                        });
+                    })
+                    
+                })
+            }
         }
     }
   }
