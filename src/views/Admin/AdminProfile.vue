@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-6">
                           <div class="data mt-4">
-                            <b-button class="mt-5 edit-btn" variant="primary" v-on:click="cobrarMantenimiento()">Cobrar Mantenimiento</b-button>
+                            
                           </div>
                         </div>
                       </div>
