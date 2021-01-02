@@ -13,14 +13,12 @@
 </style>
 
 <script>
-import HomeNav from './views/HomeNav'
 import HomeNavLogged from './views/HomeNavLogged'
 import NavAdmin from './components/NavAdmin/NavAdmin.vue';
 
 export default {
   name: 'App',
   components: {
-    HomeNav,
     HomeNavLogged,
     NavAdmin
   }
