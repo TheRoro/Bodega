@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-const logout:any = require('./modules/logout')
+const logout: any = ('./modules/logout')
 
 Vue.use(Vuex)
 
