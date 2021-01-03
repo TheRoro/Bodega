@@ -8,7 +8,7 @@
                         <h3 class="title">Modificar Producto</h3>
                         <div class="ml-5">
                           <div v-if="this.$store.getters.productImage == ''">
-                              <img src="../../../public/assets/logo.jpeg" class="d-inline-block profile-picture-edit" alt="Wapo logo">
+                              <!-- <img src="../../../public/assets/logo.jpeg" class="d-inline-block profile-picture-edit" alt="Wapo logo"> -->
                           </div>
                           <img v-if="this.$store.getters.productImage" :src="this.$store.getters.productImage"  class="profile-picture-edit"/>
                         </div>
