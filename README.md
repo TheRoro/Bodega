@@ -1,4 +1,4 @@
-# FinanciApp
+# Bodega
 
 ## Finance Manager
 

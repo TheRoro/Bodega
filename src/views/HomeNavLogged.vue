@@ -2,7 +2,7 @@
   <div class="HomeNav">
     <b-navbar class="my-navbar" toggleable="sm" type="dark" variant="">
     <b-navbar-brand to="/">
-        <img src="../../public/assets/logo.jpeg" class="d-inline-block align-top nav-logo" alt="Wapo logo" >
+        <!-- <img src="../../public/assets/logo.jpeg" class="d-inline-block align-top nav-logo" alt="Wapo logo" > -->
     </b-navbar-brand>
     <b-navbar-brand to="/">FinanciApp</b-navbar-brand>
 
