@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <NavAdmin v-if="!this.$store.getters.loggedStatus"/>
-    <HomeNavLogged v-if="this.$store.getters.loggedStatus && !this.$store.getters.isAdmin"/>
+    <NavCustomer v-if="!this.$store.getters.loggedStatus"/>
+    <NavCustomer v-if="this.$store.getters.loggedStatus && !this.$store.getters.isAdmin"/>
     <NavAdmin v-if="this.$store.getters.loggedStatus && this.$store.getters.isAdmin"/>
 
     <router-view/>
@@ -13,13 +13,13 @@
 </style>
 
 <script>
-import HomeNavLogged from './views/HomeNavLogged'
+import NavCustomer from './components/NavCustomer/NavCustomer.vue';
 import NavAdmin from './components/NavAdmin/NavAdmin.vue';
 
 export default {
   name: 'App',
   components: {
-    HomeNavLogged,
+    NavCustomer,
     NavAdmin
   }
 }
