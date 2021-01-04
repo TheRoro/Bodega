@@ -13,8 +13,8 @@
       </b-navbar-toggle>
       <b-collapse id="navbar-toggle-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
-          <router-link to="/allProducts" class="nav-link">Products</router-link>
-          <router-link to="/allOrders" class="nav-link">Orders</router-link>
+          <router-link to="/store" class="nav-link">Store</router-link>
+          <router-link to="/cart" class="nav-link">My Cart</router-link>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -23,5 +23,5 @@
 
 <style lang="scss">
 @import '../../assets/scss/app.scss';
-@import './NavAdmin.scss';
+@import './NavCustomer.scss';
 </style>
