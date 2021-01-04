@@ -11,112 +11,46 @@ Vue.use(VueRouter)
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/store',
+    name: 'Store',
+    component: () => import('../../src/components/Store/Store.vue')
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: () => import('../views/Login.vue')
-  },
-  {
-    path: '/signup',
-    name: 'Signup',
-    component: () => import('../views/Signup.vue')
-  },
-  {
-    path: '/homeLogged',
-    name: 'HomeLogged',
-    component: () => import('../views/HomeLogged.vue')
-  },
-  {
-    path: '/profile',
-    name: 'Profile',
-    component: () => import('../views/Profile.vue')
-  },
-  {
-    path: '/editProfile',
-    name: 'EditProfile',
-    component: () => import('../views/EditProfile.vue')
-  },
-  {
-    path: '/imageUpload',
-    name: 'ImageUpload',
-    component: () => import('../views/ImageUpload.vue')
-  },
-  {
-    path: '/products',
-    name: 'Products',
-    component: () => import('../views/Products.vue')
-  },
-  {
-    path: '/orders',
-    name: 'Orders',
-    component: () => import('../views/Orders.vue')
+    path: '/cart',
+    name: 'Cart',
+    component: () => import('../../src/components/Cart/Cart.vue')
   },
   {
     path: '/ordersHistory',
     name: 'OrdersHistory',
-    component: () => import('../views/OrdersHistory.vue')
+    component: () => import('../../src/components/OrdersHistory/OrdersHistory.vue')
   },
   {
-    path: '/orderDetail',
-    name: 'OrderDetail',
-    component: () => import('../views/OrderDetail.vue')
+    path: '/orderDetails',
+    name: 'OrderDetails',
+    component: () => import('../../src/components/OrderDetails/OrderDetails.vue')
   },
-  {
-    path: '/payments',
-    name: 'Payments',
-    component: () => import('../views/Payments.vue')
-  },
-  {
-    path: '/paymentsHistory',
-    name: 'PaymentsHistory',
-    component: () => import('../views/PaymentsHistory.vue')
-  }
   //Admin Routes
-  ,
   {
     path: '/allProducts',
     name: 'AllProducts',
-    component: () => import('../views/Admin/AllProducts.vue')
+    component: () => import('../../src/components/AllProducts/AllProducts.vue')
   },
   {
-    path: '/registerProduct',
-    name: 'RegisterProduct',
-    component: () => import('../views/Admin/RegisterProduct.vue')
+    path: '/createProduct',
+    name: 'CreateProduct',
+    component: () => import('../../src/components/CreateProduct/CreateProduct.vue')
   },
   {
     path: '/editProduct',
     name: 'EditProduct',
-    component: () => import('../views/Admin/EditProduct.vue'),
-  },
-  {
-    path: '/allCustomers',
-    name: 'AllCustomers',
-    component: () => import('../views/Admin/AllCustomers.vue'),
-  },
-  {
-    path: '/editCustomer',
-    name: 'EditCustomer',
-    component: () => import('../views/Admin/EditCustomer.vue'),
-  },
-  {
-    path: '/registerCustomer',
-    name: 'RegisterCustomer',
-    component: () => import('../views/Admin/RegisterCustomer.vue')
+    component: () => import('../../src/components/EditProduct/EditProduct.vue'),
   },
   {
     path: '/allOrders',
     name: 'AllOrders',
-    component: () => import('../views/Admin/AllOrders.vue'),
-  },
-  {
-    path: '/allPayments',
-    name: 'AllPayments',
-    component: () => import('../views/Admin/AllPayments.vue'),
-  },
+    component: () => import('../../src/components/AllOrders/AllOrders.vue'),
+  }
 ]
 
 const router = new VueRouter({

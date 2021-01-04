@@ -2,8 +2,9 @@
   <div class="home container">
     <div class="justify-content-center align-items-center row full-height">
       <div class="col-12">
-        <h1>Realiza tus cuentas,</h1>
-        <h1>desde tu bodega</h1>
+        <h1>Your Favorite Bodega,</h1>
+        <h1>From Home</h1>
+        <!-- <img src="../../../Assets/Logo.jpg" alt=""> -->
       </div>
     </div>
   </div>
