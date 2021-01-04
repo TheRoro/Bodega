@@ -292,23 +292,3 @@ body {
     background-color: #ffffff;
     border-style: none;
 }
-
-.btn2 {
-    background-color: $secondary; /* Blue background */
-    border: none; /* Remove borders */
-    color: $info; /* White text */
-    padding: 7px 11px; /* Some padding */
-    font-size: 12px; /* Set a font size */
-    cursor: pointer; /* Mouse pointer on hover */
-    border-radius: 20px;
-  }
-  
-  /* Darker background on mouse-over */
-  .btn2:hover {
-    background-color: $primary;
-  }
-
-  .quantity-order {
-      height: 10px;
-      width: 10px;
-  }
