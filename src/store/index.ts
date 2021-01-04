@@ -7,75 +7,131 @@ Vue.use(Vuex)
 
 function emptyState () {
   return {
+    userId: 2,
+    customerId: 2,
+    creditAccountId: 1,
     loggedIn: false,
     isAdmin: false,
-    firstname: "",
-    username: "",
-    password: "",
-    profilePicture: '',
-    address: "",
-    accountNumber: "",
-    interestRate: "",
     itemsPurchased: 0,
     orders: 0,
     cart: [],
-    itemDetail: [],
-    //Product
-    productName: "",
-    productDescription: "",
-    productPrice: 0,
-    productStock: 0,
-    productImage: "",
-    //Customer
-    customerName: "",
-    customerUsername: "",
-    customerPassword: "",
-    customerAddress: "",
-    customerRate: "",
-    customerType: "",
-    customerAccount: "",
-    customerImage: "",
+    delivery: false
   }
 }
 
 function initialState () {
   return {
+    userId: 2,
+    customerId: 2,
+    creditAccountId: 1,
     loggedIn: false,
     isAdmin: false,
-    firstname: "Alberto",
-    username: "Albertito69",
-    password: "albertitotupapa",
-    profilePicture: '',
-    address: "Calle Kosaraju 420",
-    accountNumber: "191-0001-00005",
-    interestRate: "5%",
     itemsPurchased: 10,
     orders: 11,
+    delivery: false,
     cart: [],
-    itemDetail: [],
-    //Product
-    productName: "Queso Edam",
-    productDescription: "Riquisimo queso edam de 120 gr",
-    productPrice: 2.40,
-    productStock: 33,
-    productImage: "https://i.ibb.co/gmn70wj/edam.jpg",
-    //Customer
-    customerName: "Jhon Doe",
-    customerUsername: "johnTheKing",
-    customerPassword: "123123123",
-    customerAddress: "Calle Kosaraju 424",
-    customerRate: "3.60%",
-    customerType: "Compuesta",
-    customerAccount: "123-4567789",
-    customerImage: "../../../public/assets/user.png",
+    products: [
+      { 
+        "id": 1,
+        "name": "Coca Cola",
+        "description": "200ml Coca Cola",
+        "state": "Available",
+        "price": 4.50,
+        "unity": "UN",
+        "image": "https://i.ibb.co/YZLcMkg/coke.jpg"
+      },
+      { 
+        "id": 2,
+        "name": "Lays",
+        "description": "170gr Lays snack",
+        "state": "Available",
+        "price": 2.50,
+        "unity": "UN",
+        "image": "https://i.ibb.co/GVdJgfw/lays.jpg"
+      },
+      { 
+        "id": 3,
+        "name": "Pepsi",
+        "description": "250ml Pepsi drink",
+        "state": "Available",
+        "price": 4.30,
+        "unity": "UN",
+        "image": "https://i.ibb.co/fxwfLmB/pepsi.jpg"
+      },
+      { 
+        "id": 4,
+        "name": "Fanta",
+        "description": "225ml Fanta bottle",
+        "state": "Available",
+        "price": 3.90,
+        "unity": "UN",
+        "image": "https://i.ibb.co/3fThG44/fanta.jpg"
+      },
+      { 
+        "id": 5,
+        "name": "Oreo",
+        "description": "80gr oreo cookies",
+        "state": "Available",
+        "price": 2.20,
+        "unity": "UN",
+        "image": "https://i.ibb.co/YRwfTXW/oreo.jpg"
+      },
+      { 
+        "id": 6,
+        "name": "Doritos",
+        "description": "170gr Doritos nacho cheese",
+        "state": "Available",
+        "price": 2.60,
+        "unity": "UN",
+        "image": "https://i.ibb.co/3pXbsHH/doritos.jpg"
+      },
+      { 
+        "id": 7,
+        "name": "M & M's",
+        "description": "47.9gr m&m's candies",
+        "state": "Available",
+        "price": 4.50,
+        "unity": "UN",
+        "image": "https://i.ibb.co/CnZjvvX/m-m.jpg"
+      },
+      { 
+        "id": 8,
+        "name": "Turron",
+        "description": "500gr Peruvian Turron de Doña Pepa",
+        "state": "Available",
+        "price": 15.00,
+        "unity": "UN",
+        "image": "https://i.ibb.co/NTpJnJ1/turron.jpg"
+      },
+      { 
+        "id": 9,
+        "name": "Kit Kat",
+        "description": "100gr chocolate bar",
+        "state": "Available",
+        "price": 4.20,
+        "unity": "UN",
+        "image": "https://i.ibb.co/xjWHJbf/kitkat.jpg"
+      }
+    ],
   }
 }
 
 export default new Vuex.Store({
   state: initialState,
   mutations: {
+    userId(state, userId) {
+      state.userId = userId
+    },
+    customerId(state, customerId) {
+      state.customerId = customerId
+    },
+    creditAccountId(state, creditAccountId) {
+      state.creditAccountId = creditAccountId
+    },
+    delivery(state, delivery) {
+      state.delivery = delivery
+    },
     resetState (state) {
-      alert("Good bye!");
       Object.assign(state, emptyState())
     },
     isAdmin (state, isAdmin) {
@@ -87,90 +143,25 @@ export default new Vuex.Store({
     logOut (state) {
       state.loggedIn = false
     },
-    firstname (state, firstname) {
-      state.firstname = firstname
+    updateCart (state, newCart) {
+      state.cart = newCart;
     },
-    username (state, username) {
-      state.username = username
-    },
-    password (state, password) {
-      state.password = password
-    },
-    address (state, address) {
-      state.address = address
-    },
-    profilePicture (state, profilePicture) {
-      state.profilePicture = profilePicture
-    },
-    //Product
-    productName (state, productName) {
-      state.productName = productName
-    },
-    productDescription (state, productDescription) {
-      state.productDescription = productDescription
-    },
-    productPrice (state, productPrice) {
-      state.productPrice = productPrice
-    },
-    productStock (state, productStock) {
-      state.productStock = productStock
-    },
-    productImage (state, productImage) {
-      state.productImage = productImage
-    },
-    //Customer
-    customerName (state, customerName) {
-      state.customerName = customerName
-    },
-    customerUsername (state, customerUsername) {
-      state.customerUsername = customerUsername
-    },
-    customerPassword (state, customerPassword) {
-      state.customerPassword = customerPassword
-    },
-    customerAddress (state, customerAddress) {
-      state.customerAddress = customerAddress
-    },
-    customerRate (state, customerRate) {
-      state.customerRate = customerRate
-    },
-    customerType (state, customerType) {
-      state.customerType = customerType
-    },
-    customerAccount (state, customerAccount) {
-      state.customerAccount = customerAccount
-    },
-    customerImage (state, customerImage) {
-      state.customerImage = customerImage
+    updateProducts (state, newProducts) {
+      state.products = newProducts;
     }
-    /*addToCart (state, itemDetail) {
-      state.cart = [...state.cart, {itemDetail}]
-    }*/
   },
   getters: {
+    userId: state => {
+      return state.userId
+    },
+    customerId: state => {
+      return state.customerId
+    },
+    creditAccountId: state => {
+      return state.creditAccountId
+    },
     loggedStatus: state => {
       return state.loggedIn
-    },
-    firstname: state => {
-      return state.firstname
-    },
-    username: state => {
-      return state.username
-    },
-    password: state => {
-      return state.password
-    },
-    profilePicture: state => {
-      return state.profilePicture
-    },
-    address: state => {
-      return state.address
-    },
-    accountNumber: state => {
-      return state.accountNumber
-    },
-    interestRate: state => {
-      return state.interestRate
     },
     itemsPurchased: state => {
       return state.itemsPurchased
@@ -181,49 +172,14 @@ export default new Vuex.Store({
     cart: state => {
       return state.cart
     },
+    products: state => {
+      return state.products
+    },
     isAdmin: state => {
       return state.isAdmin
     },
-    //Product
-    productName: state => {
-      return state.productName
-    },
-    productDescription: state => {
-      return state.productDescription
-    },
-    productPrice: state => {
-      return state.productPrice
-    },
-    productStock: state => {
-      return state.productStock
-    },
-    productImage: state => {
-      return state.productImage
-    },
-    //Customer
-    customerName: state => {
-      return state.customerName
-    },
-    customerUsername: state => {
-      return state.customerUsername
-    },
-    customerPassword: state => {
-      return state.customerPassword
-    },
-    customerAddress: state => {
-      return state.customerAddress
-    },
-    customerRate: state => {
-      return state.customerRate
-    },
-    customerType: state => {
-      return state.customerType
-    },
-    customerAccount: state => {
-      return state.customerAccount
-    },
-    customerImage: state => {
-      return state.customerImage
+    delivery: state => {
+      return state.delivery
     },
   },
   actions: {
