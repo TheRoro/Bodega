@@ -21,7 +21,8 @@
         <div class="row mt-3 mb-md-0 mb-3">
             <div class="col-12">
                 <div class="row justify-content-center">
-                    <div class="col-auto col-md-12">
+                    <!-- <div class="col-auto col-md-12"> -->
+                    <div class="col-auto">
                         <div class="row align-items-center">
                             <a class="fas fa-shopping-cart fa-2x"></a>
                             <h1 class="ml-3 h1-title">My Cart</h1>
@@ -145,13 +146,13 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-12">
-                        <p>Looks a bit empty over here...</p>
+                        <h4>Looks a bit empty over here...</h4>
                     </div>
                     <div class="col-12">
-                        <h1>Let's go but something!</h1>
+                        <p>Add products to your cart to get started!</p>
                     </div>
                     <div class="col-12">
-                        <b-button class="main-btn mt-3" v-on:click="backToStore">Buy Now</b-button>
+                        <b-button class="main-btn mt-3" v-on:click="backToStore">Add products to cart</b-button>
                     </div>
                     <div class="col-12">
                         <b-button class="secondary-btn mt-3" v-on:click="ordersHistory">Older Orders</b-button>
