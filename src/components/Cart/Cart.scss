@@ -17,6 +17,11 @@
         font-weight: 600;
         font-size: calc(11px + 0.5vw);
     }
+    h4 {
+        color: $warning;
+        font-weight: 600;
+        font-size: calc(20px + 1vw);
+    }
 
     .quantity {
         height: 2vw;
