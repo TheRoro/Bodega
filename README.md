@@ -1,6 +1,6 @@
-# FinanciApp
+# Bodega
 
-## Virtual Store based on Peruvian Bodegas
+## E-commerce Web App based on Peruvian Bodegas
 
-Developed in Vue.js, Typescript, Vuex, Router, Bootstrap, SCSS and Axios
+Bodega is an online shopping website, based on Peruvian 'Bodegas'. It was developed in Vue and Typescript, and uses Bootstrap and SCSS for the UI elements. This project uses Vuex store to store the state of the cart when rendering the component.
 
