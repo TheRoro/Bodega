@@ -4,7 +4,6 @@
       <b-navbar-brand to="/">
         <img class="brand-img" src="../../../public/assets/BodegaLetras.png" alt="BODEGA">
       </b-navbar-brand>
-      <!-- <router-link to="/" class="navbar-brand">BODEGA</router-link> -->
       <b-navbar-toggle target="navbar-toggle-collapse">
         <template v-slot:default="{ expanded }">
           <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>

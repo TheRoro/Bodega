@@ -1,7 +1,7 @@
 <template>
-  <div class="store mt-4">
-    <div class="row align-items-center">
-      <div class="col-12 pt-4">
+  <div class="store">
+    <div>
+      <div class="col-12 pt-4 mb-4">
         <h2>Available Products</h2>
       </div>
     </div>
