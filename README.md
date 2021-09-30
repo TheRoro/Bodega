@@ -1,3 +1,5 @@
+<img align="left" width="80" height="80" src="https://raw.githubusercontent.com/TheRoro/Bodega/master/public/assets/bodega_logo.png" alt="Bodega - Online Store App Logo">
+
 # Bodega
 
 ## E-commerce Web App based on Peruvian Bodegas
