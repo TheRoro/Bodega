@@ -2,7 +2,7 @@
   <div class="Nav">
     <b-navbar toggleable="md" class="my-navbar">
       <b-navbar-brand to="/">
-        <img class="brand-img" src="../../../public/assets/BodegaLetras.png" alt="BODEGA">
+        <h1>BODEGA</h1>
       </b-navbar-brand>
       <!-- <router-link to="/" class="navbar-brand">BODEGA</router-link> -->
       <b-navbar-toggle target="navbar-toggle-collapse">

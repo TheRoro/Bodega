@@ -2,7 +2,7 @@
   <div class="Nav">
     <b-navbar toggleable="md" class="my-navbar">
       <b-navbar-brand to="/">
-        <img class="brand-img" src="../../../public/assets/BodegaLetras.png" alt="BODEGA">
+        <h2 class="brand-text-logo">BODEGA</h2>
       </b-navbar-brand>
       <b-navbar-toggle target="navbar-toggle-collapse">
         <template v-slot:default="{ expanded }">
