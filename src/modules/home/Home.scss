@@ -1,0 +1,102 @@
+$text-color: #e5e5e5;
+$brand-color: #ff6699;
+$button-text-color: #ffffff;
+
+$phone-size: 640px;
+
+.home {
+	height: 100vh;
+	margin: 0;
+	user-select: none;
+
+	#bgVideo {
+		position: fixed;
+		right: 0;
+		bottom: 0;
+		min-width: 100%;
+		min-height: 100%;
+		zoom: 50%;
+	}
+
+	.opacity-filter {
+		position: fixed;
+		right: 0;
+		bottom: 0;
+		min-width: 100%;
+		min-height: 100%;
+		background-color: #000000;
+		opacity: 0.8;
+	}
+
+	.container {
+		position: fixed;
+		right: 0;
+		bottom: 0;
+		min-width: 100%;
+		min-height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.cta-container {
+		position: fixed;
+		bottom: 0;
+		min-width: 90%;
+		min-height: 30%;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+	}
+
+	.title {
+		color: $text-color;
+		font-size: calc(4vw + 4vh + 2vmin);
+		text-align: center;
+	}
+
+	.logo {
+		color: $text-color;
+		font-size: calc(10vw + 10vh + 2vmin);
+	}
+
+	.button {
+		width: 20vw;
+		height: 12vh;
+		min-height: 40px;
+		min-width: 400px;
+		background-color: $brand-color;
+		font-size: calc(1.2vw + 1.2vh + 1vmin);
+		color: $button-text-color;
+		border: none;
+		outline: none;
+		transition: transform 0.2s;
+		transition: all 0.2s ease-in-out;
+
+		&:hover {
+			transform: translateY(5px);
+			opacity: 0.9;
+			cursor: pointer;
+		}
+	}
+
+	@media screen and (max-width: $phone-size) {
+		#bgVideo {
+			zoom: 30%;
+		}
+		.cta-container {
+			min-width: 100%;
+			min-height: 10%;
+			display: block;
+		}
+		.button {
+			height: 10vh;
+			width: 100%;
+			text-align: center;
+			font-size: calc(2vw + 2vh + 1vmin);
+			&:hover {
+				border-radius: 0px;
+			}
+		}
+	}
+}
