@@ -1,0 +1,23 @@
+.rating-row {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	box-sizing: border-box;
+	align-items: flex-end;
+	margin-top: 0.5em;
+
+	.star-logo {
+		color: #fdc32b;
+		font-size: 1.3rem;
+		&:hover {
+			opacity: 0.8;
+			cursor: pointer;
+		}
+	}
+
+	.num-reviews {
+		color: #5f5f5f;
+		font-size: 0.7rem;
+		font-weight: 500;
+	}
+}
