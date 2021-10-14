@@ -1,0 +1,138 @@
+@use '../../assets/scss/_variables' as *;
+
+.nav {
+	@include flex(center, center);
+	height: $navbar-height;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	background: $white;
+	border-bottom: 1px solid $gray-100;
+	z-index: 10;
+
+	& > .brand {
+		@include flex(center, center);
+		position: fixed;
+		left: 0;
+		margin-left: 1rem;
+
+		&:hover {
+			opacity: 0.8;
+			cursor: pointer;
+		}
+
+		& > .logo {
+			color: $primary;
+			font-size: 3rem;
+			margin-right: 0.6rem;
+		}
+
+		& > .title {
+			color: $primary;
+			font-size: 1.7rem;
+			font-weight: 500;
+		}
+	}
+
+	& > .links {
+		@include flex(flex-end, space-around);
+		height: 100%;
+		width: 400px;
+
+		& > .router-link {
+			@include links;
+			color: $gray-300;
+			font-size: 1.2rem;
+			padding: 0.4rem 0.6rem;
+			border-bottom: 1px solid $white;
+			&:hover {
+				color: $gray-700;
+				font-weight: 500;
+			}
+		}
+
+		& > .router-link-exact-active {
+			@include links;
+			color: $gray-700;
+			font-weight: 500;
+			border-bottom: 1px solid $primary;
+			&:hover {
+				color: $primary;
+			}
+		}
+	}
+
+	@media only screen and (max-width: 800px) {
+		& > .links {
+			display: none;
+		}
+	}
+
+	& > .profile {
+		position: fixed;
+		right: 0;
+		margin-right: 1rem;
+
+		& > .photo {
+			max-height: 5vh;
+			border-radius: 50%;
+			border: 2px solid $primary;
+			transition: all 0.2s ease-in-out;
+			&:hover {
+				filter: brightness(0.7);
+				cursor: pointer;
+			}
+		}
+	}
+
+	& > .bottom-navbar {
+		height: $bottom-navbar-height;
+		width: 100vw;
+		position: fixed;
+		bottom: 0;
+		border-top: 2px solid $gray-100;
+		z-index: 999;
+
+		& > .responsive-links {
+			@include flex(center, center);
+			@include full-parent-size;
+
+			& > .router-link {
+				@include flex(center, center);
+				@include links;
+				height: 100%;
+				width: 33%;
+				color: $gray-300;
+				font-size: 1.2rem;
+				border: 1px solid $white;
+
+				@media (hover: hover) {
+					&:hover {
+						background: $gray-900;
+						color: $white;
+						border: 1px solid $gray-900;
+					}
+				}
+			}
+
+			& > .router-link-exact-active {
+				background: $primary;
+				color: $white;
+				font-weight: 500;
+				border: 1px solid $primary;
+				@media (hover: hover) {
+					&:hover {
+						background: desaturate($primary, 20%);
+						border: 1px solid desaturate($primary, 20%);
+						cursor: auto;
+					}
+				}
+			}
+		}
+	}
+	@media only screen and (min-width: 801px) {
+		& > .bottom-navbar {
+			display: none;
+		}
+	}
+}
