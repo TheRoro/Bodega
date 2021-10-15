@@ -1,0 +1,104 @@
+@use '../../assets/scss/_variables' as *;
+
+.card {
+	@include flex(flex-end, flex-start);
+	flex-direction: column;
+	box-sizing: content-box;
+	width: 260px;
+	min-height: 350px;
+	max-width: 260px;
+	padding: 1em 1.5em;
+	margin: 1vw auto;
+	border-radius: 30px;
+	border: 1px solid $gray-100;
+
+	& > .img-container {
+		@include flex(center, center);
+		width: 100%;
+		margin-top: 1em;
+
+		& > .item-image {
+			height: 200px;
+			width: 150px;
+			object-fit: contain;
+		}
+	}
+
+	& > .fav-container {
+		@include flex(center, center);
+		height: auto;
+		background: $primary-light;
+		border-radius: 12px;
+		transition: all 0.2s ease-in-out;
+		&:hover {
+			cursor: pointer;
+		}
+
+		& > .fav-logo {
+			color: $primary;
+			font-size: 1.2rem;
+			padding: 0.3em;
+			transition: all 0.2s ease-in-out;
+			user-select: none;
+		}
+	}
+
+	& > .text-row {
+		@include flex(center, flex-start);
+		height: auto;
+		width: 100%;
+		margin-top: 1.5em;
+
+		.item-name {
+			color: $gray-800;
+			font-size: 1.2rem;
+			font-weight: 500;
+			text-align: start;
+		}
+	}
+
+	& > .cta-row {
+		@include flex(flex-end, space-between);
+		width: 100%;
+		margin-top: 1.5em;
+
+		.price-container {
+			@include flex(flex-start, center);
+			flex-direction: column;
+
+			.price-text {
+				color: $gray-300;
+				font-size: 0.8rem;
+			}
+
+			.price-number {
+				color: $gray-800;
+				font-weight: 600;
+			}
+		}
+
+		& > .cart-button {
+			background: $white;
+			color: $primary;
+			font-weight: 500;
+			padding: 0.6em 1.3em;
+			border-radius: 10px;
+			border: 1px solid $primary-light;
+			font-family: 'Poppins', sans-serif;
+			transition: all 0.2s ease-in-out;
+			&:hover {
+				background: $primary;
+				color: $white;
+				cursor: pointer;
+			}
+			&:focus {
+				outline: none;
+				filter: brightness(0.95);
+			}
+		}
+	}
+
+	p {
+		margin: 0;
+	}
+}
