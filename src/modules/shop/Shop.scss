@@ -1,0 +1,38 @@
+@use '../../assets/scss/_variables' as *;
+
+.shop {
+	padding-top: $navbar-height;
+	padding-bottom: 5vh;
+	margin: 0 10vw;
+	@media only screen and (max-width: 1600px) {
+		margin: 0 5vw;
+	}
+
+	& > .text-row {
+		@include flex(center, flex-start);
+		margin: 4vh 0 4vh 0;
+
+		.search-text,
+		.category-text {
+			text-align: start;
+		}
+
+		.search-text {
+			color: $gray-200;
+			font-weight: 300;
+		}
+
+		.category-text {
+			color: $gray-700;
+			font-weight: 600;
+		}
+	}
+
+	& > .items-grid {
+		@include flex(center, center);
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 1vw 2vw;
+		grid-template-rows: masonry;
+	}
+}

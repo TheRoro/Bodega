@@ -10,7 +10,7 @@ const routes: Array<RouteConfig> = [
 		component: () => import('../../src/views/Home.vue'),
 	},
 	{
-		path: '/store',
+		path: '/shop',
 		name: 'Shop',
 		component: () => import('../../src/views/Shop.vue'),
 	},
@@ -19,6 +19,7 @@ const routes: Array<RouteConfig> = [
 		name: 'Cart',
 		component: () => import('../../src/views/Cart.vue'),
 	},
+	{ path: '/store', redirect: '/shop' },
 ]
 
 const router = new VueRouter({
