@@ -11,13 +11,12 @@
   "dependencies": {
     "axios": "^0.22.0",
     "font-awesome": "^4.7.0",
-    "node-sass": "^5.0.0",
+    "sass": "^1.43.2",
     "vue": "^2.6.12",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.1",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-eslint": "^4.5.8",
