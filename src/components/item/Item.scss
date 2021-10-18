@@ -1,0 +1,140 @@
+@use '../../assets/scss/_variables' as *;
+
+.item {
+	@include flex(center, center);
+	width: 100%;
+	height: 20vh;
+	border-bottom: 1px solid $gray-100;
+
+	& > * {
+		margin: 0 3vw;
+	}
+
+	& > .img-row {
+		@include flex(center, center);
+		height: 100%;
+
+		& > .item-image {
+			height: 70%;
+			width: 150px;
+			object-fit: contain;
+		}
+	}
+
+	& > .text-row {
+		@include flex(center, flex-start);
+		width: 15%;
+		height: 100%;
+
+		& > .item-name {
+			color: $gray-800;
+			font-size: 1.2rem;
+			font-weight: 500;
+			text-align: start;
+		}
+	}
+
+	& > .counter-row {
+		@include flex(center, center);
+		height: 100%;
+
+		& > .quantity-container {
+			@include flex(center, center);
+			height: 2.2rem;
+			width: 2.2rem;
+			border: solid 1px $primary;
+			border-radius: 10px;
+			margin: 0 0.8rem;
+			transition: all 0.2s ease-in-out;
+
+			& > .quantity-text {
+				color: $gray-800;
+				font-weight: 600;
+			}
+		}
+
+		& > .remove-logo,
+		.add-logo {
+			color: $primary;
+			font-size: 1rem;
+			transition: all 0.2s ease-in-out;
+			user-select: none;
+
+			&:hover {
+				opacity: 0.8;
+				cursor: pointer;
+			}
+		}
+	}
+
+	& > .price-row {
+		@include flex(center, flex-start);
+		width: 5%;
+		height: 100%;
+
+		& > .price-number {
+			@include flex(center, space-between);
+			width: 100%;
+			color: $gray-800;
+			font-size: 1rem;
+			font-weight: 600;
+		}
+	}
+
+	& > .delete-row {
+		@include flex(center, center);
+		height: auto;
+		transition: all 0.2s ease-in-out;
+		&:hover {
+			cursor: pointer;
+		}
+
+		& > .delete-logo {
+			color: $primary;
+			font-size: 1.5rem;
+			transition: all 0.2s ease-in-out;
+			user-select: none;
+		}
+	}
+
+	@media only screen and (max-width: 768px) {
+		flex-direction: column;
+		height: auto;
+
+		& > * {
+			margin: 4vw 0;
+		}
+
+		& > .img-row,
+		.text-row,
+		.counter-row,
+		.price-row,
+		.delete-row {
+			@include flex(center, center);
+			width: 100%;
+			text-align: center;
+		}
+
+		& > .price-row {
+			padding-bottom: 2vh;
+
+			& > .price-number {
+				@include flex(center, center);
+				width: auto;
+			}
+		}
+
+		& > .delete-row {
+			@include flex(center, flex-end);
+			order: -1;
+
+			& > .delete-logo {
+				margin-right: 4vw;
+			}
+		}
+
+		&:last-child {
+			border-bottom: 0;
+		}
+	}
+}
