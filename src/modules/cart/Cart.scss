@@ -1,0 +1,31 @@
+@use '../../assets/scss/_variables' as *;
+
+.cart {
+	padding-top: $navbar-height;
+	margin: 0 10vw;
+	@media only screen and (max-width: 1600px) {
+		margin: 0 5vw;
+	}
+
+	& > .text-row {
+		@include flex(center, flex-start);
+		margin: 4vh 0 4vh 0;
+
+		& > .title {
+			color: $gray-700;
+		}
+
+		@media only screen and (max-width: $phone-size) {
+			margin: 2vh 0 2vh 0;
+		}
+	}
+
+	& > .items-list {
+		@include flex(center, center);
+		flex-direction: column;
+	}
+
+	@media only screen and (max-width: $phone-size) {
+		padding-bottom: $bottom-navbar-height;
+	}
+}
