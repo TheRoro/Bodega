@@ -2,7 +2,6 @@
 
 .shop {
 	padding-top: $navbar-height;
-	padding-bottom: 5vh;
 	margin: 0 10vw;
 	@media only screen and (max-width: 1600px) {
 		margin: 0 5vw;
@@ -34,5 +33,9 @@
 		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 		gap: 1vw 2vw;
 		grid-template-rows: masonry;
+	}
+
+	@media only screen and (max-width: $phone-size) {
+		padding-bottom: $bottom-navbar-height;
 	}
 }

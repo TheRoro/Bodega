@@ -1,13 +1,12 @@
+@use '../../assets/scss/_variables' as *;
+
 .rating-row {
 	width: 100%;
-	display: flex;
-	justify-content: flex-start;
-	box-sizing: border-box;
-	align-items: flex-end;
+	@include flex(flex-end, flex-start);
 	margin-top: 0.5em;
 
-	.star-logo {
-		color: #fdc32b;
+	& > .star-logo {
+		color: $yellow;
 		font-size: 1.3rem;
 		&:hover {
 			opacity: 0.8;
@@ -15,8 +14,8 @@
 		}
 	}
 
-	.num-reviews {
-		color: #5f5f5f;
+	& > .num-reviews {
+		color: $gray-500;
 		font-size: 0.7rem;
 		font-weight: 500;
 	}
