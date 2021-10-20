@@ -1,9 +1,15 @@
+@use '../../assets/scss/_variables' as *;
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+html,
+* {
+	box-sizing: border-box;
+}
 
 body {
 	margin: 0;
 	::selection {
-		background: #ff6699;
+		background: #c1ffea;
 	}
 }
 
@@ -16,7 +22,9 @@ body {
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
-	min-width: 200px;
+	min-width: 325px;
+	font-weight: 400;
+	background: $white;
 }
 
 ::-webkit-scrollbar {
@@ -24,11 +32,11 @@ body {
 	height: 6px;
 }
 
-::-webkit-scrollbar-track {
-	border-radius: 10px;
+::-webkit-scrollbar-thumb {
+	width: 5px;
+	background-color: $primary-light;
 }
 
-::-webkit-scrollbar-thumb {
-	border-radius: 10px;
-	width: 5px;
+p {
+	margin: 0;
 }
