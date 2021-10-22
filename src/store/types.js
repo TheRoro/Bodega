@@ -1,1 +1,0 @@
-export const ACTION_RESET_STATE = 'chart/ACTION_RESET_STATE';
