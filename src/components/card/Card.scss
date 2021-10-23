@@ -80,8 +80,9 @@
 		& > .cart-button {
 			background: $white;
 			color: $primary;
+			font-size: calc(max(0.9rem, 0.5vw));
 			font-weight: 500;
-			padding: 0.6em 1.3em;
+			padding: 0.5rem 1.1rem;
 			border-radius: 10px;
 			border: 1px solid $primary-light;
 			font-family: 'Poppins', sans-serif;

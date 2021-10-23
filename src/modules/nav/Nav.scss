@@ -63,7 +63,7 @@
 		}
 	}
 
-	@media only screen and (max-width: 800px) {
+	@media only screen and (max-width: $nav-breakpoint) {
 		& > .links {
 			display: none;
 		}
@@ -131,7 +131,7 @@
 			}
 		}
 	}
-	@media only screen and (min-width: 801px) {
+	@media only screen and (min-width: calc($nav-breakpoint + 1px)) {
 		& > .bottom-navbar {
 			display: none;
 		}

@@ -35,7 +35,7 @@
 		grid-template-rows: masonry;
 	}
 
-	@media only screen and (max-width: $phone-size) {
+	@media only screen and (max-width: $nav-breakpoint) {
 		padding-bottom: $bottom-navbar-height;
 	}
 }
