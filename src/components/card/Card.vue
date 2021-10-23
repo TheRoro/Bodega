@@ -26,7 +26,7 @@
 				<p class="price-text">Price</p>
 				<p class="price-number">$ {{ formatPrice(price) }}</p>
 			</div>
-			<button class="cart-button">Add to cart</button>
+			<button class="cart-button" @click="addToCart()">Add to cart</button>
 		</div>
 	</div>
 </template>
@@ -43,6 +43,7 @@ export default {
 		Rating,
 	},
 	props: {
+		id: Number,
 		name: String,
 		price: Number,
 		imgUrl: String,
@@ -65,6 +66,15 @@ export default {
 		},
 		toggleFavorite() {
 			this.isFavorite = !this.isFavorite
+		},
+		addToCart() {
+			this.$store.commit('addProductToCart', {
+				id: this.id,
+				imgUrl: this.imgUrl,
+				name: this.name,
+				quantity: 1,
+				price: this.price,
+			})
 		},
 	},
 }

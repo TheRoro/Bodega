@@ -10,6 +10,7 @@
 			<Card
 				v-for="item in items"
 				:key="item.id"
+				:id="item.id"
 				:name="item.title"
 				:price="item.price"
 				:img-url="item.image"
@@ -17,6 +18,7 @@
 				:rating="item.rating"
 			/>
 		</div>
+		<Loading :loading="items.length == 0" />
 	</div>
 </template>
 
@@ -26,11 +28,13 @@
 
 <script>
 import Card from '../../components/card/Card.vue'
+import Loading from '../../components/loading/Loading.vue'
 import axios from 'axios'
 export default {
 	name: 'Shop',
 	components: {
 		Card,
+		Loading,
 	},
 	mounted() {
 		axios.get(`https://fakestoreapi.com/products`).then((response) => {
@@ -41,11 +45,6 @@ export default {
 		return {
 			items: [],
 		}
-	},
-	methods: {
-		addToCart(id) {
-			console.log(`hola ${id}`)
-		},
 	},
 }
 </script>
