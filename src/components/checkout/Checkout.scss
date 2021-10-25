@@ -1,0 +1,57 @@
+@use '../../assets/scss/_variables' as *;
+
+.checkout {
+	@include flex(center, space-between);
+	height: 15vh;
+	padding: 0 10vw;
+
+	& > .subtotal {
+		@include flex(baseline, center);
+
+		& > * {
+			margin: 0 0.5rem;
+		}
+
+		& > .text {
+			font-size: calc(max(1.1rem, 1vw));
+			font-weight: 500;
+			color: $gray-700;
+		}
+
+		& > .price {
+			font-size: calc(max(1.3rem, 1.7vw));
+			font-weight: 600;
+			color: $primary;
+		}
+	}
+
+	& > .button {
+		background: $white;
+		color: $primary;
+		font-size: calc(max(1.1rem, 1vw));
+		font-weight: 500;
+		padding: 0.5rem 1.6rem;
+		border-radius: 10px;
+		border: 1px solid $primary;
+		font-family: 'Poppins', sans-serif;
+		transition: all 0.2s ease-in-out;
+		&:hover {
+			background: $primary;
+			color: $white;
+			cursor: pointer;
+		}
+		&:focus {
+			outline: none;
+			filter: brightness(0.95);
+		}
+	}
+
+	@media only screen and (max-width: $nav-breakpoint) {
+		@include flex(center, center);
+		height: 20vh;
+		flex-direction: column;
+		& > .subtotal {
+			margin-bottom: 3vh;
+		}
+	}
+}
