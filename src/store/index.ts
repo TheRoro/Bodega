@@ -11,16 +11,18 @@ type CartItem = {
 	price: number;
 }
 
-function initialState() {
-	return {
+const store = new Vuex.Store({
+	state: {
 		cart: Array<CartItem>(),
 		subtotal: 0,
-	}
-}
-
-export default new Vuex.Store({
-	state: initialState,
+	},
 	mutations: {
+		initialiseStore(state) {
+			const lsStore = localStorage.getItem('store')
+			if (lsStore) {
+				Object.assign(state, JSON.parse(lsStore))
+			}
+		},
 		addProductToCart(state, product) {
 			const newCart = state.cart
 			let alreadyOnCart = false
@@ -97,3 +99,9 @@ export default new Vuex.Store({
 	},
 	actions: {},
 })
+
+store.subscribe((_mutation, state) => {
+	localStorage.setItem('store', JSON.stringify(state))
+})
+
+export default store
