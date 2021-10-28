@@ -2,16 +2,10 @@
 	<div class="card">
 		<div class="fav-container">
 			<span
-				v-if="isFavorite"
 				class="material-icons fav-logo"
+				:class="{ active: isFavorite, inactive: !isFavorite }"
 				@click="toggleFavorite(isFavorite)"
-				>favorite</span
-			>
-			<span
-				v-if="!isFavorite"
-				class="material-icons fav-logo"
-				@click="toggleFavorite(isFavorite)"
-				>favorite_border</span
+				>{{ isFavorite ? 'favorite' : 'favorite_border' }}</span
 			>
 		</div>
 		<div class="img-container">
@@ -65,7 +59,7 @@ export default {
 			return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 		},
 		toggleFavorite() {
-			this.isFavorite = !this.isFavorite
+			this.$store.commit('updateFavorite', this.id)
 		},
 		addToCart() {
 			this.$store.commit('addProductToCart', {
