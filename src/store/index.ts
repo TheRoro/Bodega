@@ -11,8 +11,19 @@ type CartItem = {
 	price: number;
 }
 
+
+type Product = {
+	id: number;
+	name: string;
+	price: number;
+	imgUrl: string;
+	isFavorite: boolean;
+	rating: number;
+}
+
 const store = new Vuex.Store({
 	state: {
+		products: Array<Product>(),
 		cart: Array<CartItem>(),
 		subtotal: 0,
 	},
@@ -21,6 +32,21 @@ const store = new Vuex.Store({
 			const lsStore = localStorage.getItem('store')
 			if (lsStore) {
 				Object.assign(state, JSON.parse(lsStore))
+			}
+		},
+		initialiseProducts(state, products) {
+			state.products = products
+		},
+		updateFavorite(state, id) {
+			const productsList = state.products
+			const productToUpdate: Product | undefined = productsList.find(
+				(cartItem) => cartItem.id === id
+			)
+			if (productToUpdate) {
+				productToUpdate.isFavorite = !productToUpdate.isFavorite
+				const productIndex = productsList.indexOf(productToUpdate)
+				Vue.set(productsList, productIndex, productToUpdate)
+				state.products = productsList
 			}
 		},
 		addProductToCart(state, product) {
@@ -96,6 +122,12 @@ const store = new Vuex.Store({
 		subtotal: (state) => {
 			return state.subtotal
 		},
+		products: (state) => {
+			return state.products
+		},
+		wishlist: (state) => {
+			return state.products.filter(product => product.isFavorite === true)
+		}
 	},
 	actions: {},
 })
