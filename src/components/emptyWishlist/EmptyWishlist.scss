@@ -1,0 +1,47 @@
+@use '../../assets/scss/_variables' as *;
+
+.empty-wishlist {
+	@include flex(center, flex-start);
+	flex-direction: column;
+	height: 60vh;
+
+	& > .empty-svg {
+		width: 50%;
+		height: 50%;
+	}
+
+	& > .title {
+		margin: 0;
+		font-size: calc(max(1.5rem, 1.6vw));
+		margin-top: 1.5rem;
+		margin-bottom: 1rem;
+		color: $gray-700;
+	}
+
+	& > .subtitle {
+		margin: 0;
+		font-size: calc(max(1rem, 0.9vw));
+		color: $gray-200;
+	}
+
+	& > .cta-button {
+		margin-top: 1.5rem;
+		background: $primary;
+		color: $white;
+		font-size: calc(max(1rem, 0.7vw));
+		font-weight: 500;
+		padding: 0.8rem 1.8rem;
+		border-radius: 10px;
+		border: 1px solid $primary;
+		font-family: 'Poppins', sans-serif;
+		transition: all 0.2s ease-in-out;
+		&:hover {
+			transform: translateY(5px);
+			cursor: pointer;
+		}
+		&:focus {
+			outline: none;
+			filter: brightness(0.95);
+		}
+	}
+}
