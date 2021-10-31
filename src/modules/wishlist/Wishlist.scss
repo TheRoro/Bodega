@@ -1,0 +1,34 @@
+@use '../../assets/scss/_variables' as *;
+
+.wishlist {
+	padding-top: $navbar-height;
+	margin: 0 10vw;
+	@media only screen and (max-width: 1600px) {
+		margin: 0 5vw;
+	}
+
+	& > .text-row {
+		@include flex(center, flex-start);
+		margin: 4vh 0 4vh 0;
+
+		& > .title {
+			color: $gray-700;
+		}
+
+		@media only screen and (max-width: $phone-size) {
+			margin: 2vh 0 2vh 0;
+		}
+	}
+
+	& > .items-grid {
+		@include flex(center, center);
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 1vw 2vw;
+		grid-template-rows: masonry;
+	}
+
+	@media only screen and (max-width: $nav-breakpoint) {
+		padding-bottom: $bottom-navbar-height;
+	}
+}

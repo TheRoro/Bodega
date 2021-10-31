@@ -19,6 +19,11 @@ const routes: Array<RouteConfig> = [
 		name: 'Cart',
 		component: () => import('../../src/views/Cart.vue'),
 	},
+	{
+		path: '/wishlist',
+		name: 'Wishlist',
+		component: () => import('../../src/views/Wishlist.vue'),
+	},
 	{ path: '/store', redirect: '/shop' },
 ]
 
