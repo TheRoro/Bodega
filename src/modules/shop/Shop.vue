@@ -8,17 +8,17 @@
 		</div>
 		<div class="items-grid">
 			<Card
-				v-for="item in items"
+				v-for="item in this.$store.getters.products"
 				:key="item.id"
 				:id="item.id"
 				:name="item.title"
 				:price="item.price"
 				:img-url="item.image"
-				:is-favorite="false"
+				:is-favorite="item.isFavorite"
 				:rating="item.rating"
 			/>
 		</div>
-		<Loading :loading="items.length == 0" />
+		<Loading :loading="this.$store.getters.products.length == 0" />
 	</div>
 </template>
 
@@ -37,13 +37,10 @@ export default {
 		Loading,
 	},
 	mounted() {
-		axios.get(`https://fakestoreapi.com/products`).then((response) => {
-			this.items = response.data
-		})
-	},
-	data: function() {
-		return {
-			items: [],
+		if (this.$store.getters.products.length == 0) {
+			axios.get(`https://fakestoreapi.com/products`).then((response) => {
+				this.$store.commit('initialiseProducts', response.data)
+			})
 		}
 	},
 }
