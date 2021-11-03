@@ -1,0 +1,54 @@
+@use '../../assets/scss/_variables' as *;
+
+.count-dot {
+	@include flex(flex-end, center);
+	@include square-size(1.2rem);
+	position: absolute;
+	margin-left: -0.3rem;
+	margin-top: 1rem;
+	left: initial;
+	background: $red;
+	color: $white;
+	font-size: 0.7rem;
+	border-radius: 50%;
+}
+
+.count-dot.inactive {
+	animation: deactivated 0.4s ease forwards;
+}
+
+.count-dot.animateActivated {
+	animation: activated 0.4s ease forwards;
+}
+
+.count-dot.animateDeactivated {
+	animation: deactivated 0.4s ease forwards;
+}
+
+.display {
+	transform: scale(0);
+}
+
+@keyframes activated {
+	0% {
+		transform: scale(0.8);
+	}
+	40% {
+		transform: scale(1.2);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes deactivated {
+	0% {
+		transform: scale(1);
+	}
+	40% {
+		transform: scale(0.5);
+	}
+	100% {
+		transform: scale(0);
+	}
+}
