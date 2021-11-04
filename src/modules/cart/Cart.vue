@@ -14,6 +14,8 @@
 				:quantity="item.quantity"
 			/>
 		</div>
+		<Checkout :display="items.length != 0" />
+		<EmptyCart :isEmpty="items.length == 0" />
 	</div>
 </template>
 
@@ -23,10 +25,15 @@
 
 <script>
 import Item from '../../components/item/Item.vue'
+import Checkout from '../../components/checkout/Checkout.vue'
+import EmptyCart from '../../components/emptyCart/EmptyCart.vue'
+
 export default {
 	name: 'Cart',
 	components: {
 		Item,
+		Checkout,
+		EmptyCart,
 	},
 	mounted() {
 		this.items = this.$store.getters.cart
