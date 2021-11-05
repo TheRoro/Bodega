@@ -1,0 +1,53 @@
+@use '../../assets/scss/_variables' as *;
+
+.profile {
+	@include square-size($profile-size);
+	position: fixed;
+	right: 0;
+	margin-right: 1rem;
+
+	& > .photo {
+		@include square-size($profile-size);
+		border-radius: 50%;
+		transition: all 0.2s ease-in-out;
+		&:hover {
+			filter: brightness(0.9);
+			cursor: pointer;
+		}
+	}
+
+	& > .slide-enter,
+	& > .slide-leave-to {
+		transform: scaleY(0);
+	}
+
+	& > .list {
+		@include border-shadow();
+		width: 204px;
+		position: absolute;
+		overflow: hidden;
+		right: 0;
+		margin: 0;
+		padding: 0;
+		background: $white;
+		list-style-type: none;
+		border-radius: 8px;
+		transform-origin: top;
+		transition: transform 0.4s ease-in-out;
+
+		& > li {
+			background: $white;
+			color: $gray-600;
+			padding: 0.8rem;
+			font-size: 1rem;
+			font-weight: 500;
+			text-align: left;
+			// border-radius: 8px;
+			transition: all 0.2s ease-in-out;
+			&:hover {
+				cursor: pointer;
+				background: $gray-100;
+			}
+		}
+	}
+}
