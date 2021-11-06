@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import router from '../router/index'
 
 Vue.use(Vuex)
 
@@ -21,18 +22,28 @@ type Product = {
 	rating: number;
 }
 
-const store = new Vuex.Store({
-	state: {
+const initialState = () => {
+	return {
 		products: Array<Product>(),
 		cart: Array<CartItem>(),
 		subtotal: 0,
-	},
+		cartCount: 0,
+		wishlistCount: 0,
+	}
+}
+
+const store = new Vuex.Store({
+	state: initialState(),
 	mutations: {
 		initialiseStore(state) {
 			const lsStore = localStorage.getItem('store')
 			if (lsStore) {
 				Object.assign(state, JSON.parse(lsStore))
 			}
+		},
+		destroyStore(state) {
+			localStorage.removeItem('store')
+			Object.assign(state, initialState())
 		},
 		initialiseProducts(state, products) {
 			state.products = products
@@ -47,6 +58,12 @@ const store = new Vuex.Store({
 				const productIndex = productsList.indexOf(productToUpdate)
 				Vue.set(productsList, productIndex, productToUpdate)
 				state.products = productsList
+				if (productToUpdate.isFavorite === true) {
+					state.wishlistCount += 1
+				}
+				else {
+					state.wishlistCount -= 1
+				}
 			}
 		},
 		addProductToCart(state, product) {
@@ -71,6 +88,7 @@ const store = new Vuex.Store({
 			}
 			state.subtotal += product.price
 			state.cart = newCart
+			state.cartCount += 1
 		},
 		increaseItem(state, id) {
 			const newCart = state.cart
@@ -83,6 +101,7 @@ const store = new Vuex.Store({
 				Vue.set(newCart, itemIndex, itemToUpdate)
 				state.subtotal += itemToUpdate.price
 				state.cart = newCart
+				state.cartCount += 1
 			}
 		},
 		decreaseItem(state, id) {
@@ -100,6 +119,7 @@ const store = new Vuex.Store({
 				}
 				state.subtotal -= itemToUpdate.price
 				state.cart = newCart
+				state.cartCount -= 1
 			}
 		},
 		removeItemFromCart(state, id) {
@@ -112,8 +132,10 @@ const store = new Vuex.Store({
 				newCart.splice(itemIndex, 1)
 				state.subtotal -= (itemToRemove.price * itemToRemove.quantity)
 				state.cart = newCart
+				state.cartCount -= itemToRemove.quantity
 			}
 		},
+
 	},
 	getters: {
 		cart: (state) => {
@@ -127,9 +149,20 @@ const store = new Vuex.Store({
 		},
 		wishlist: (state) => {
 			return state.products.filter(product => product.isFavorite === true)
+		},
+		cartCount: (state) => {
+			return state.cartCount
+		},
+		wishlistCount: (state) => {
+			return state.wishlistCount
 		}
 	},
-	actions: {},
+	actions: {
+		logout({ commit }) {
+			commit('destroyStore');
+			router.push('/');
+		}
+	},
 })
 
 store.subscribe((_mutation, state) => {
