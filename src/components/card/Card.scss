@@ -2,6 +2,7 @@
 
 .card {
 	@include flex(flex-end, flex-start);
+	@include border-shadow();
 	flex-direction: column;
 	box-sizing: content-box;
 	width: 260px;
@@ -11,7 +12,6 @@
 	margin: 1vw auto;
 	border-radius: 30px;
 	border: 1px solid $gray-100;
-
 	& > .img-container {
 		@include flex(center, center);
 		width: 100%;
