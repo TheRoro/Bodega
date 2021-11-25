@@ -1,14 +1,14 @@
 <template>
-	<HomeModule />
+	<Home />
 </template>
 
 <script>
-import HomeModule from '../modules/home/Home.vue'
+import Home from '../modules/home/Home.vue'
 
 export default {
-	name: 'Home',
+	name: 'HomeView',
 	components: {
-		HomeModule,
+		Home,
 	},
 }
 </script>
