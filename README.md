@@ -8,6 +8,8 @@ Bodega is an online shopping website developed using Vue and Typescript. While i
 
 The design for Bodega was created with attention to detail and user experience. You can view the design on Figma at: [Bodega Design](https://www.figma.com/file/5haCWUFZjKI5hLBTRpGcI4/Bodega?node-id=0%3A1)
 
+![Bodega Shop Screenshot](https://raw.githubusercontent.com/TheRoro/Bodega/main/public/assets/shop_screenshot.png)
+
 ## Deployment
 
 You can access the live deployment of Bodega at the following link: [Bodega E-commerce](https://bodega.onrender.com/)
@@ -45,6 +47,10 @@ Bodega was built with a focus on code reusability and scalability, making use of
 ## Deployment and Usage
 
 You can access the live deployment of Bodega at [https://bodega.onrender.com/](https://bodega.onrender.com/). Feel free to explore the website, add products to your cart, and enjoy a responsive and user-friendly shopping experience.
+
+![Bodega Shop Screenshot](https://raw.githubusercontent.com/TheRoro/Bodega/main/public/assets/empty_wishlist_screenshot.png)
+
+![Bodega Shop Screenshot](https://raw.githubusercontent.com/TheRoro/Bodega/main/public/assets/cart_screenshot.png)
 
 Experience a responsive and user-friendly online shopping experience with Bodega!
 
